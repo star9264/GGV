@@ -12,7 +12,6 @@
 	font-size: 16px;
 	border: none;
 	cursor: pointer;
-	float: left;
 	height: 100px;
 	width: 250px;
 }
@@ -58,6 +57,30 @@
 	<h1>상영시간표</h1>
 	<div class="movie1">
 		<button class="movie-subject">영화1</button>
+		<div class="movie-time">
+			<a href="#">Link1</a> <a href="#">Link 2</a> <a href="#">Link 3</a> <a href="#">Link 4</a> <a href="#">Link 5</a>
+		</div>
+	</div>
+	<div class="movie1">
+		<button class="movie-subject">영화2</button>
+		<div class="movie-time">
+			<a href="#">Link1</a> <a href="#">Link 2</a> <a href="#">Link 3</a> <a href="#">Link 4</a> <a href="#">Link 5</a>
+		</div>
+	</div>
+	<div class="movie1">
+		<button class="movie-subject">영화3</button>
+		<div class="movie-time">
+			<a href="#">Link1</a> <a href="#">Link 2</a> <a href="#">Link 3</a> <a href="#">Link 4</a> <a href="#">Link 5</a>
+		</div>
+	</div>
+	<div class="movie1">
+		<button class="movie-subject">영화4</button>
+		<div class="movie-time">
+			<a href="#">Link1</a> <a href="#">Link 2</a> <a href="#">Link 3</a> <a href="#">Link 4</a> <a href="#">Link 5</a>
+		</div>
+	</div>
+	<div class="movie1">
+		<button class="movie-subject">영화5</button>
 		<div class="movie-time">
 			<a href="#">Link1</a> <a href="#">Link 2</a> <a href="#">Link 3</a> <a href="#">Link 4</a> <a href="#">Link 5</a>
 		</div>
