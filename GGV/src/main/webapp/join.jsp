@@ -28,12 +28,12 @@ tfoot {
 		<table>
 			<thead>
 				<span>					
-					<input type="button" id="btn_ggv" value="GGV"/>
-					<input type="button" id="top_menu" value="홈"/>
-					<input type="button" id="top_menu" value="영화" />
-					<input type="button" id="top_menu" value="영화관"/>
-					<input type="button" id="top_menu" value="스토어"/>
-					<input type="button" id="top_menu" value="로그인"/>
+					<button type="button" id="btn_ggv" value="GGV"/>
+					<button type="button" id="top_menu" value="홈"/>
+					<button type="button" id="top_menu" value="영화" />
+					<button type="button" id="top_menu" value="영화관"/>
+					<button type="button" id="top_menu" value="스토어"/>
+					<button type="button" id="top_menu" value="로그인"/>
 				</span>
 			</thead>
 			<tbody>
