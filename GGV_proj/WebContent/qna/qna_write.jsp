@@ -61,7 +61,7 @@
 </head>
 <body>
 	<div id="menu">
-			<jsp:include page="menu_bar.jsp"/>
+			<jsp:include page="../home/menu_bar.jsp"/>
 	</div>
 	<div id="cap">
 		<h2 style="color: #9068be;"> 문의 사항</h2>

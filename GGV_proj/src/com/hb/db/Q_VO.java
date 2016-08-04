@@ -1,7 +1,7 @@
 package com.hb.db;
 
 public class Q_VO {
-	private String q_idx, subject, content, state, regdate, member_id;
+	private String q_idx, type, subject, content, state, regdate, member_id;
 
 	public String getQ_idx() {
 		return q_idx;
