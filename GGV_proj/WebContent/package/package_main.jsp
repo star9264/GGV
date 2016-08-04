@@ -29,7 +29,7 @@ h6{
 	<thead>
 		<tr height="100px">
 			<th colspan="4">
-				<jsp:include page="../menu_bar.jsp"></jsp:include>
+				<jsp:include page="../home/menu_bar.jsp"></jsp:include>
 			 </th>
 		</tr>
 	</thead>
