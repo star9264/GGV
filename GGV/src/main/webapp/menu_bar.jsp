@@ -44,11 +44,11 @@
 	}
 </script>
 </head>
-<body>
+<body >
 	<div>
 		<ul id="list">
 			<li id="site">
-			<img alt="" src="img/logo.PNG" onmouseout="imgChg('img/logo.PNG')" onmousemove="imgChg('img/map.PNG')" name="img_hover" height="70px" width="70px"> 
+			<img alt="" src="img/logo.PNG" onmouseout="imgChg('../webapp/img/logo.PNG')" onmousemove="imgChg('../webapp/img/map.PNG')" name="img_hover" height="70px" width="70px"> 
 			</li>
 			<div style="margin-top: 20px">
 				<li><a href=#>HOME</a></li>
@@ -59,6 +59,5 @@
 			</div>
 		</ul>
 	</div>
-	
 </body>
 </html>
