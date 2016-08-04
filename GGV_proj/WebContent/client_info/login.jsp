@@ -12,10 +12,17 @@ input{
 #text:ACTIVE {
 	
 }
+#menu{
+   		padding-bottom: 150px;
+    	padding-left: 100px;
+   	}
 
 </style>
 </head>
 <body>
+	<div id="menu">
+    	<jsp:include page="../home/menu_bar.jsp"/>
+	</div>
 	<form method="post">
 	<table align="center">
 		<thead>

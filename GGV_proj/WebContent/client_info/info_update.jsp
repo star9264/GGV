@@ -17,9 +17,16 @@
 		border-bottom: 2px solid #ddd;
 		padding: 10px;
 	}
+	#menu{
+   		padding-bottom: 150px;
+    	padding-left: 100px;
+   	}
 </style>
 </head>
 <body>
+	<div id="menu">
+    	<jsp:include page="../home/menu_bar.jsp"/>
+	</div>
 	<form method="post">
 		<span id="top_span" style="color: #9068be; font-weight: bolder;">/</span>
 		<span id="top_span" style="font-size: large; font-weight: bolder;">개인정보 수정</span>
