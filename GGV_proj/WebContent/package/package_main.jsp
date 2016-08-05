@@ -19,20 +19,20 @@ h6{
 	color: gray;
 }
 
-
+#menu{
+		padding-bottom: 100px;
+		padding-left: 100px;
+	}
 
 </style>
 
 </head>
 <body>
+
+<div id="menu">
+			<jsp:include page="../home/menu_bar.jsp"/>
+	</div>
 	<table align="center" id="packcage_info">
-	<thead>
-		<tr height="100px">
-			<th colspan="4">
-				<jsp:include page="../home/menu_bar.jsp"></jsp:include>
-			 </th>
-		</tr>
-	</thead>
 	
 	<tbody>
 	

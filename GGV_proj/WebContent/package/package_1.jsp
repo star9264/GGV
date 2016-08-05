@@ -9,7 +9,7 @@
  
 ul{
 
-list-style-image: url('img/check_sign.png');
+/* list-style-image: url('../img/check_sign.png'); */
 
 }
 
@@ -17,9 +17,19 @@ list-style-image: url('img/check_sign.png');
 border-style: groove;
 border-color: BBBBBB;
 border-width: 10px;
-
-
 }
+
+
+#purchase{
+		
+		background-color: #9068be;
+		color: white;
+		height: 60px;
+		width: 150px;
+		border: none;
+		border-radius: 8px;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -51,13 +61,12 @@ function bt_down(){
 }
 
 function p_purchase(){
-	window.open
+	window.open('purchase.jsp','패키지 구매','scrollbars=no, resizable=no, width=680,height=420')
 }
 
 function submit_info(){
 	winObject.document.all.package_1.value = document.all.purchase.value;
 }
-
 
 </script>
 </head>
@@ -79,7 +88,8 @@ function submit_info(){
 	<td>
 	
 	<table id="package_info" >
-	<tr><td><h3 >싱글 패키지</h3></td></tr>
+	<tr><td><h3 >싱글 패키지</h3> <input type="hidden" id="package_name" value="싱글패키지"></td></tr>
+	_
 	<tr height="30px"><td>관람권 1매, 팝콘(R), 탄산음료(R)</td></tr>
 	<tr height="150px"><td>
 			<strong>·유효기간</strong>:예매가능 유효기간은 구매일로부터 2년이며, 매점쿠폰은 관람권사용 당일에만 교환 가능합니다. <br/>
@@ -87,7 +97,7 @@ function submit_info(){
 			<strong>·구매 후 취소</strong>:구매일로부터 7일까지 취소 가능하며, 부분취소는 불가능 합니다. (패키지품목 개별취소 불가)<br/></td></tr>
 	<tr><td> <strong>스토어 판매가 : 14,000원 </strong> <input type="hidden" value="14000" id="p_price"> <br/><br/> <strong>수량</strong> &nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="-" width="15px" height="15px" onclick="bt_down()" /> <input type="text" value="1" id="su" size="1" disabled="disabled" /> <input type="button" value="+" width="15px" height="15px" onclick="bt_up()"/><br/><br/></td></tr>
 	<tr height="10px"><td> <strong>총 상품 금액</strong> &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" value="14000" disabled="disabled" size="3" id="total_price"/> &nbsp;원</td></tr>
-	<tr height="100px"><td><input id="purchase" style="background-color:#6600FF; color: white; height: 50px; width: 150px; " type="button" value="구매하기" align="right" onclick="p_purchase();submit_info()"/></td></tr>
+	<tr height="100px"><td><input id="purchase"  type="button" value="구매하기" align="right" onclick="p_purchase();submit_info()"/></td></tr>
 	</table>
 	
 	</td>
