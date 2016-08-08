@@ -1,7 +1,40 @@
 package com.hb.db;
 
 public class Q_VO {
-	private String q_idx, type, subject, content, state, regdate, member_id;
+	private String q_idx, type, subject, content, state, regdate, member_id, 
+		member_name, member_phone, member_email;
+
+	public String getMember_phone() {
+		return member_phone;
+	}
+
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
+	}
+
+	public String getMember_email() {
+		return member_email;
+	}
+
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
+	}
+
+	public String getMember_name() {
+		return member_name;
+	}
+
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public String getQ_idx() {
 		return q_idx;

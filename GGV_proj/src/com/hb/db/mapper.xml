@@ -6,6 +6,10 @@
    <select id="package_information" parameterType="String" resultType="com.hb.db.P_VO">
    		select * from ggv_package where package_idx=#{idx}
    </select>
+   
+    <select id="q_list" parameterType="Map" resultType="com.hb.db.Q_VO">
+   		select * from ggv_question where type='ask' order by QUESTION_IDX
+   </select>
 </mapper>
 
 

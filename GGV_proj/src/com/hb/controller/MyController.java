@@ -42,46 +42,6 @@ public class MyController {
 	public void setPage(Pageing page) {
 		this.page = page;
 	}
-	// list
-	@RequestMapping("/list.do")
-	public ModelAndView getList(HttpServletRequest request){
-		String cPage = request.getParameter("cPage");
-		if (cPage != null) {
-			page.setNowPage(Integer.parseInt(cPage));	
-		}
-		
-		page.setTotalRecord(dao.getTotalCount());
-		page.setTotalPage();
-		
-		page.setBegin((page.getNowPage()-1)*page.getNumPerPage()+1);
-		page.setEnd((page.getBegin()-1)+page.getNumPerPage());
-		//System.out.println(page.getBegin()+" "+page.getEnd());
-		
-		Map<String, Integer> map = new HashMap<>();
-		map.put("begin", page.getBegin());
-		map.put("end", page.getEnd());
-		
-		
-		
-		List<Q_VO> list =  dao.getList(map);
-		page.setBeginPage((int)((page.getNowPage()-1)/page.getPagePerBlock())*page.getPagePerBlock()+1);
-		page.setEndPage(page.getBeginPage() + page.getPagePerBlock()-1);
-		
-		if (page.getEndPage() > page.getTotalPage()) {
-			page.setEndPage(page.getTotalPage());
-		}
-		System.out.println(page.getBegin()+" "+page.getEnd());
-		
-		System.out.println(map.get("begin"));
-		System.out.println(map.get("end"));
-		ModelAndView mv = new ModelAndView("list");
-		
-		mv.addObject("list", list);
-		mv.addObject("page", page);
-		mv.addObject("cPage", cPage);
-		return mv ;
-	}
-	
 	
 	//package_purchase
 	@RequestMapping("/purchase.do")
@@ -125,60 +85,15 @@ public class MyController {
 	}
 	
 
-	/*// view
-	@RequestMapping("/view.do")
-	public ModelAndView getView(@RequestParam String b_idx){
-		ModelAndView mv = new ModelAndView("view");
-		BbsVO bvo = dao.getView(b_idx);
-		
-		// 댓글 가져오기
-		
-		// 히트 수 증가
-		
-		// 히트수 업데이트
-		
-		mv.addObject("bvo", bvo);
-		return mv;
-	}*/
-	
-	// write
-	@RequestMapping("/write.do")
-	public ModelAndView getWrite(){
-		return new ModelAndView("write") ;
-	}
-	
-	/*// write_ok
-	@RequestMapping("/write_ok.do")
-	public ModelAndView getWrite_ok(HttpServletRequest request){
-		String path = request.getServletContext().getRealPath("/upload");
-		BbsVO bvo = new BbsVO();
-		try {
-		MultipartRequest mr = new MultipartRequest(
-				request,
-				path,
-				500*1024*1024,
-				"utf-8",
-				new DefaultFileRenamePolicy());
-		
-		bvo.setSubject(mr.getParameter("subject"));
-		bvo.setWriter(mr.getParameter("writer"));
-		bvo.setContent(mr.getParameter("content"));
-		bvo.setPwd(mr.getParameter("pwd"));
-		bvo.setIp(request.getRemoteAddr());
-		
-		if(mr.getFile("file_name") != null){
-			bvo.setFile_name(mr.getFilesystemName("file_name"));
-		}else{
-			bvo.setFile_name("");
+	// qna list
+		@RequestMapping("/q_list.do")
+		public ModelAndView getQList(HttpServletRequest request){
+			String type = request.getParameter("type");
+			Map<String, String> map = new HashMap<>();
+			map.put("type", type);
+			List<Q_VO> q_list = dao.getQ_list(map);
+			ModelAndView mv = new ModelAndView("qna/q_list");
+			mv.addObject("q_list",q_list);
+			return mv;
 		}
-		int result = dao.getWrite_ok(bvo);
-		if(result<=0){
-			return new ModelAndView("redirect:/write.do"); 
-		}
-		} catch (Exception e) {
-		}
-		ModelAndView mv = new ModelAndView("redirect:/list.do");
-		mv.addObject("bvo", bvo);
-		return mv; 
-	}*/
 }
