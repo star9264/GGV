@@ -8,5 +8,7 @@
 </head>
 <body>
 
+<% response.sendRedirect("package_main.do"); %>
+
 </body>
 </html>
