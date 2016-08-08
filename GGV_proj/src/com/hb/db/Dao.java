@@ -50,7 +50,7 @@ public class Dao {
 			ss.close();
 		}
 		return list;
-	}
+	} 
 	
 	public List<P_VO> getpackage_info(String idx){
 		SqlSession ss = null;

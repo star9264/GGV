@@ -1,6 +1,6 @@
 package com.hb.db;
 
-public class P_VO {
+public class P_VO { 
 	private String package_idx,package_name,package_price,package_img,package_item,package_su,package_maxsu;
 	public P_VO() {
 		// TODO Auto-generated constructor stub

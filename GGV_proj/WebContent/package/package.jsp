@@ -31,7 +31,7 @@ border-width: 10px;
 		border-radius: 8px;
 }
 
-</style>
+</style> 
 
 <script type="text/javascript">
 

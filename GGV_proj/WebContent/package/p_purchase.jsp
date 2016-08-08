@@ -53,7 +53,7 @@ font-size: large;
 font-weight: bold;
 }
 </style>
-</head>
+</head> 
 <body>
 
 	<table id="package_charge">

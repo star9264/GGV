@@ -38,7 +38,7 @@ h6{
 	<tbody>
 	
 	<tr height="100px" >
-		<td >
+		<td > 
 			<h2 id="package_subject" >GGV ÆÐÅ°Áö</h2>
 		</td>
 	</tr>

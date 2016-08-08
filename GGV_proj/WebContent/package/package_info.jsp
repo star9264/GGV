@@ -41,7 +41,7 @@ color: gray;
 
 <script type="text/javascript">
 
-function bt_up(){
+function bt_up(){ 
 	var max = document.getElementById("maxsu").value;
 	var r_max = parseInt(max);
 	var number=parseInt(document.getElementById("su").value); 
