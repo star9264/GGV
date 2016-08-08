@@ -18,6 +18,16 @@ input{
    	}
 
 </style>
+<script type="text/javascript">
+	function join_go(f) {
+		f.action="client_info/join.jsp";
+		f.submit();
+	}
+	function find_go(f) {
+		f.action="client_info/info_find.jsp";
+		f.submit();
+	}
+</script>
 </head>
 <body>
 	<div id="menu">
@@ -47,8 +57,8 @@ input{
 	</table>
 	<hr style="width: 25%; color: silver;" align="center"/>
 	<div align="center">
-		<input id="bot" type="button" value="회원가입" style="height: 90px; width: 90px; border:none; border-radius:50%; cursor: pointer; color: gray;">
-		<input id="bot" type="button" value="ID/PW 찾기" style="height: 90px; width: 90px; border:none; border-radius:50%; cursor: pointer; color: gray;">
+		<input onclick="join_go(this.form)" id="bot" type="button" value="회원가입" style="height: 90px; width: 90px; border:none; border-radius:50%; cursor: pointer; color: gray;">
+		<input onclick="find_go(this.form)" id="bot" type="button" value="ID/PW 찾기" style="height: 90px; width: 90px; border:none; border-radius:50%; cursor: pointer; color: gray;">
 	</div>
 	</form>
 </body>

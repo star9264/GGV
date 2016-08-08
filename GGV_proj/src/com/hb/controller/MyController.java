@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +19,6 @@ import com.hb.db.Pageing;
 import com.hb.db.Q_VO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
-
 
 @Controller
 public class MyController {
@@ -98,7 +97,7 @@ public class MyController {
 	
 	// write
 	@RequestMapping("/write.do")
-	public ModelAndView getWrite(){
+	public ModelAndView getWrite(HttpServletRequest request){
 		return new ModelAndView("write") ;
 	}
 	
@@ -136,4 +135,45 @@ public class MyController {
 		mv.addObject("bvo", bvo);
 		return mv; 
 	}*/
+	
+	// login 화면으로
+	@RequestMapping("/login.do")
+	public ModelAndView getLogin(HttpServletRequest request, HttpServletResponse response){
+		System.out.println("좀 돼라");
+		ModelAndView mv = new ModelAndView("client_info/login");
+		return mv;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
