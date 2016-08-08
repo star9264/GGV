@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 public class Dao {
 	private SqlSessionFactory sessionFactory;
@@ -81,4 +82,47 @@ public class Dao {
 		}
 		return result;
 	}*/
+	
+	// login
+	public Member_VO getLogin(Map<String, String> map){
+		SqlSession ss = null;
+		Member_VO member_VO = new Member_VO();
+		try {
+			ss = sessionFactory.openSession();
+			member_VO = ss.selectOne("login", map);
+			System.out.println("dao결과" + member_VO.getAddr());
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return member_VO;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

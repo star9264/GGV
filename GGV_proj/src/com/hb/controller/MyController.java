@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.hb.db.Dao;
+import com.hb.db.Member_VO;
 import com.hb.db.Pageing;
 import com.hb.db.Q_VO;
 import com.oreilly.servlet.MultipartRequest;
@@ -141,6 +142,26 @@ public class MyController {
 	public ModelAndView getLogin(HttpServletRequest request, HttpServletResponse response){
 		System.out.println("좀 돼라");
 		ModelAndView mv = new ModelAndView("client_info/login");
+		return mv;
+	}
+	
+	// 로그인 시도
+	@RequestMapping("/login_ok.do")
+	public ModelAndView getLoginOk(HttpServletRequest request, HttpServletResponse response){
+		System.out.println("로그인시도");
+		ModelAndView mv = new ModelAndView("client_info/info_update");
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		System.out.println(id+pwd);
+		Map<String, String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("pwd", pwd);
+		
+		Dao dao = new Dao();
+		Member_VO member_VO = dao.getLogin(map);
+		System.out.println("마지막결과" + member_VO.getAddr());
+		mv.addObject("member_VO", member_VO);
+		
 		return mv;
 	}
 }
