@@ -23,6 +23,15 @@
     	padding-left: 100px;
    	}
 </style>
+<script type="text/javascript">
+	function cancel() {
+		history.go(-1);
+	}
+	function info_update_go(f) {
+		f.action="info_update.do";
+		f.submit();
+	}
+</script>
 </head>
 <body>
 	<div id="menu">
@@ -47,7 +56,7 @@
 			<tbody>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*아이디</td>
-					<td><input type="text" name="id" style="height: 18px;"/>${member_VO.id}</td>
+					<td><input type="text" name="id" style="height: 18px;" value="${member_VO.member_id}"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*비밀번호</td>
@@ -55,31 +64,33 @@
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*이름</td>
-					<td><input type="text" style="height: 18px;"/></td>
+					<td><input type="text" style="height: 18px;" value="${member_VO.name}"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*생년월일</td>
-					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="2"/>&nbsp;년
-					<input type="text" style="height: 18px;" size="1"/>&nbsp;월&nbsp;<input type="text" style="height: 18px;" size="1"/>&nbsp;일</td>
+					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="2" value="${member_VO.birthday.substring(0,4)}"/>&nbsp;년
+					<input type="text" style="height: 18px;" size="1"  value="${member_VO.birthday.substring(4,6)}"/>&nbsp;월&nbsp;
+					<input type="text" style="height: 18px;" size="1"  value="${member_VO.birthday.substring(6,8)}"/>&nbsp;일</td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*전화번호</td>
-					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="1"/>&nbsp;-
-					<input type="text" style="height: 18px;" size="2"/>&nbsp;-&nbsp;<input type="text" style="height: 18px;" size="2"/>&nbsp;</td>
+					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="1" value="${member_VO.phone.substring(0,3)}"/>&nbsp;-
+					<input type="text" style="height: 18px;" size="2"  value="${member_VO.phone.substring(3,7)}"/>&nbsp;-&nbsp;
+					<input type="text" style="height: 18px;" size="2" value="${member_VO.phone.substring(7,11)}"/>&nbsp;</td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*주소</td>
-					<td><input type="text" style="height: 18px;" size="40"/></td>
+					<td><input type="text" style="height: 18px;" size="40"/ value="${member_VO.addr}"></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*이메일</td>
-					<td><input type="text" style="height: 18px;"/></td>
+					<td><input type="text" style="height: 18px;" value="${member_VO.email_addr}"/></td>
 				</tr>
 			</tbody>		
 		</table>
 		<div align="center" style="margin-top: 50px;">
-			<input type="button" value="수정" style="width: 110px; height: 75px; background-color: white; cursor: pointer; border-style: solid; color: gray;"/>
-			<input type="button" value="취소" style="width: 110px; height: 75px; background-color: white; cursor: pointer; border-style: solid; color: gray;"/>	
+			<input type="button" onclick="info_update_ok(this.form)" value="수정" style="width: 110px; height: 75px; background-color: white; cursor: pointer; border-style: solid; color: gray;"/>
+			<input type="button" onclick="cancel()" value="취소" style="width: 110px; height: 75px; background-color: white; cursor: pointer; border-style: solid; color: gray;"/>	
 		</div>
 	</form>
 </body>

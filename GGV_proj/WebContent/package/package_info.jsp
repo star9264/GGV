@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>패밀리 패키지</title>
 <style type="text/css">
-
+ 
 ul{
 
 list-style-image: url('img/check_sign.png');
@@ -20,19 +21,42 @@ border-width: 10px;
 
 
 }
+
+h2{
+color: gray;
+
+}
+
+#purchase{
+		
+		background-color: #9068be;
+		color: white;
+		height: 50px;
+		width: 150px;
+		border: none;
+		border-radius: 8px;
+}
 </style>
+
 
 <script type="text/javascript">
 
-
-function bt_up(){
+function bt_up(){ 
+	var max = document.getElementById("maxsu").value;
+	var r_max = parseInt(max);
 	var number=parseInt(document.getElementById("su").value); 
-	var up_number = number+1;
+	if(number>=max){
+		up_number = number;
+		alert("최대 수량은 "+r_max+"개 입니다.")
+	}else{
+		var up_number = number+1;
+		
+	}
 	document.getElementById("su").value =up_number;
 	var p_price = document.getElementById("p_price").value;
 	var total_p = up_number*parseInt(p_price);
 	document.getElementById("total_price").value =total_p;
-	
+
 }
 
 function bt_down(){
@@ -49,6 +73,16 @@ function bt_down(){
 	var total_p = r_number*parseInt(p_price);
 	document.getElementById("total_price").value =total_p;
 }
+
+function p_purchase(){
+	window.open('purchase.do','패키지 구매','scrollbars=no, resizable=no, width=680,height=420')
+}
+
+function submit_info(){
+	winObject.document.all.package_4.value = document.all.purchase.value;
+}
+
+
 </script>
 </head>
 <body>
@@ -57,32 +91,34 @@ function bt_down(){
 	
 	
 	<tbody>
-	
+	<c:if test="${!empty p_vo}">
+	<c:forEach items="${p_vo}" var="k">
 	<tr>
 	<th colspan="2"><h2 align="left"  style="color: purple;" >메가티켓</h2> <hr style="border: solid 2px purple;"/> </th>
 	</tr>
 	
 	<tr>
 	
-	<td rowspan="6"><img alt="" src="http://image2.megabox.co.kr/mop/store/2016/15/8D541D-B1AE-4EFF-9C8B-BAC90A1C9EF7.large.jpg" height="300px" width="350px" align="top"></td>
+	<td rowspan="6"><img alt="" src="${k.package_img }" height="300px" width="350px" align="top"></td>
 	
 	<td>
 	
 	<table id="package_info" >
-	<tr><td><h3 >패밀리 패키지</h3></td></tr>
-	<tr height="30px"><td>관람권 3매, 팝콘(R)2, 탄산음료(R)2</td></tr>
+	<tr><td><h3 >${k.package_name}</h3></td></tr>
+	<tr height="30px"><td>${k.package_item}</td></tr>
 	<tr height="150px"><td>
 			<strong>·유효기간</strong>:예매가능 유효기간은 구매일로부터 2년이며, 매점쿠폰은 관람권사용 당일에만 교환 가능합니다. <br/>
-			<strong>·판매수량</strong>:1회 2개 구매가능<br/>
+			<strong>·판매수량</strong>:1회 ${k.package_maxsu }개 구매가능<br/> <input type="hidden" name="maxsu" value="${k.package_maxsu}" id = "maxsu">
 			<strong>·구매 후 취소</strong>:구매일로부터 7일까지 취소 가능하며, 부분취소는 불가능 합니다. (패키지품목 개별취소 불가)<br/></td></tr>
-	<tr><td> <strong>스토어 판매가 : 34,500원 </strong> <input type="hidden" value="34500" id="p_price"> <br/><br/> <strong>수량</strong> &nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="-" width="15px" height="15px" onclick="bt_down()" /> <input type="text" value="1" id="su" size="1" disabled="disabled" /> <input type="button" value="+" width="15px" height="15px" onclick="bt_up()"/><br/><br/></td></tr>
-	<tr height="10px"><td> <strong>총 상품 금액</strong> &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" value="34500" disabled="disabled" size="3" id="total_price"/> &nbsp;원</td></tr>
-	<tr height="100px"><td><input id="purchase" style="background-color:#6600FF; color: white; height: 50px; width: 150px; " type="button" value="구매하기" align="right"/></td></tr>
+	<tr><td> <strong>스토어 판매가 : ${k.package_price}원 </strong> <input type="hidden" value="${k.package_price }" id="p_price"><br/><br/> <strong>수량</strong> &nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="-" width="15px" height="15px" onclick="bt_down()"/> <input type="text" value="1" id="su" size="1" disabled="disabled" /> <input type="button" value="+" width="15px" height="15px" onclick="bt_up()"/><br/><br/></td></tr>
+	<tr height="10px"><td> <strong>총 상품 금액</strong> &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" value="${k.package_price} " disabled="disabled" size="3" id="total_price" name="su"/> &nbsp;원</td></tr>
+	<tr height="100px"><td><input id="purchase" type="button" value="구매하기" align="right" onclick="p_purchase();submit_info()"/></td></tr>
 	</table>
 	
 	</td>
 	</tr>
-
+	</c:forEach>
+</c:if>
 	</tbody>
 	
 	<tfoot>

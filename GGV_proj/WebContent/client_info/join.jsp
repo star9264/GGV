@@ -22,6 +22,23 @@
     	padding-left: 100px;
    	}
 </style>
+<script type="text/javascript">
+function id_confirm(f) {
+	var id_chk = $("#id").val(); /////////////////////////////////////////////여기까지함 아이디중복체크 해야함
+	alert(id_chk);	
+}
+	function join_ok(){
+		for(var i=0 ; i<document.forms[0].elements.length ; i++){
+			if(document.forms[0].elements[i].value == ""){
+				alert(document.forms[0].elements[i].id+
+						"칸을 입력하세요");
+				document.forms[0].elements[i].focus();
+				return;//수행 중단
+			}
+		}
+		document.forms[0].submit();
+	}
+</script>
 </head>
 <body>
 	<div id="menu">
@@ -42,46 +59,49 @@
 			<tbody>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*아이디</td>
-					<td><input type="text" name="id" style="height: 18px;"/>&nbsp;<input type="button" value="중복확인" style="color: #f0eceb; width: 70px; height: 30px; background-color: #9068be; border-style: none; cursor: pointer;"/></td>
+					<td><input type="text" class="member_id" id="id" name="member_id" style="height: 18px;"/>&nbsp;
+					<input onclick="id_confirm(this.form)" type="button" value="중복확인" style="color: #f0eceb; width: 70px; height: 30px; background-color: #9068be; border-style: none; cursor: pointer;"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*비밀번호</td>
-					<td><input type="password" style="height: 18px;"/></td>
+					<td><input type="password" id="비밀번호" name="pwd" style="height: 18px;"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*비밀번호확인</td>
-					<td><input type="password" style="height: 18px;"/></td>
+					<td><input type="password" id="비밀번호확인" name="pwd2" style="height: 18px;"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*이름</td>
-					<td><input type="text" style="height: 18px;"/></td>
+					<td><input type="text" id="이름" name="name" style="height: 18px;"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*생년월일</td>
-					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="2"/>&nbsp;년
-					<input type="text" style="height: 18px;" size="1"/>&nbsp;월&nbsp;<input type="text" style="height: 18px;" size="1"/>&nbsp;일</td>
+					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="2" id="생년월일" name="birthday"/>&nbsp;년
+					<input type="text" style="height: 18px;" size="1" id="생년월일" name="birthday2"/>&nbsp;월&nbsp;
+					<input type="text" style="height: 18px;" size="1" id="생년월일" name="birthday3"/>&nbsp;일</td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*성별</td>
-					<td style="font-size: 12px;"><input type="radio" name="gender"/>남자<input type="radio" name="gender"/>여자</td>
+					<td style="font-size: 12px;"><input type="radio" name="gender" value="남자"/>남자<input type="radio" name="gender" value="여자"/>여자</td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*전화번호</td>
-					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="1"/>&nbsp;-
-					<input type="text" style="height: 18px;" size="2"/>&nbsp;-&nbsp;<input type="text" style="height: 18px;" size="2"/>&nbsp;</td>
+					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="1" id="전화번호" name="phone"/>&nbsp;-
+					<input type="text" style="height: 18px;" size="2" id="전화번호" name="phone2"/>&nbsp;-&nbsp;
+					<input type="text" style="height: 18px;" size="2" id="전화번호" name="phone3"/>&nbsp;</td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*주소</td>
-					<td><input type="text" style="height: 18px;" size="40"/></td>
+					<td><input type="text" style="height: 18px;" size="40" id="주소" name="addr"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*이메일</td>
-					<td><input type="text" style="height: 18px;"/></td>
+					<td><input type="text" style="height: 18px;" id="이메일" name="email_addr"/></td>
 				</tr>
 			</tbody>		
 		</table>
 		<div align="center" style="margin-top: 25px;">
-			<input type="button" value="회원가입" style="width: 110px; height: 75px; background-color: white; cursor: pointer; border-style: solid; color: gray;"/>
+			<input onclick="join_ok(this.form)" type="button" value="회원가입" style="width: 110px; height: 75px; background-color: white; cursor: pointer; border-style: solid; color: gray;"/>
 			<input type="button" value="취소" style="width: 110px; height: 75px; background-color: white; cursor: pointer; border-style: solid; color: gray;"/>	
 		</div>
 	</form>

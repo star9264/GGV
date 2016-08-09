@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -61,7 +62,7 @@ function bt_down(){
 }
 
 function p_purchase(){
-	window.open('purchase.jsp','패키지 구매','scrollbars=no, resizable=no, width=680,height=420')
+	window.open("purchase.do","패키지 구매","scrollbars=no, resizable=no, width=680,height=420")
 }
 
 function submit_info(){
@@ -71,6 +72,7 @@ function submit_info(){
 </script>
 </head>
 <body>
+<form method="post">
 	<table>
 	
 	
@@ -89,15 +91,17 @@ function submit_info(){
 	
 	<table id="package_info" >
 	<tr><td><h3 >싱글 패키지</h3> <input type="hidden" id="package_name" value="싱글패키지"></td></tr>
-	_
 	<tr height="30px"><td>관람권 1매, 팝콘(R), 탄산음료(R)</td></tr>
 	<tr height="150px"><td>
 			<strong>·유효기간</strong>:예매가능 유효기간은 구매일로부터 2년이며, 매점쿠폰은 관람권사용 당일에만 교환 가능합니다. <br/>
 			<strong>·판매수량</strong>:1회 8개 구매가능<br/>
 			<strong>·구매 후 취소</strong>:구매일로부터 7일까지 취소 가능하며, 부분취소는 불가능 합니다. (패키지품목 개별취소 불가)<br/></td></tr>
-	<tr><td> <strong>스토어 판매가 : 14,000원 </strong> <input type="hidden" value="14000" id="p_price"> <br/><br/> <strong>수량</strong> &nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="-" width="15px" height="15px" onclick="bt_down()" /> <input type="text" value="1" id="su" size="1" disabled="disabled" /> <input type="button" value="+" width="15px" height="15px" onclick="bt_up()"/><br/><br/></td></tr>
-	<tr height="10px"><td> <strong>총 상품 금액</strong> &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" value="14000" disabled="disabled" size="3" id="total_price"/> &nbsp;원</td></tr>
+	<tr><td> <strong>스토어 판매가 : 14,000원 </strong>  <br/><br/> <strong>수량</strong> &nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="-" width="15px" height="15px" onclick="bt_down()" /> <input type="text" value="1" id="su" size="1" disabled="disabled" name="su" /> <input type="button" value="+" width="15px" height="15px" onclick="bt_up()"/><br/><br/>
+	
+	</td></tr> 
+	<tr height="10px"><td> <strong>총 상품 금액</strong> &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" value="14000" disabled="disabled" size="3" id="total_price"/> < &nbsp;원 </td> </tr>
 	<tr height="100px"><td><input id="purchase"  type="button" value="구매하기" align="right" onclick="p_purchase();submit_info()"/></td></tr>
+	
 	</table>
 	
 	</td>
@@ -128,5 +132,6 @@ function submit_info(){
 	</td></tr>
 	</tfoot>
 	</table>
+	</form>
 </body>
 </html>
