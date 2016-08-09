@@ -13,6 +13,12 @@
    <select id="login" parameterType="Map" resultType="com.hb.db.Member_VO">
    		select * from ggv_member where member_id = #{member_id} and pwd = #{pwd}
    </select>
+   <select id="login2" parameterType="com.hb.db.Member_VO" resultType="com.hb.db.Member_VO">
+   		select * from ggv_member where member_id = #{member_id} and pwd = #{pwd}
+   </select>
+   <update id="info_update" parameterType="com.hb.db.Member_VO">
+   		update ggv_member set addr = #{addr}, phone = #{phone}, email_addr = #{email_addr} where pwd = #{pwd}
+   </update>
 </mapper>
 
 

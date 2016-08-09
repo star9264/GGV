@@ -107,7 +107,7 @@ public class MyController {
 	public ModelAndView getLoginOk(HttpServletRequest request, HttpServletResponse response){
 		System.out.println("로그인시도");
 		ModelAndView mv = new ModelAndView();
-		String member_id = request.getParameter("id");
+		String member_id = request.getParameter("member_id");
 		String pwd = request.getParameter("pwd");
 		System.out.println(member_id+pwd);
 		
@@ -122,11 +122,27 @@ public class MyController {
 		
 		return mv;
 	}
-	
-	// 아이디 중복확인
-	@RequestMapping("/id_confirm.do")
-	public ModelAndView getId_confirm(HttpServletRequest request, HttpServletResponse response){
-		ModelAndView mv = new ModelAndView();
+
+	// 정보 수정
+	@RequestMapping("/info_update.do")
+	public ModelAndView getInfo_update(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mv = new ModelAndView("client_info/info_update");
+		Member_VO member_VO = new Member_VO();
+		String pwd = request.getParameter("pwd");
+		String phone = request.getParameter("phone")+request.getParameter("phone2")+request.getParameter("phone3");
+		String addr = request.getParameter("addr");
+		String email_addr = request.getParameter("email_addr");
+		String member_id = request.getParameter("member_id");
+		
+		member_VO.setMember_id(member_id);
+		member_VO.setPwd(pwd);
+		member_VO.setPhone(phone);
+		member_VO.setAddr(addr);
+		member_VO.setEmail_addr(email_addr);
+		
+		dao.getInfo_update(member_VO);
+		
+		
 		return mv;
 	}
 }

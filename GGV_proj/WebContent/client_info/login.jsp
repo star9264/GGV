@@ -28,7 +28,7 @@ input{
 		f.submit();
 	}
 	function login_ok(f) {
-		if(f.id.value.length==0){
+		if(f.member_id.value.length==0){
 			alert("아이디를 입력해주세요.");
 		}else if(f.pwd.value.length==0){
 			alert("비밀번호를 입력해주세요");
@@ -54,7 +54,7 @@ input{
 			<h3 align="center">로그인</h3>
 			<tr>
 				<td>
-					<div align="center"><input id="text" type="text" name="id" placeholder="아이디" size="30" style="height: 20px"/></div>
+					<div align="center"><input id="text" type="text" name="member_id" placeholder="아이디" size="30" style="height: 20px"/></div>
 				</td>
 				<td rowspan="2">
 					<input onclick="login_ok(this.form)" type="button" value="로그인" style="height: 56px; width: 56px; color: white; background-color: #9068be; border: none; cursor: pointer; font-weight: bolder;"/>

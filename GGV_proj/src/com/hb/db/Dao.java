@@ -105,6 +105,24 @@ public class Dao {
 		
 		return member_VO;
 	}
+	
+	// 정보수정
+	public Member_VO getInfo_update(Member_VO member_VO){
+		SqlSession ss = null;
+		Member_VO member_VO2 = new Member_VO();
+		try {
+			ss = sessionFactory.openSession(true);
+			ss.update("info_update", member_VO);
+			member_VO2 = ss.selectOne("login2", member_VO);
+			ss.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			ss.close();
+		}
+		
+		return member_VO2;
+	}
 
 }
 

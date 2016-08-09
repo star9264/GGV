@@ -59,7 +59,7 @@ function id_confirm(f) {
 			<tbody>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*아이디</td>
-					<td><input type="text" class="member_id" id="id" name="member_id" style="height: 18px;"/>&nbsp;
+					<td><input type="text" class="member_id" id=아이디 name="member_id" style="height: 18px;"/>&nbsp;
 					<input onclick="id_confirm(this.form)" type="button" value="중복확인" style="color: #f0eceb; width: 70px; height: 30px; background-color: #9068be; border-style: none; cursor: pointer;"/></td>
 				</tr>
 				<tr>
