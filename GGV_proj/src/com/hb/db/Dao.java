@@ -101,6 +101,8 @@ public class Dao {
 			member_VO = ss.selectOne("login", map);
 		} catch (Exception e) {
 			member_VO = null;
+		} finally {
+			ss.close();
 		}
 		
 		return member_VO;
@@ -116,6 +118,8 @@ public class Dao {
 			ss.commit();
 		} catch (Exception e) {
 			System.out.println(e);
+		}finally {
+			ss.close();
 		}
 		
 		return res;

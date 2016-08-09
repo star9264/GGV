@@ -23,14 +23,29 @@
     	padding-left: 100px;
    	}
 </style>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	function cancel() {
 		history.go(-1);
 	}
+	
 	function info_update_ok(f) {
-		f.action="info_update.do";
-		f.submit();
-	}
+		
+		if(f.pwd.value.length==0){
+			alert("비밀번호를 입력하세요.");
+		}else{
+			var chk = confirm("정말 수정하시겠습니까?");
+			if(chk==true){
+				$("#id").attr('disabled', false);
+				f.action="info_update.do";
+				f.submit();
+			}else{
+				return;
+			}
+		}
+	}	
+	
+	
 </script>
 </head>
 <body>
@@ -56,7 +71,7 @@
 			<tbody>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*아이디</td>
-					<td><input type="text" name="member_id" style="height: 18px;" value="${member_VO.member_id}" disabled="disabled"/></td>
+					<td><input id="id" type="text" name="member_id" style="height: 18px;" value="${member_VO.member_id}" disabled="disabled"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*비밀번호</td>

@@ -128,6 +128,7 @@ public class MyController {
 	public ModelAndView getInfo_update(HttpServletRequest request, HttpServletResponse response){
 		ModelAndView mv = new ModelAndView();
 		Member_VO member_VO = new Member_VO();
+		int res = 0;
 		String pwd = request.getParameter("pwd");
 		String phone = request.getParameter("phone")+request.getParameter("phone2")+request.getParameter("phone3");
 		String addr = request.getParameter("addr");
@@ -139,11 +140,14 @@ public class MyController {
 		member_VO.setPhone(phone);
 		member_VO.setAddr(addr);
 		member_VO.setEmail_addr(email_addr);
+		System.out.println("dddddd"+member_VO.getMember_id());
+		res = dao.getInfo_update(member_VO);
 		
-		dao.getInfo_update(member_VO);
-		
-		mv = new ModelAndView("client_info/info_update");
-		
+		if(res==1){
+			mv = new ModelAndView("client_info/info_update");
+		}else{
+			mv = new ModelAndView("client_info/info_update_fail");
+		}
 		member_VO = dao.getLogin(member_id, pwd);
 		mv.addObject("member_VO", member_VO);
 		
