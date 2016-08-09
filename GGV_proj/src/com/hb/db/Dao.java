@@ -116,8 +116,6 @@ public class Dao {
 			ss.commit();
 		} catch (Exception e) {
 			System.out.println(e);
-		}finally {
-			ss.close();
 		}
 		
 		return res;
