@@ -125,8 +125,8 @@ public class MyController {
 
 	// 정보 수정
 	@RequestMapping("/info_update.do")
-	public ModelAndView getInfo_update(HttpServletRequest request, HttpServletResponse response){
-		ModelAndView mv = new ModelAndView("client_info/info_update");
+	public ModelAndView getInfo_update(HttpServletRequest request, HttpServletResponse response, int res){
+		ModelAndView mv = new ModelAndView();
 		Member_VO member_VO = new Member_VO();
 		String pwd = request.getParameter("pwd");
 		String phone = request.getParameter("phone")+request.getParameter("phone2")+request.getParameter("phone3");
@@ -141,7 +141,13 @@ public class MyController {
 		member_VO.setEmail_addr(email_addr);
 		
 		dao.getInfo_update(member_VO);
+		if(res>0){
+			mv = new ModelAndView("client_info/info_update");
+		}
 		
+		
+		member_VO = dao.getLogin(member_id, pwd);
+		mv.addObject("member_VO", member_VO);
 		
 		return mv;
 	}
