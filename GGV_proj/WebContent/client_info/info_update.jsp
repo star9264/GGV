@@ -56,7 +56,7 @@
 			<tbody>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*아이디</td>
-					<td><input type="text" name="id" style="height: 18px;" value="${member_VO.member_id}"/></td>
+					<td><input type="text" name="id" style="height: 18px;" value="${member_VO.member_id}" disabled="disabled"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*비밀번호</td>
@@ -64,13 +64,13 @@
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*이름</td>
-					<td><input type="text" style="height: 18px;" value="${member_VO.name}"/></td>
+					<td><input type="text" style="height: 18px;" value="${member_VO.name}" disabled="disabled"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*생년월일</td>
-					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="2" value="${member_VO.birthday.substring(0,4)}"/>&nbsp;년
-					<input type="text" style="height: 18px;" size="1"  value="${member_VO.birthday.substring(4,6)}"/>&nbsp;월&nbsp;
-					<input type="text" style="height: 18px;" size="1"  value="${member_VO.birthday.substring(6,8)}"/>&nbsp;일</td>
+					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="2" value="${member_VO.birthday.substring(0,4)}" disabled="disabled"/>&nbsp;년
+					<input type="text" style="height: 18px;" size="1"  value="${member_VO.birthday.substring(4,6)}" disabled="disabled"/>&nbsp;월&nbsp;
+					<input type="text" style="height: 18px;" size="1"  value="${member_VO.birthday.substring(6,8)}" disabled="disabled"/>&nbsp;일</td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*전화번호</td>
