@@ -75,7 +75,7 @@ public class MyController {
 		
 		Member_VO member_VO = dao.getLogin(member_id, pwd);
 		if(member_VO!=null){
-			mv = new ModelAndView("client_info/info_update");
+			mv = new ModelAndView("main/main");
 		}else{
 			mv = new ModelAndView("client_info/login_fail");
 		}
