@@ -22,7 +22,7 @@ h6{
 #menu{
 		padding-bottom: 100px;
 		padding-left: 100px;
-	}
+	}  
 
 </style>
 
