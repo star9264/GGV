@@ -38,26 +38,40 @@ public class Dao {
 			return q_list;
 		}
 	
-	public List<P_VO> getpackage_info(String idx){
-		SqlSession ss = null;
-		List<P_VO> package_list = null;
-		try {
-			System.out.println(idx);
-			System.out.println("getpackage_info");
-			ss = sessionFactory.openSession();
-			System.out.println(idx);
-			package_list = ss.selectList("package_information",idx);
-			System.out.println(package_list.size());
-			System.out.println("매퍼갔다옴");
-		} catch (Exception e) {
-			System.out.println(e);
 
-		} finally {
-			ss.close();
+		public List<P_VO> getpackage_info(String idx){
+			SqlSession ss = null;
+			List<P_VO> package_list = null;
+			try {
+				ss = sessionFactory.openSession();
+				package_list = ss.selectList("package_information",idx);
+			} catch (Exception e) {
+				System.out.println(e);
+
+			} finally {
+				ss.close();
+			}
+			return package_list;
+			
 		}
-		return package_list;
 		
-	}
+		public int go_res(PR_VO pr_vo){
+			SqlSession ss = null;
+			int result = 0;
+			System.out.println(pr_vo.getReservation_package()+"dao");
+			System.out.println(pr_vo.getReservation_num()+"dao");
+			try {
+				ss = sessionFactory.openSession();
+				System.out.println("try안");
+				result = ss.insert("p_r_insert", pr_vo); 
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally{
+				ss.close();
+			}
+			return result;
+		
+		}
 /*	// view
 	public BbsVO getView(String b_idx) {
 		SqlSession ss = null;
