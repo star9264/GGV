@@ -46,6 +46,7 @@ public class MyController {
 		this.page = page;
 	}
 
+
 	
 	// write
 	@RequestMapping("/write.do")
@@ -187,8 +188,6 @@ public class MyController {
 			int total_su = pack_person*r_su;
 			
 			try {
-				
-				
 				
 				for (int i = 0; i < r_su; i++) {
 					int res_num = (int) (Math.random() * 1000000);
