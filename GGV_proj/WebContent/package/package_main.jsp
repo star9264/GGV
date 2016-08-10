@@ -46,26 +46,26 @@ h6{
 	
 	<tr>
 		<td class="package_type">
-		<a onClick="javascript:window.open('package_info.do?type=package_1','싱글 패키지','scrollbars=no, resizable=no, width=1180,height=700')"><img class="package_img" alt="싱글패키지" src="http://image2.megabox.co.kr/mop/store/2016/F9/D92F1E-CC77-450A-AA85-D65249A4DBED.large.jpg" width="250" height="280" bo></a><br/>
+		<a onClick="javascript:window.open('package_info.do?type=package_1','싱글패키지','scrollbars=no, resizable=no, width=1180,height=700')"><img class="package_img" alt="싱글패키지" src="http://image2.megabox.co.kr/mop/store/2016/F9/D92F1E-CC77-450A-AA85-D65249A4DBED.large.jpg" width="250" height="280"></a><br/>
 		<h6 align="center">관람권 1매, 팝콘(R), 탄산음료(R)</h6>
 		<h4 align="center">싱글 패키지</h4>
 		
 		</td>
 		
 		<td class="package_type">
-		<a onClick="javascript:window.open('package_info.do?type=package_2','러브콤보 패키지','scrollbars=yes, resizable=no, width1180,height=700')"><img class="package_img" alt="러브패키지" src="http://image2.megabox.co.kr/mop/store/2016/3A/1E814A-1495-4B80-97FF-858C19A3E737.large.jpg" width="250" height="280"></a><br/>
+		<a onClick="javascript:window.open('package_info.do?type=package_2','러브콤보패키지','scrollbars=yes, resizable=no, width1180,height=700')"><img class="package_img" alt="러브패키지" src="http://image2.megabox.co.kr/mop/store/2016/3A/1E814A-1495-4B80-97FF-858C19A3E737.large.jpg" width="250" height="280"></a><br/>
 		<h6 align="center">관람권 2매 + 러브콤보 (팝콘L 1 + 탄산음료R 2)</h6>
 		<h4 align="center">러브콤보 패키지</h4>
 		</td>
 		
 		<td class="package_type">
-		<a onClick="javascript:window.open('package_info.do?type=package_3','패밀리 패키지','scrollbars=yes, resizable=no, width=1180,height=700')"><img class="package_img" alt="패밀리패키지" src="http://image2.megabox.co.kr/mop/store/2016/15/8D541D-B1AE-4EFF-9C8B-BAC90A1C9EF7.large.jpg" width="250" height="280"></a><br/>
+		<a onClick="javascript:window.open('package_info.do?type=package_3','패밀리패키지','scrollbars=yes, resizable=no, width=1180,height=700')"><img class="package_img" alt="패밀리패키지" src="http://image2.megabox.co.kr/mop/store/2016/15/8D541D-B1AE-4EFF-9C8B-BAC90A1C9EF7.large.jpg" width="250" height="280"></a><br/>
 		<h6 align="center">관람권 3매, 팝콘(R)2, 탄산음료(R)2</h6>
 		<h4 align="center">패밀리 패키지</h4>
 		</td>
 		
 		<td class="package_type">
-		<a onClick="javascript:window.open('package_info.do?type=package_4','슈퍼패밀리 패키지','scrollbars=yes, resizable=no, width=1180,height=700')"><img class="package_img"alt="슈퍼패밀리패키지" src="http://image2.megabox.co.kr/mop/store/2016/ED/6A77CD-64C3-4A3C-9A4B-34416A8EE9AF.large.jpg" width="250" height="280"></a><br/>
+		<a onClick="javascript:window.open('package_info.do?type=package_4','슈퍼패밀리패키지','scrollbars=yes, resizable=no, width=1180,height=700')"><img class="package_img"alt="슈퍼패밀리패키지" src="http://image2.megabox.co.kr/mop/store/2016/ED/6A77CD-64C3-4A3C-9A4B-34416A8EE9AF.large.jpg" width="250" height="280"></a><br/>
 		<h6 align="center">관람권 4매, 팝콘(R)2, 음료(R)2, 나쵸1, 팩오징어 1</h6>
 		<h4 align="center">슈퍼패밀리 패키지</h4>
 		</td>

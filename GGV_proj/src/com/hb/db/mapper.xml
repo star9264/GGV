@@ -3,11 +3,6 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ggv">
-	<select id="package_information" parameterType="String"
-		resultType="com.hb.db.P_VO">
-		select * from ggv_package where package_idx=#{idx}
-	</select>
-
 	<select id="q_list" parameterType="Map" resultType="com.hb.db.Q_VO">
 		select * from ggv_question where type='ask' order by QUESTION_IDX
 	</select>
@@ -19,13 +14,13 @@
 		#{email_addr} where pwd = #{pwd} and member_id = #{member_id}
 	</update>
 	
-	<select resultType="com.hb.db.P_VO" parameterType="String"
-		id="package_information"> select * from ggv_package where package_idx=#{idx} </select>
+	<select id="package_information" parameterType="String" resultType="com.hb.db.P_VO" >
+			 select * from ggv_package where package_idx=#{idx}
+	</select>
 
-	<insert parameterType="com.hb.db.PR_VO" id="p_r_insert"> insert into
-		ggv_package_res
-		values(#{reservation_num},null,sysdate,sysdate,#{reservation_package})
-	</insert>
+	<insert id="p_r_insert" parameterType="com.hb.db.PR_VO" > 
+	insert into ggv_package_res values(#{reservation_num},null,sysdate,sysdate,#{reservation_package})
+	</insert>  
 </mapper>
 
 
