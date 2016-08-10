@@ -55,22 +55,20 @@ public class Dao {
 			
 		}
 		
-		public int go_res(PR_VO pr_vo){
+		public void go_res(Map map){
 			SqlSession ss = null;
-			int result = 0;
-			System.out.println(pr_vo.getReservation_package()+"dao");
-			System.out.println(pr_vo.getReservation_num()+"dao");
+			List<P_VO> package_list = null;
 			try {
 				ss = sessionFactory.openSession();
-				System.out.println("try안");
-				result = ss.insert("p_r_insert", pr_vo); 
+				ss.update("package_reservation",map);
+				
 			} catch (Exception e) {
 				System.out.println(e);
-			} finally{
+
+			} finally {
 				ss.close();
 			}
-			return result;
-		
+			
 		}
 /*	// view
 	public BbsVO getView(String b_idx) {

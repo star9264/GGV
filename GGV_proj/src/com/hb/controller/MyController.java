@@ -186,24 +186,19 @@ public class MyController {
 			System.out.println("패키지 하나당 몇명?" +pack_person);
 			int r_su = Integer.parseInt(su);
 			int total_su = pack_person*r_su;
+			String total_person =String.valueOf(total_su); 
+			String id ="";
+			System.out.println(id);
+			Map<String, String> map = new HashMap<>();
+			map.put("id", id);
+			map.put("person", total_person);
+			System.out.println("total_person" + total_person);
 			
 			try {
+				System.out.println("try안");
+				dao.go_res(map);
+			
 				
-				for (int i = 0; i < r_su; i++) {
-					int res_num = (int) (Math.random() * 1000000);
-					String reservation_num = String.valueOf(res_num);
-					PR_VO pr_vo = new PR_VO();
-					pr_vo.setMember_id(null);
-					pr_vo.setReservation_num(reservation_num);
-					pr_vo.setReservation_package(package_name);
-					System.out.println(pr_vo.getReservation_num() + "컨트롤러");
-					System.out.println(pr_vo.getReservation_package() + "컨트롤러");
-					int result = dao.go_res(pr_vo);
-					if (result <= 0) {
-						System.out.println("db에 값 안들어감");
-					}
-				}
-
 			} catch (Exception e) {
 				System.out.println(e);
 			}

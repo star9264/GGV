@@ -60,7 +60,7 @@ input{
 						<li><a  id="top_menu" href="#">홈</a></li>
 						<li><a  id="top_menu" href="#">영화</a></li>
 						<li><a  id="top_menu" href="#">영화관</a></li>
-						<li><a  id="top_menu" href="#">스토어</a></li>
+						<li><a  id="top_menu" href="package/package_main.do">스토어</a></li>
 						<li><a  id="top_menu" href="login.jsp">로그인</a></li>
 					</ul>
 				</span>

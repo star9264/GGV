@@ -21,6 +21,10 @@
 	<insert id="p_r_insert" parameterType="com.hb.db.PR_VO" > 
 	insert into ggv_package_res values(#{reservation_num},null,sysdate,sysdate,#{reservation_package})
 	</insert>  
+	
+	<update id="package_reservation" parameterType="Map">
+		update ggv_member set package_reservation = #{total_person} where id=#{id}
+	</update>
 </mapper>
 
 

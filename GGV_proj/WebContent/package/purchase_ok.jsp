@@ -7,7 +7,9 @@
 <title>패키지 결제</title>
 </head>
 <body>
-	
+	<form method="post">
+	<input type="hidden" name="id" value="${info.id}">
+	</form>
   
 </body>
 </html>

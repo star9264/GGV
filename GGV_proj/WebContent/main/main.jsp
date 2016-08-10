@@ -21,6 +21,6 @@
 	<div id="menu">
 			<jsp:include page="../home/menu_bar.jsp"/>
 	</div>
-	<h2>이름 : ${info.name }</h2>
+	<h2>이름 : ${info.name}</h2>
 </body>
 </html>
