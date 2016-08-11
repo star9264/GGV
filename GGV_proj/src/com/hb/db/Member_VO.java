@@ -1,9 +1,23 @@
 package com.hb.db;
 
 public class Member_VO {
-	private String member_id, pwd, name, addr, phone, birthday, gender, email_addr, point, grade;
+	private String member_id, pwd, name, addr, phone, birthday, gender, email_addr, point, grade, package_reservation;
 	
 	public Member_VO() {}
+	
+	public Member_VO(String package_reservation) {
+		super();
+		this.package_reservation = package_reservation;
+	}
+
+	public String getPackage_reservation() {
+		return package_reservation;
+	}
+
+	public void setPackage_reservation(String package_reservation) {
+		this.package_reservation = package_reservation;
+	}
+
 	public Member_VO(String member_id, String pwd, String name, String addr, String phone, String birthday,
 			String gender, String email_addr, String point, String grade) {
 		super();
