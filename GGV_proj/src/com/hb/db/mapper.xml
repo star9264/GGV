@@ -5,7 +5,7 @@
 
 <mapper namespace="ggv"> 
    <select id="package_information" parameterType="String" resultType="com.hb.db.P_VO">
-   		select * from ggv_package where package_idx=#{idx}
+   		select * from ggv_package where package_idx=#{idx} 
    </select>
     <select id="q_list" parameterType="Map" resultType="com.hb.db.Q_VO">
    		select * from ggv_question where type='ask' order by QUESTION_IDX
@@ -34,6 +34,7 @@
    <insert id="join" parameterType="com.hb.db.Member_VO">
    		insert into ggv_member values(#{member_id}, #{pwd}, #{name}, #{addr}, #{phone}, #{birthday}, #{gender}, #{email_addr}, 0, 0, 0)
    </insert>
+
 	<!-- <select id="q_list" parameterType="Map" resultType="com.hb.db.Q_VO">
 		select * from ggv_question where type='ask' order by QUESTION_IDX
 	</select>
@@ -58,10 +59,17 @@
 <<<<<<< HEAD
 	</update> -->
 
+
+
 	<!-- Reserve -->
 	<insert id="reserve" parameterType="com.hb.db.Reservation" > 
+
 		insert into ggv_reserve values(reserve_idx_sequence.nextval, #{member_id}, #{view_room_idx}, #{movie_idx}, #{reserve_date}, #{reserve_time}, #{reserve_seat1}, #{reserve_seat2}, #{reserve_seat3}, #{reserve_seat4}, #{reserve_seat5}, #{reserve_seat6}, #{reserve_seat7}, #{reserve_seat8}, #{reserve_price})
 	</insert>  
+
+	<!-- <in
+		insert into ggv_reserve values(reserve_idx_seq.nextval, #{member_id}, #{movie_idx}, #{reserve_date}, #{reserve_time}, #{reserve_seat1}, #{reserve_seat2}, #{reserve_seat3}, #{reserve_seat4}, #{reserve_seat5}, #{reserve_seat6}, #{reserve_seat7}, #{reserve_seat8}, #{reserve_price})
+	</insert>  -->
 
 </mapper>
 

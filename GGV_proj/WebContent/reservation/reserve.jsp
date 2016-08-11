@@ -71,7 +71,7 @@ input[name="reserved"]:disabled+label {
 </script>
 </head>
 <body>
-	<form action="reserv_chk.do">
+	<form action="reserv_chk.do" method="post">
 		<div>
 			<%
 				seat: for (int i = 0; i < 50; i++) {

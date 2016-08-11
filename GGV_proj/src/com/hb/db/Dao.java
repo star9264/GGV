@@ -206,7 +206,7 @@ public class Dao {
 		}
 		return res;
 	}
-	
+
 	// 아이디 중복확인
 	public Member_VO getId_confirm(String member_id){
 		SqlSession ss = null;
@@ -243,16 +243,20 @@ public class Dao {
 		
 		try {
 			ss = sessionFactory.openSession(true);
+			
 			ss.insert("reserve", reserve);
 			ss.commit();
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("오류!");
 		}finally{
 			ss.close();
 		}
+
 	}
 
-}
+
+	}
+
 
 
 
