@@ -243,7 +243,7 @@ public class Dao {
 		SqlSession ss = null;
 		
 		try {
-			ss = sessionFactory.openSession(false);
+			ss = sessionFactory.openSession(true);
 			ss.insert("reserve", reserve);
 			ss.commit();
 		} catch (Exception e) {

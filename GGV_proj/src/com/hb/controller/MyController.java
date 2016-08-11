@@ -372,8 +372,6 @@ public class MyController {
 			reserve.setReserve_time("16:00");
 			reserve.setReserve_price(String.valueOf(8000*r_seat.length));
 			
-			System.out.println(r_seat.length);
-			
 			if(r_seat.length>0){
 				reserve.setReserve_seat1(r_seat[0]);
 				if(r_seat.length>1){
