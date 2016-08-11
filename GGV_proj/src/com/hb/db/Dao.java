@@ -124,6 +124,76 @@ public class Dao {
 		
 		return res;
 	}
+	
+	// 비밀번호 변경
+	public int getPwd_update(String member_id, String pwd, String pwd2){
+		SqlSession ss = null;
+		int res = 0;
+		Map<String, String> map = new HashMap<>();
+		map.put("member_id", member_id);
+		map.put("pwd", pwd);
+		map.put("pwd2", pwd2);
+		try {
+			ss = sessionFactory.openSession(true);
+			res = ss.update("pwd_update", map);
+			ss.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			ss.close();
+		}
+		return res;
+	}
+	
+	// 아이디 찾기
+	public List<Member_VO> getId_find(Member_VO member_VO){
+		SqlSession ss = null;
+		List<Member_VO> list = null;
+		
+		try {
+			ss = sessionFactory.openSession(true);
+			list = ss.selectList("id_find", member_VO);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return list;
+	}
+	
+	// 비밀번호 찾기
+	public Member_VO getPwd_find(String member_id, String name, String phone){
+		SqlSession ss = null;
+		Member_VO member_VO = new Member_VO();
+		Map<String, String> map = new HashMap<>();
+		map.put("member_id", member_id);
+		map.put("name", name);
+		map.put("phone", phone);
+		try {
+			ss = sessionFactory.openSession(true);
+			member_VO = ss.selectOne("pwd_find", map);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return member_VO;
+	}
+	
+	// 회원탈퇴
+	public int getClient_leave(String member_id, String pwd){
+		SqlSession ss = null;
+		Map<String, String> map = new HashMap<>();
+		map.put("member_id", member_id);
+		map.put("pwd", pwd);
+		int res = 0;
+		try {
+			ss = sessionFactory.openSession(true);
+			res = ss.delete("client_leave", map);
+			ss.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			ss.close();
+		}
+		return res;
+	}
 
 }
 

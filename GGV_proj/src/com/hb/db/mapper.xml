@@ -6,7 +6,6 @@
    <select id="package_information" parameterType="String" resultType="com.hb.db.P_VO">
    		select * from ggv_package where package_idx=#{idx}
    </select>
-   
     <select id="q_list" parameterType="Map" resultType="com.hb.db.Q_VO">
    		select * from ggv_question where type='ask' order by QUESTION_IDX
    </select>
@@ -16,6 +15,18 @@
    <update id="info_update" parameterType="com.hb.db.Member_VO">
    		update ggv_member set addr = #{addr}, phone = #{phone}, email_addr = #{email_addr} where pwd = #{pwd} and member_id = #{member_id}
    </update>
+   <update id="pwd_update" parameterType="Map">
+   		update ggv_member set pwd = #{pwd2} where member_id = #{member_id} and pwd = #{pwd}
+   </update>
+   <select id="id_find" parameterType="com.hb.db.Member_VO" resultType="com.hb.db.Member_VO">
+   		select * from ggv_member where name = #{name} and birthday = #{birthday} and phone = #{phone}
+   </select>
+   <select id="pwd_find" parameterType="Map" resultType="com.hb.db.Member_VO">
+   		select * from ggv_member where member_id = #{member_id} and name = #{name} and phone = #{phone}
+   </select>
+   <delete id="client_leave" parameterType="Map">
+   		delete from ggv_member where member_id = #{member_id} and pwd = #{pwd}
+   </delete>
 </mapper>
 
 

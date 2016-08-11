@@ -20,11 +20,11 @@ input{
 </style>
 <script type="text/javascript">
 	function join_go(f) {
-		f.action="client_info/join.jsp";
+		f.action="join.do";
 		f.submit();
 	}
 	function find_go(f) {
-		f.action="client_info/info_find.jsp";
+		f.action="info_find.do";
 		f.submit();
 	}
 	function login_ok(f) {
@@ -36,9 +36,12 @@ input{
 			f.action="login_ok.do";
 			f.submit();
 		}
-		
 	}
-
+	if("${res}"==1){
+		alert("비밀번호가 변경되었습니다.");
+	}else if("${res}"==2){
+		alert("탈퇴 되었습니다.");
+	}
 </script>
 </head>
 <body>

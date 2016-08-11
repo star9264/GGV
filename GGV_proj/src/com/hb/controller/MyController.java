@@ -153,6 +153,114 @@ public class MyController {
 		
 		return mv;
 	}
+	
+	// 비밀번호 변경
+	@RequestMapping("/pwd_update.do")
+	public ModelAndView getPwd_update(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mv = new ModelAndView();
+		int res = 0;
+		String member_id = request.getParameter("member_id");
+		String pwd = request.getParameter("pwd");
+		String pwd2 = request.getParameter("pwd2");
+		System.out.println(member_id + " :: " + pwd);
+		
+		res = dao.getPwd_update(member_id, pwd, pwd2);
+		
+		if(res==1){
+			mv = new ModelAndView("client_info/login");
+		}else{
+			mv = new ModelAndView("client_info/pwd_update_fail");
+		}
+		mv.addObject("res", res);
+		return mv;
+	}
+	
+	@RequestMapping("/info_find.do")
+	public ModelAndView getInfo_find(){
+		ModelAndView mv = new ModelAndView("client_info/info_find");
+		return mv;
+	}
+	
+	@RequestMapping("/join.do")
+	public ModelAndView getJoin(){
+		ModelAndView mv = new ModelAndView("client_info/join");
+		return mv;
+	}
+	
+	// 아이디 찾기
+	@RequestMapping("/id_find.do")
+	public ModelAndView getId_find(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mv = new ModelAndView();
+		String name = request.getParameter("name");
+		String birthday = request.getParameter("birthday")+request.getParameter("birthday2")+request.getParameter("birthday3");
+		String phone = request.getParameter("phone")+request.getParameter("phone2")+request.getParameter("phone3");
+		System.out.println(name+" "+birthday+" "+phone);
+		int res = 0;
+		int i = 0;
+		Member_VO member_VO = new Member_VO();
+		member_VO.setName(name);
+		member_VO.setBirthday(birthday);
+		member_VO.setPhone(phone);
+		
+		List<Member_VO> list = dao.getId_find(member_VO);
+		for (i = 0; i < list.size(); i++) {
+			list.get(i).getMember_id();
+		}
+		mv = new ModelAndView("client_info/info_find");
+		if(list.size()!=0){
+			res = 1;
+		}
+		mv.addObject("list", list);
+		mv.addObject("res", res);
+		
+		return mv;
+	}
+	
+	// 비밀번호 찾기
+	@RequestMapping("/pwd_find.do")
+	public ModelAndView getPwd_find(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mv = new ModelAndView("client_info/info_find");
+		String member_id = request.getParameter("id");
+		String name = request.getParameter("name2");
+		String phone = request.getParameter("phone4")+request.getParameter("phone5")+request.getParameter("phone6");
+		
+		System.out.println(member_id+" "+name+" "+" "+phone);
+		
+		int res = 3;
+		
+		Member_VO member_VO = dao.getPwd_find(member_id, name, phone);
+		
+		if(member_VO!=null){
+			res = 4;
+		}
+		
+		mv.addObject("member_VO", member_VO);
+		mv.addObject("res", res);
+		
+		return mv;
+	}
+	
+	// 회원탈퇴
+	@RequestMapping("/client_leave.do")
+	public ModelAndView getClient_leave(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mv = new ModelAndView();
+		String member_id = request.getParameter("member_id");
+		String pwd = request.getParameter("pwd");
+		int res = 0;
+		
+		res = dao.getClient_leave(member_id, pwd);
+		
+		if(res==0){
+			mv = new ModelAndView("client_info/pwd_update_fail");
+		}else{
+			++res;
+			mv = new ModelAndView("client_info/login");
+		}
+		
+		mv.addObject("res", res);
+		return mv;
+	}
+	
 }
 
 

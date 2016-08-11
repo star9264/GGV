@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 
 	ul {
