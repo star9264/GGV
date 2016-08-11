@@ -65,6 +65,7 @@ a{
 <br>
 <br>
 <br>
+  
 		<div align="center">
 			<span><input type="button" value="박스오피스" id="top_btn"
 				style="position: relative; left: 6px;"></span> 
