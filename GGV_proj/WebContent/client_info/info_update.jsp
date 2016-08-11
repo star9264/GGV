@@ -23,7 +23,6 @@
     	padding-left: 100px;
    	}
 </style>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	function cancel() {
 		history.go(-1);
@@ -33,6 +32,12 @@
 		
 		if(f.pwd.value.length==0){
 			alert("비밀번호를 입력하세요.");
+		}else if(f.phone.value.length==0 || f.phone.value.length!=3){
+			alert("전화번호를  올바르게 입력해주세요.");
+		}else if(f.phone2.value.length==0 || f.phone2.value.length!=4){
+			alert("전화번호를  올바르게 입력해주세요.");
+		}else if(f.phone3.value.length==0 || f.phone3.value.length!=4){
+			alert("전화번호를  올바르게 입력해주세요.");
 		}else{
 			var chk = confirm("정말 수정하시겠습니까?");
 			if(chk==true){
@@ -43,9 +48,23 @@
 				return;
 			}
 		}
-	}	
-	
-	
+	}
+	function pwd_update_go(f) {
+		f.action="client_info/pwd_update.jsp?member_id=${member_VO.member_id}";
+		f.submit();
+	}
+	function client_leave_ok(f) {
+		if(f.pwd.value.length==0){
+			alert("비밀번호를 입력하세요.");
+		}else{
+			var chk = confirm("정말 탈퇴하시겠습니까?");
+			if(chk==true){
+				$("#id").attr('disabled', false);
+				f.action="client_leave.do";
+				f.submit();
+			}
+		}
+	}
 </script>
 </head>
 <body>
@@ -63,8 +82,8 @@
 		<br/>
 		<span id="top_span" style="color: #9068be; font-weight: bolder;">개인정보</span>
 		<span style="font-size: 12px; position: relative; right: -230px; bottom: -13px;">*표시 항목은 필수입력 항목입니다.</span>
-		<span><input type="button" value="비밀번호 변경" style="color: #f0eceb; position: relative; right: -844px; width: 100px; height: 30px; background-color: #9068be; border-style: none; cursor: pointer;"/>
-		<input type="button" value="회원탈퇴" style="color: #f0eceb; position: relative; right: -844px; width: 70px; height: 30px; background-color: #9068be; border-style: none; cursor: pointer;"/>
+		<span><input type="button" value="비밀번호 변경" onclick="pwd_update_go(this.form)" style="color: #f0eceb; position: relative; right: -844px; width: 100px; height: 30px; background-color: #9068be; border-style: none; cursor: pointer;"/>
+		<input type="button" value="회원탈퇴" onclick="client_leave_ok(this.form)" style="color: #f0eceb; position: relative; right: -844px; width: 70px; height: 30px; background-color: #9068be; border-style: none; cursor: pointer;"/>
 		</span>
 		<hr style="background-color:#9068be; width: 62%; height: 3px; border-style: none;"/>
 		<table align="center" width="62%" style="border-collapse: collapse; margin-top: -8px;">

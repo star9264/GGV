@@ -22,12 +22,34 @@
     	padding-left: 100px;
    	}
 </style>
+<script type="text/javascript">
+function pwd_update_ok(f) {
+	if(f.pwd.value.length==0){
+		alert("현재 비밀번호를 입력해주세요.")
+	}else if(f.pwd2.value.length==0){
+		alert("새 비밀번호를 입력해주세요.")
+	}else if(f.pwd3.value.length==0){
+		alert("새 비밀번호를 입력해주세요.")
+	}else if(f.pwd2.value!=f.pwd3.value){
+		alert("새 비밀번호가 서로 일치하지 않습니다.")
+	}else{
+		var chk = confirm("정말 수정하시겠습니까?");
+		if(chk==true){	
+			f.action="../pwd_update.do";
+			f.submit();
+		}
+	}
+}
+
+</script>
 </head>
 <body>
 	<div id="menu">
     	<jsp:include page="../home/menu_bar.jsp"/>
 	</div>
 	<form method="post">
+		<%String member_id = request.getParameter("member_id"); %>
+		<input type="hidden" name="member_id" value="<%=member_id %>" />
 		<span id="top_span" style="color: #9068be; font-weight: bolder;">/</span>
 		<span id="top_span" style="font-size: large; font-weight: bolder;">비밀번호 변경</span>
 		<span id="top_span" style="font-size: small;">현재 비밀번호를 입력한 후 새로 사용할 비밀번호를 입력하세요.</span>
@@ -42,15 +64,15 @@
 			<tbody>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">현재 비밀번호</td>
-					<td><input type="password" name="id" style="height: 18px;"/></td>
+					<td><input type="password" name="pwd" style="height: 18px;"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">새 비밀번호</td>
-					<td><input type="password" style="height: 18px;"/></td>
+					<td><input type="password" name="pwd2" style="height: 18px;"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">새 비밀번호 확인</td>
-					<td><input type="password" style="height: 18px;"/></td>
+					<td><input type="password" name="pwd3" style="height: 18px;"/></td>
 				</tr>
 				<tr>
 					<td colspan="2" style="font-size: 12px;">
@@ -64,7 +86,7 @@
 			</tbody>		
 		</table>
 		<div align="center" style="margin-top: 50px;">
-			<input type="button" value="수정" style="width: 110px; height: 75px; background-color: white; cursor: pointer; border-style: solid; color: gray;"/>
+			<input type="button" onclick="pwd_update_ok(this.form)" value="수정" style="width: 110px; height: 75px; background-color: white; cursor: pointer; border-style: solid; color: gray;"/>
 			<input type="button" value="취소" style="width: 110px; height: 75px; background-color: white; cursor: pointer; border-style: solid; color: gray;"/>	
 		</div>
 	</form>

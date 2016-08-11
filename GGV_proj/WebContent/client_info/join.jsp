@@ -34,6 +34,18 @@ function id_confirm(f) {
 						"칸을 입력하세요");
 				document.forms[0].elements[i].focus();
 				return;//수행 중단
+			}else if(f.phone.value.length==0 || f.phone.value.length!=3){
+				alert("전화번호를  올바르게 입력해주세요.");
+			}else if(f.phone2.value.length==0 || f.phone2.value.length!=4){
+				alert("전화번호를  올바르게 입력해주세요.");
+			}else if(f.phone3.value.length==0 || f.phone3.value.length!=4){
+				alert("전화번호를  올바르게 입력해주세요.");
+			}else if(f.birthday.value.length==0 || f.birthday.value.length!=4){
+				alert("전화번호를  올바르게 입력해주세요.");
+			}else if(f.birthday2.value.length==0 || f.birthday2.value.length!=2){
+				alert("전화번호를  올바르게 입력해주세요.");
+			}else if(f.birthday3.value.length==0 || f.birthday3.value.length!=2){
+				alert("전화번호를  올바르게 입력해주세요.");
 			}
 		}
 		document.forms[0].submit();
