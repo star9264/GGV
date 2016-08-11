@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>싱글 패키지</title>
 <style type="text/css">
- 
+   
 ul{
 
 /* list-style-image: url('../img/check_sign.png'); */
@@ -62,7 +62,7 @@ function bt_down(){
 }
 
 function p_purchase(){
-	window.open("purchase.jsp","패키지 구매","scrollbars=no, resizable=no, width=680,height=420")
+	window.open("purchase.do","패키지 구매","scrollbars=no, resizable=no, width=680,height=420")
 }
 
 function submit_info(){

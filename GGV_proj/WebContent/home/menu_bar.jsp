@@ -60,7 +60,7 @@
 				<li><a href=#>HOME</a></li>
 				<li><a href=#>영화</a></li>
 				<li><a href=#>영화관</a></li>
-				<li><a href=#>스토어</a></li>
+				<li><a href="package_main.do">스토어</a></li>
 				<li><a href=#>로그인</a></li>
 			</div>
 		</ul>

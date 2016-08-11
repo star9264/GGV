@@ -1,5 +1,10 @@
+<%@page import="com.hb.db.Member_VO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%
+	Member_VO member_VO = (Member_VO)request.getAttribute("member_vo");
+	session.setAttribute("info", member_VO);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -55,7 +60,7 @@ input{
 						<li><a  id="top_menu" href="#">홈</a></li>
 						<li><a  id="top_menu" href="#">영화</a></li>
 						<li><a  id="top_menu" href="#">영화관</a></li>
-						<li><a  id="top_menu" href="#">스토어</a></li>
+						<li><a  id="top_menu" href="package/package_main.do">스토어</a></li>
 						<li><a  id="top_menu" href="login.jsp">로그인</a></li>
 					</ul>
 				</span>
