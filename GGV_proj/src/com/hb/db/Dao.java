@@ -244,6 +244,7 @@ public class Dao {
 		
 		try {
 			ss = sessionFactory.openSession(true);
+			
 			ss.insert("reserve", reserve);
 			ss.commit();
 		} catch (Exception e) {

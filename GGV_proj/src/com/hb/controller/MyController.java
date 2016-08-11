@@ -366,7 +366,6 @@ public class MyController {
 			r_seat = request.getParameterValues("chkseat");
 			Reservation reserve = new Reservation();
 			reserve.setMember_id("wonjun123");
-			reserve.setView_room_idx("1");
 			reserve.setMovie_idx("1");
 			reserve.setReserve_date("2016-08-12");
 			reserve.setReserve_time("16:00");
@@ -396,8 +395,6 @@ public class MyController {
 					}
 				}
 			}
-			
-			Dao dao = new Dao();
 			dao.reserve(reserve);
 			
 			return mv;
