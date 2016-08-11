@@ -207,6 +207,7 @@ public class Dao {
 		return res;
 	}
 	
+<<<<<<< HEAD
 	// 아이디 중복확인
 	public Member_VO getId_confirm(String member_id){
 		SqlSession ss = null;
@@ -237,6 +238,22 @@ public class Dao {
 		}
 		return res2;
 	}
+=======
+	public void reserve(Reservation reserve){
+		SqlSession ss = null;
+		
+		try {
+			ss = sessionFactory.openSession(true);
+			ss.insert("reserve", reserve);
+			ss.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally{
+			ss.close();
+		}
+	}
+
+>>>>>>> branch 'master' of https://github.com/star9264/GGV.git
 }
 
 
