@@ -206,7 +206,54 @@ public class Dao {
 		}
 		return res;
 	}
+	
+<<<<<<< HEAD
+	// 아이디 중복확인
+	public Member_VO getId_confirm(String member_id){
+		SqlSession ss = null;
+		Member_VO member_VO = new Member_VO();
+		System.out.println(member_id);
+		try {
+			ss = sessionFactory.openSession(true);
+			member_VO = ss.selectOne("id_confirm", member_id);
+			System.out.println(member_VO.getMember_id());
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return member_VO;
+	}
+	
+	// 회원가입
+	public int getJoin(Member_VO member_VO){
+		SqlSession ss = null;
+		int res2 = 0;
+		try {
+			ss = sessionFactory.openSession(true);
+			res2 = ss.insert("join", member_VO);
+			ss.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			ss.close();
+		}
+		return res2;
+	}
+=======
+	public void reserve(Reservation reserve){
+		SqlSession ss = null;
+		
+		try {
+			ss = sessionFactory.openSession(true);
+			ss.insert("reserve", reserve);
+			ss.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally{
+			ss.close();
+		}
+	}
 
+>>>>>>> branch 'master' of https://github.com/star9264/GGV.git
 }
 
 

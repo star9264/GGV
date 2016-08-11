@@ -1,6 +1,5 @@
 package com.hb.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,10 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.log.UserDataHelper.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,13 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hb.db.Dao;
 
 import com.hb.db.Member_VO;
-import com.hb.db.PR_VO;
 import com.hb.db.P_VO;
 
 import com.hb.db.Pageing;
-import com.hb.db.Q_VO;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.hb.db.Reservation;
 
 @Controller
 public class MyController {
@@ -75,7 +69,7 @@ public class MyController {
 		
 		Member_VO member_VO = dao.getLogin(member_id, pwd);
 		if(member_VO!=null){
-			mv = new ModelAndView("main/main");
+			mv = new ModelAndView("client_info/info_update");
 		}else{
 			mv = new ModelAndView("client_info/login_fail");
 		}
@@ -223,6 +217,48 @@ public class MyController {
 		mv.addObject("res", res);
 		return mv;
 	}
+	
+	// 아이디 중복체크
+	@RequestMapping("/id_confirm.do")
+	public ModelAndView getId_confirm(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mv = new ModelAndView();
+		String member_id = request.getParameter("member_id");
+		Member_VO member_VO = dao.getId_confirm(member_id);
+		int res = 0;
+		if(member_VO!=null){
+			mv = new ModelAndView("client_info/id_confirm_fail");
+			res = 2;
+		}else{
+			mv = new ModelAndView("client_info/join");
+			res = 1;
+		}
+		mv.addObject("res", res);
+		mv.addObject("member_id", member_id);
+		System.out.println(member_id);
+		
+		return mv;
+	}
+	
+	// 회원가입
+	@RequestMapping("/join_ok.do")
+	public ModelAndView getJoin(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mv = new ModelAndView("client_info/login");
+		Member_VO member_VO = new Member_VO();
+		member_VO.setMember_id(request.getParameter("member_id"));
+		member_VO.setPwd(request.getParameter("pwd"));
+		member_VO.setName(request.getParameter("name"));
+		member_VO.setGender(request.getParameter("gender"));
+		member_VO.setBirthday(request.getParameter("birthday")+request.getParameter("birthday2")+request.getParameter("birthday3"));
+		member_VO.setPhone(request.getParameter("phone")+request.getParameter("phone2")+request.getParameter("phone3"));
+		member_VO.setAddr(request.getParameter("addr"));
+		member_VO.setEmail_addr(request.getParameter("email_addr"));
+		
+		int res2 = dao.getJoin(member_VO);
+		
+		mv.addObject("res2", res2);
+		
+		return mv;
+	}
 
 	// package_purchase
 		@RequestMapping("/purchase.do")
@@ -320,8 +356,48 @@ public class MyController {
 			return mv;
 
 		}
-
-	
+		
+		// 확인
+		@RequestMapping("reserv_chk.do")
+		public ModelAndView reserv_chk(HttpServletRequest request){
+			ModelAndView mv = new ModelAndView();
+			
+			String[] r_seat = request.getParameterValues("chkseat");
+			Reservation reserve = new Reservation();
+			reserve.setMember_id("wonjun123");
+			reserve.setView_room_idx("1");
+			reserve.setMovie_idx("1");
+			reserve.setReserve_date("2016-08-12");
+			reserve.setReserve_time("16:00");
+			reserve.setReserve_price(String.valueOf(8000*r_seat.length));
+			
+			if(r_seat[0]!=null){
+				reserve.setReserve_seat1(r_seat[0]);
+				if(r_seat[1]!=null){
+					reserve.setReserve_seat1(r_seat[1]);
+					if(r_seat[2]!=null){
+						reserve.setReserve_seat1(r_seat[2]);
+						if(r_seat[3]!=null){
+							reserve.setReserve_seat1(r_seat[3]);
+							if(r_seat[4]!=null){
+								reserve.setReserve_seat1(r_seat[4]);
+								if(r_seat[5]!=null){
+									reserve.setReserve_seat1(r_seat[5]);
+									if(r_seat[6]!=null){
+										reserve.setReserve_seat1(r_seat[6]);
+										if(r_seat[7]!=null){
+											reserve.setReserve_seat1(r_seat[7]);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			return mv;
+		}
 }
 
 
