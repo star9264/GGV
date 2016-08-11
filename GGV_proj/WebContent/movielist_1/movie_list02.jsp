@@ -54,7 +54,15 @@ a{
 </style>
 </head>
 <body>
-	<form method="post">
+<div id="menu">
+			<jsp:include page="../home/menu_bar.jsp"/>
+	</div>	
+<form method="post">
+<br>
+<br>
+<br>
+<br>
+<br>
 		<div align="center">
 			<span><input type="button" value="박스오피스" id="top_btn"
 				style="position: relative; left: 6px;"></span> 
