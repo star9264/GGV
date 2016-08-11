@@ -18,7 +18,7 @@ public class movie_VO {
 		this.poster = poster;
 		this.start_time = start_time;
 		this.review_cnt = review_cnt;
-	}
+	}  
 	public String getMovie_idx() {
 		return movie_idx;
 	}
