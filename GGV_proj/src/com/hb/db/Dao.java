@@ -1,11 +1,13 @@
 package com.hb.db;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 public class Dao {
 	private SqlSessionFactory sessionFactory;
@@ -20,37 +22,54 @@ public class Dao {
 		this.sessionFactory = sessionFactory;
 	}
 
-
-	// db 사용 메소드
-	// 전체 게시물 수
-	public int getTotalCount(){
-		SqlSession ss= null;
-		int count = 0;
-		try {
-			ss = sessionFactory.openSession();
-			count = ss.selectOne("totalCount");
-		} catch (Exception e) {
-			// TODO: handle exception
-		}finally {
-			ss.close();
+	// q_list
+		public List<Q_VO> getQ_list(Map<String, String> map){
+			SqlSession ss =  null;
+			List<Q_VO> q_list = null;
+			try {
+				ss=  sessionFactory.openSession();
+				q_list = ss.selectList("q_list");
+			}catch (Exception e) {
+				System.out.println(e);
+				// TODO: handle exception
+			}finally {
+				ss.close();
+			}
+			return q_list;
 		}
-		return count;
-	}
 	
-	// 리스트
-	public List<Q_VO> getList(Map<String, Integer> map) {
-		SqlSession ss = null;
-		List<Q_VO> list = null;
-		try {
-			ss = sessionFactory.openSession();
-			list = ss.selectList("list");
-		} catch (Exception e) {
 
-		} finally {
-			ss.close();
+		public List<P_VO> getpackage_info(String idx){
+			SqlSession ss = null;
+			List<P_VO> package_list = null;
+			try {
+				ss = sessionFactory.openSession();
+				package_list = ss.selectList("package_information",idx);
+			} catch (Exception e) {
+				System.out.println(e);
+
+			} finally {
+				ss.close();
+			}
+			return package_list;
+			
 		}
-		return list;
-	}
+		
+		public void go_res(Map map){
+			SqlSession ss = null;
+			List<P_VO> package_list = null;
+			try {
+				ss = sessionFactory.openSession();
+				ss.update("package_reservation",map);
+				
+			} catch (Exception e) {
+				System.out.println(e);
+
+			} finally {
+				ss.close();
+			}
+			
+		}
 /*	// view
 	public BbsVO getView(String b_idx) {
 		SqlSession ss = null;
@@ -81,4 +100,69 @@ public class Dao {
 		}
 		return result;
 	}*/
+	
+	// login
+	public Member_VO getLogin(String member_id, String pwd){
+		SqlSession ss = null;
+		Member_VO member_VO = new Member_VO();
+		Map<String, String> map = new HashMap<>();
+		map.put("member_id", member_id);
+		map.put("pwd", pwd);
+		try {
+			ss = sessionFactory.openSession(true);
+			member_VO = ss.selectOne("login", map);
+		} catch (Exception e) {
+			member_VO = null;
+		} finally {
+			ss.close();
+		}
+		
+		return member_VO;
+	}
+	
+	// 정보수정
+	public int getInfo_update(Member_VO member_VO){
+		SqlSession ss = null;
+		int res = 0;
+		try {
+			ss = sessionFactory.openSession(true);
+			res = ss.update("info_update", member_VO);
+			ss.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			ss.close();
+		}
+		
+		return res;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

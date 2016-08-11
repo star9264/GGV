@@ -1,11 +1,14 @@
 package com.hb.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.log.UserDataHelper.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,12 +17,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.hb.db.Dao;
+
+import com.hb.db.Member_VO;
+import com.hb.db.PR_VO;
+import com.hb.db.P_VO;
+
 import com.hb.db.Pageing;
 import com.hb.db.Q_VO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
-
 
 @Controller
 public class MyController {
@@ -39,101 +45,205 @@ public class MyController {
 	public void setPage(Pageing page) {
 		this.page = page;
 	}
-	// list
-	@RequestMapping("/list.do")
-	public ModelAndView getList(HttpServletRequest request){
-		String cPage = request.getParameter("cPage");
-		if (cPage != null) {
-			page.setNowPage(Integer.parseInt(cPage));	
-		}
-		
-		page.setTotalRecord(dao.getTotalCount());
-		page.setTotalPage();
-		
-		page.setBegin((page.getNowPage()-1)*page.getNumPerPage()+1);
-		page.setEnd((page.getBegin()-1)+page.getNumPerPage());
-		//System.out.println(page.getBegin()+" "+page.getEnd());
-		
-		Map<String, Integer> map = new HashMap<>();
-		map.put("begin", page.getBegin());
-		map.put("end", page.getEnd());
-		
-		
-		
-		List<Q_VO> list =  dao.getList(map);
-		page.setBeginPage((int)((page.getNowPage()-1)/page.getPagePerBlock())*page.getPagePerBlock()+1);
-		page.setEndPage(page.getBeginPage() + page.getPagePerBlock()-1);
-		
-		if (page.getEndPage() > page.getTotalPage()) {
-			page.setEndPage(page.getTotalPage());
-		}
-		System.out.println(page.getBegin()+" "+page.getEnd());
-		
-		System.out.println(map.get("begin"));
-		System.out.println(map.get("end"));
-		ModelAndView mv = new ModelAndView("list");
-		
-		mv.addObject("list", list);
-		mv.addObject("page", page);
-		mv.addObject("cPage", cPage);
-		return mv ;
-	}
-	
-	
-	/*// view
-	@RequestMapping("/view.do")
-	public ModelAndView getView(@RequestParam String b_idx){
-		ModelAndView mv = new ModelAndView("view");
-		BbsVO bvo = dao.getView(b_idx);
-		
-		// 댓글 가져오기
-		
-		// 히트 수 증가
-		
-		// 히트수 업데이트
-		
-		mv.addObject("bvo", bvo);
-		return mv;
-	}*/
+
+
 	
 	// write
 	@RequestMapping("/write.do")
-	public ModelAndView getWrite(){
+	public ModelAndView getWrite(HttpServletRequest request){
 		return new ModelAndView("write") ;
+
 	}
 	
-	/*// write_ok
-	@RequestMapping("/write_ok.do")
-	public ModelAndView getWrite_ok(HttpServletRequest request){
-		String path = request.getServletContext().getRealPath("/upload");
-		BbsVO bvo = new BbsVO();
-		try {
-		MultipartRequest mr = new MultipartRequest(
-				request,
-				path,
-				500*1024*1024,
-				"utf-8",
-				new DefaultFileRenamePolicy());
+
+	// login 화면으로
+	@RequestMapping("/login.do")
+	public ModelAndView getLogin(HttpServletRequest request, HttpServletResponse response){
+		System.out.println("좀 돼라");
+		ModelAndView mv = new ModelAndView("client_info/login");
+		return mv;
+	}
+	
+	// 로그인 시도
+	@RequestMapping("/login_ok.do")
+	public ModelAndView getLoginOk(HttpServletRequest request, HttpServletResponse response){
+		System.out.println("로그인시도");
+		ModelAndView mv = new ModelAndView();
+		String member_id = request.getParameter("member_id");
+		String pwd = request.getParameter("pwd");
+		System.out.println(member_id+pwd);
 		
-		bvo.setSubject(mr.getParameter("subject"));
-		bvo.setWriter(mr.getParameter("writer"));
-		bvo.setContent(mr.getParameter("content"));
-		bvo.setPwd(mr.getParameter("pwd"));
-		bvo.setIp(request.getRemoteAddr());
-		
-		if(mr.getFile("file_name") != null){
-			bvo.setFile_name(mr.getFilesystemName("file_name"));
+		Member_VO member_VO = dao.getLogin(member_id, pwd);
+		if(member_VO!=null){
+			mv = new ModelAndView("main/main");
 		}else{
-			bvo.setFile_name("");
+			mv = new ModelAndView("client_info/login_fail");
 		}
-		int result = dao.getWrite_ok(bvo);
-		if(result<=0){
-			return new ModelAndView("redirect:/write.do"); 
+		
+		mv.addObject("member_VO", member_VO);
+		
+		return mv;
+	}
+
+	// 정보 수정
+	@RequestMapping("/info_update.do")
+	public ModelAndView getInfo_update(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mv = new ModelAndView();
+		Member_VO member_VO = new Member_VO();
+		int res = 0;
+		String pwd = request.getParameter("pwd");
+		String phone = request.getParameter("phone")+request.getParameter("phone2")+request.getParameter("phone3");
+		String addr = request.getParameter("addr");
+		String email_addr = request.getParameter("email_addr");
+		String member_id = request.getParameter("member_id");
+		
+		member_VO.setMember_id(member_id);
+		member_VO.setPwd(pwd);
+		member_VO.setPhone(phone);
+		member_VO.setAddr(addr);
+		member_VO.setEmail_addr(email_addr);
+		System.out.println("dddddd"+member_VO.getMember_id());
+		res = dao.getInfo_update(member_VO);
+		
+		if(res==1){
+			mv = new ModelAndView("client_info/info_update");
+		}else{
+			mv = new ModelAndView("client_info/info_update_fail");
 		}
-		} catch (Exception e) {
+		member_VO = dao.getLogin(member_id, pwd);
+		mv.addObject("member_VO", member_VO);
+		
+		return mv;
+	}
+	
+	// package_purchase
+		@RequestMapping("/purchase.do")
+		public ModelAndView dopurchase(HttpServletRequest request) {
+
+			String total_price = request.getParameter("total_price");
+			String package_name = request.getParameter("package_name");
+			String su = request.getParameter("package_su");
+			System.out.println(package_name + total_price + su);
+
+			ModelAndView mv = new ModelAndView("package/purchase");
+			return mv;
+
 		}
-		ModelAndView mv = new ModelAndView("redirect:/list.do");
-		mv.addObject("bvo", bvo);
-		return mv; 
-	}*/
+
+		// package_main
+		@RequestMapping("/package_main.do")
+		public ModelAndView getpackage_main(HttpServletRequest request) {
+			System.out.println("패키지메인 컨트롤러");
+			ModelAndView mv = new ModelAndView("package/package_main");
+			return mv;
+		}
+
+		// package_info
+		@RequestMapping("/package_info.do")
+		public ModelAndView getPackage_info(HttpServletRequest request) {
+			System.out.println("package_info 컨트롤러");
+			String type = request.getParameter("type");
+			String idx = null;
+			System.out.println(type);
+			if (type.equals("package_1")) {
+				idx = "1";
+			} else if (type.equals("package_2")) {
+				idx = "2";
+			} else if (type.equals("package_3")) {
+				idx = "3";
+			} else if (type.equals("package_4")) {
+				idx = "4";
+			}
+			List<P_VO> p_vo = dao.getpackage_info(idx);
+
+			ModelAndView mv = new ModelAndView("package/package_info");
+			mv.addObject("p_vo", p_vo);
+
+			return mv;
+
+		}
+
+		@RequestMapping("purchase_ok.do")
+		public ModelAndView go_purchase(HttpServletRequest request) {
+			System.out.println("컨트롤러 go_purchase ");
+			String package_name = request.getParameter("package_name");
+			int pack_person = 0;
+			if (package_name.equals("싱글패키지")) {
+				pack_person = 1;
+			} else if (package_name.equals("러브콤보패키지")) {
+					pack_person = 2;
+
+			} else if (package_name.equals("패밀리패키지")) {
+					pack_person = 3;
+
+			} else if (package_name.equals("슈퍼패밀리패키지")) {
+				pack_person = 4;
+			}
+			
+			String total_price = request.getParameter("total_price");
+			String su = request.getParameter("su");
+			System.out.println(package_name + total_price + su);
+			System.out.println("패키지 하나당 몇명?" +pack_person);
+			int r_su = Integer.parseInt(su);
+			int total_su = pack_person*r_su;
+			String total_person =String.valueOf(total_su); 
+			String id ="";
+			System.out.println(id);
+			Map<String, String> map = new HashMap<>();
+			map.put("id", id);
+			map.put("person", total_person);
+			System.out.println("total_person" + total_person);
+			
+			try {
+				System.out.println("try안");
+				dao.go_res(map);
+			
+				
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			return new ModelAndView("redirect:package_close.do");
+
+		}
+
+		@RequestMapping("package_close.do")
+		public ModelAndView package_close(HttpServletRequest request) {
+			ModelAndView mv = new ModelAndView("package/package_close");
+			return mv;
+
+		}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
