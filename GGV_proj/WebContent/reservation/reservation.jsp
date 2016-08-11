@@ -24,8 +24,25 @@
 		day = Integer.parseInt(d);
 	}
 
-	cal.set(year, month-1, 1);
+	cal.set(year, month-1, day);
 	int end_day = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+	int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+	String yoil = null;
+	if(dayOfWeek==1){
+		yoil = "일";
+	}else if(dayOfWeek==2){
+		yoil = "월";
+	}else if(dayOfWeek==3){
+		yoil = "화";
+	}else if(dayOfWeek==4){
+		yoil = "수";
+	}else if(dayOfWeek==5){
+		yoil = "목";
+	}else if(dayOfWeek==6){
+		yoil = "금";
+	}else if(dayOfWeek==7){
+		yoil = "토";
+	}
 	
 	if(day > end_day) {
 		if (month == 12) {
@@ -153,9 +170,9 @@
 </head>
 <body>
 	<div>
-		<a href="/GGV_proj/reservation/reserve.jsp?year=<%=year%>&month=<%=month%>&day=<%=day-1%>"><img src="/GGV_proj/img/pre.png" /></a>
-		<span style="font-size: 50px;"><%=month%>. <%=day%></span>
-		<a href="/GGV_proj/reservation/reserve.jsp?year=<%=year%>&month=<%=month%>&day=<%=day+1%>"><img src="/GGV_proj/img/next.png" /></a>
+		<a href="/GGV_proj/reservation/reservation.jsp?year=<%=year%>&month=<%=month%>&day=<%=day-1%>"><img src="/GGV_proj/img/pre.png" /></a>
+		<span style="font-size: 50px;"><%=month%>. <%=day%>(<%=yoil%>)</span>
+		<a href="/GGV_proj/reservation/reservation.jsp?year=<%=year%>&month=<%=month%>&day=<%=day+1%>"><img src="/GGV_proj/img/next.png" /></a>
 	</div>
 	
 	<h1>상영시간표</h1>
