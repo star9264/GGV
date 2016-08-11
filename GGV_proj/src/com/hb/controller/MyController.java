@@ -1,6 +1,5 @@
 package com.hb.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,10 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.log.UserDataHelper.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,13 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hb.db.Dao;
 
 import com.hb.db.Member_VO;
-import com.hb.db.PR_VO;
 import com.hb.db.P_VO;
 
 import com.hb.db.Pageing;
-import com.hb.db.Q_VO;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Controller
 public class MyController {
@@ -320,8 +313,17 @@ public class MyController {
 			return mv;
 
 		}
-
-	
+		
+		// 확인
+		@RequestMapping("reserv_chk.do")
+		public ModelAndView reserv_chk(HttpServletRequest request){
+			ModelAndView mv = new ModelAndView();
+			
+			request.getParameterValues("chkseat");
+			
+			
+			return mv;
+		}
 }
 
 
