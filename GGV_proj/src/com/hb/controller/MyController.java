@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -19,6 +19,7 @@ import com.hb.db.Member_VO;
 import com.hb.db.P_VO;
 
 import com.hb.db.Pageing;
+import com.hb.db.Q_VO;
 import com.hb.db.Reservation;
 
 @Controller
@@ -69,7 +70,7 @@ public class MyController {
 		
 		Member_VO member_VO = dao.getLogin(member_id, pwd);
 		if(member_VO!=null){
-			mv = new ModelAndView("client_info/info_update");
+			mv = new ModelAndView("main/main");
 		}else{
 			mv = new ModelAndView("client_info/login_fail");
 		}
@@ -396,9 +397,47 @@ public class MyController {
 				}
 			}
 			dao.reserve(reserve);
-			
 			return mv;
 		}
+		
+		
+		////////////////////board(별아 건드리지마)///////////////////////////////
+		// qna list
+		@RequestMapping("/q_list.do")
+		public ModelAndView getQList(@RequestParam String type){
+			Map<String, String> map = new HashMap<>();
+			map.put("type", type);
+			List<Q_VO> q_list = dao.getQ_list(map);
+			ModelAndView mv = new ModelAndView("qna/q_list");
+			mv.addObject("q_list",q_list);
+			return mv;
+		}
+		// write
+		@RequestMapping("/q_write.do")
+		public ModelAndView getQWrite(){
+			return new ModelAndView("qna/q_write");
+		}
+		
+		// write_ok
+		@RequestMapping("/q_write_ok.do")
+		public ModelAndView getQWrite_ok(HttpServletRequest request){
+			Q_VO qvo = new Q_VO();
+			System.out.println("write"+request.getParameter("type"));
+			qvo.setType(request.getParameter("type"));
+			qvo.setSubject(request.getParameter("subject"));
+			qvo.setMember_name(request.getParameter("name"));
+			qvo.setMember_id(request.getParameter("id"));
+			qvo.setMember_phone(request.getParameter("phone"));
+			qvo.setMember_email(request.getParameter("email"));
+			qvo.setSubject(request.getParameter("subject"));
+			qvo.setContent(request.getParameter("content"));
+			qvo.setState("미답변");
+			dao.getQWrite_ok(qvo);
+			ModelAndView mv = new ModelAndView("redirect:/q_list.do");
+			mv.addObject("qvo",qvo);
+			return mv;
+		} 
+		///////////////////////////////////////////////////////////////////////////////
 }
 
 

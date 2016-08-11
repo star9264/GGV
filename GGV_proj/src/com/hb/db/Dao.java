@@ -21,23 +21,38 @@ public class Dao {
 	public void setSessionFactory(SqlSessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
+	/////////////////////////////board(별아 건드리지마)///////////////////////////////////////////////
 	// q_list
-		public List<Q_VO> getQ_list(Map<String, String> map){
-			SqlSession ss =  null;
-			List<Q_VO> q_list = null;
+	public List<Q_VO> getQ_list(Map<String, String> map){
+		SqlSession ss =  null;
+		List<Q_VO> q_list = null;
+		try {
+			ss=  sessionFactory.openSession();
+			q_list = ss.selectList("q_list");
+		}catch (Exception e) {
+			System.out.println(e);
+			// TODO: handle exception
+		}finally {
+			ss.close();
+		}
+		return q_list;
+	}
+	// write
+		public int getQWrite_ok(Q_VO qvo){
+			SqlSession ss = null;
+			int result = 0;
 			try {
-				ss=  sessionFactory.openSession();
-				q_list = ss.selectList("q_list");
-			}catch (Exception e) {
+				ss = sessionFactory.openSession();
+				result = ss.insert("q_insert", qvo);
+				System.out.println("dao");
+			} catch (Exception e) {
 				System.out.println(e);
-				// TODO: handle exception
 			}finally {
 				ss.close();
 			}
-			return q_list;
+			return result;
 		}
-	
+	//////////////////////////////////////////////////////////////////////////////////////
 
 		public List<P_VO> getpackage_info(String idx){
 			SqlSession ss = null;
@@ -70,36 +85,6 @@ public class Dao {
 			}
 			
 		}
-/*	// view
-	public BbsVO getView(String b_idx) {
-		SqlSession ss = null;
-		BbsVO bvo = null;
-		try {
-			ss = sessionFactory.openSession(true);
-			bvo = ss.selectOne("onelist", b_idx);
-
-		} catch (Exception e) {
-			ss.close();
-		} finally {
-			ss.close();
-		}
-		return bvo;
-	}
-		
-	// write
-	public int getWrite_ok(BbsVO bvo) {
-		SqlSession ss = null;
-		int result = 0;
-		try {
-			ss = sessionFactory.openSession();
-			result = ss.insert("insert", bvo);
-		} catch (Exception e) {
-
-		} finally {
-			ss.close();
-		}
-		return result;
-	}*/
 	
 	// login
 	public Member_VO getLogin(String member_id, String pwd){
