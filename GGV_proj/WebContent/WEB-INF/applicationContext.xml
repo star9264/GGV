@@ -8,7 +8,7 @@
 	<!-- DB연결(BasicDataSource)  -->
 	<bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="url" value="jdbc:oracle:thin:@203.236.209.8:1521:xe" />
 		<property name="username" value="hr" />
 		<property name="password" value="1111" />	
 	</bean>

@@ -41,6 +41,8 @@ input{
 		alert("비밀번호가 변경되었습니다.");
 	}else if("${res}"==2){
 		alert("탈퇴 되었습니다.");
+	}else if("${res2}"==1){
+		alert("회원가입이 완료되었습니다.");
 	}
 </script>
 </head>

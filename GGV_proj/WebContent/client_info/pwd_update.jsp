@@ -40,6 +40,9 @@ function pwd_update_ok(f) {
 		}
 	}
 }
+function cancel(f) {
+	history.go(-1);
+}
 
 </script>
 </head>
@@ -87,7 +90,7 @@ function pwd_update_ok(f) {
 		</table>
 		<div align="center" style="margin-top: 50px;">
 			<input type="button" onclick="pwd_update_ok(this.form)" value="수정" style="width: 110px; height: 75px; background-color: white; cursor: pointer; border-style: solid; color: gray;"/>
-			<input type="button" value="취소" style="width: 110px; height: 75px; background-color: white; cursor: pointer; border-style: solid; color: gray;"/>	
+			<input type="button" onclick="cancel(this.form)" value="취소" style="width: 110px; height: 75px; background-color: white; cursor: pointer; border-style: solid; color: gray;"/>	
 		</div>
 	</form>
 </body>

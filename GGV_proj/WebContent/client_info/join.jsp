@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,32 +24,51 @@
    	}
 </style>
 <script type="text/javascript">
+
 function id_confirm(f) {
-	var id_chk = $("#id").val(); /////////////////////////////////////////////여기까지함 아이디중복체크 해야함
-	alert(id_chk);	
+	f.action="id_confirm.do";
+	f.submit();
 }
-	function join_ok(){
-		for(var i=0 ; i<document.forms[0].elements.length ; i++){
-			if(document.forms[0].elements[i].value == ""){
-				alert(document.forms[0].elements[i].id+
-						"칸을 입력하세요");
-				document.forms[0].elements[i].focus();
-				return;//수행 중단
-			}else if(f.phone.value.length==0 || f.phone.value.length!=3){
-				alert("전화번호를  올바르게 입력해주세요.");
-			}else if(f.phone2.value.length==0 || f.phone2.value.length!=4){
-				alert("전화번호를  올바르게 입력해주세요.");
-			}else if(f.phone3.value.length==0 || f.phone3.value.length!=4){
-				alert("전화번호를  올바르게 입력해주세요.");
-			}else if(f.birthday.value.length==0 || f.birthday.value.length!=4){
-				alert("전화번호를  올바르게 입력해주세요.");
-			}else if(f.birthday2.value.length==0 || f.birthday2.value.length!=2){
-				alert("전화번호를  올바르게 입력해주세요.");
-			}else if(f.birthday3.value.length==0 || f.birthday3.value.length!=2){
-				alert("전화번호를  올바르게 입력해주세요.");
-			}
+
+	function join_ok(f){
+		if("${res}"==1){
+				if(f.member_id.value.length==0){
+					alert("아이디를 입력해주세요.");
+				}else if(f.pwd.value.length==0 || f.pwd2.value.length==0){
+					alert("비밀번호를 입력해주세요.");
+				}else if(f.pwd.value!=f.pwd2.value){
+					alert("비밀번호가 서로 일치하지 않습니다.");
+				}else if(f.name.value.length==0){
+					alert("이름을 입력해주세요.");
+				}else if(f.gender.value.length==0){
+					alert("성별을 선택해주세요.");
+				}else if(f.phone.value.length==0 || f.phone.value.length!=3){
+					alert("전화번호를  올바르게 입력해주세요.");
+				}else if(f.phone2.value.length==0 || f.phone2.value.length!=4){
+					alert("전화번호를  올바르게 입력해주세요.");
+				}else if(f.phone3.value.length==0 || f.phone3.value.length!=4){
+					alert("전화번호를  올바르게 입력해주세요.");
+				}else if(f.birthday.value.length==0 || f.birthday.value.length!=4){
+					alert("생년월일을  올바르게 입력해주세요.");
+				}else if(f.birthday2.value.length==0 || f.birthday2.value.length!=2){
+					alert("생년월일을  올바르게 입력해주세요.");
+				}else if(f.birthday3.value.length==0 || f.birthday3.value.length!=2){
+					alert("생년월일을  올바르게 입력해주세요.");
+				}else if(f.addr.value.length==0){
+					alert("주소를 입력해주세요.");
+				}else if(f.email_addr.value.length==0){
+					alert("이메일을 입력해주세요.");
+				}else{
+					var chk = confirm("회원가입 하시겠습니까?");
+					if(chk==true){
+						f.action="join_ok.do";
+						f.submit();
+					}
+				}
+		}else{
+			alert("아이디 중복확인을 해주세요.")
 		}
-		document.forms[0].submit();
+		
 	}
 </script>
 </head>
@@ -71,8 +91,13 @@ function id_confirm(f) {
 			<tbody>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*아이디</td>
-					<td><input type="text" class="member_id" id=아이디 name="member_id" style="height: 18px;"/>&nbsp;
-					<input onclick="id_confirm(this.form)" type="button" value="중복확인" style="color: #f0eceb; width: 70px; height: 30px; background-color: #9068be; border-style: none; cursor: pointer;"/></td>
+					<td><input type="text" class="member_id" id=아이디 name="member_id" style="height: 18px;" value="${member_id}"/>&nbsp;
+					<input onclick="id_confirm(this.form)" type="button" value="중복확인" style="color: #f0eceb; width: 70px; height: 30px; background-color: #9068be; border-style: none; cursor: pointer;"/>
+					<c:if test="${!empty member_id}">
+						<h5 style="color: #9068be">사용가능한 아이디입니다.<h5>
+					</c:if>
+					</td>
+					
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*비밀번호</td>

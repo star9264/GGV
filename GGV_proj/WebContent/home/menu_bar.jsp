@@ -29,7 +29,7 @@
 		color: #c9c9c9;
 		text-decoration: none;
 		border: 1px solid white;
-		font-size: 30px;
+		font-size: 15px;
 		margin-top: 20px;
 		margin-right: 30px;
 	}
