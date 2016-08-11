@@ -50,6 +50,11 @@
 	<update id="package_reservation" parameterType="Map">
 		update ggv_member set package_reservation = #{total_person} where id=#{id}
 	</update>
+	
+	<!-- Reserve -->
+	<insert id="reserve" parameterType="com.hb.db.Reservation" > 
+		insert into ggv_reserve values(reserve_idx_sequence.nextval, #{member_id}, #{view_room_idx}, #{movie_idx}, #{reserve_date}, #{reserve_time}, #{reserve_seat1}, #{reserve_seat2}, #{reserve_seat3}, #{reserve_seat4}, #{reserve_seat5}, #{reserve_seat6}, #{reserve_seat7}, #{reserve_seat8}, #{reserve_price})
+	</insert>  
 </mapper>
 
 

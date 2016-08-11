@@ -19,6 +19,7 @@ import com.hb.db.Member_VO;
 import com.hb.db.P_VO;
 
 import com.hb.db.Pageing;
+import com.hb.db.Reservation;
 
 @Controller
 public class MyController {
@@ -319,8 +320,39 @@ public class MyController {
 		public ModelAndView reserv_chk(HttpServletRequest request){
 			ModelAndView mv = new ModelAndView();
 			
-			request.getParameterValues("chkseat");
+			String[] r_seat = request.getParameterValues("chkseat");
+			Reservation reserve = new Reservation();
+			reserve.setMember_id("wonjun123");
+			reserve.setView_room_idx("1");
+			reserve.setMovie_idx("1");
+			reserve.setReserve_date("2016-08-12");
+			reserve.setReserve_time("16:00");
+			reserve.setReserve_price(String.valueOf(8000*r_seat.length));
 			
+			if(r_seat[0]!=null){
+				reserve.setReserve_seat1(r_seat[0]);
+				if(r_seat[1]!=null){
+					reserve.setReserve_seat1(r_seat[1]);
+					if(r_seat[2]!=null){
+						reserve.setReserve_seat1(r_seat[2]);
+						if(r_seat[3]!=null){
+							reserve.setReserve_seat1(r_seat[3]);
+							if(r_seat[4]!=null){
+								reserve.setReserve_seat1(r_seat[4]);
+								if(r_seat[5]!=null){
+									reserve.setReserve_seat1(r_seat[5]);
+									if(r_seat[6]!=null){
+										reserve.setReserve_seat1(r_seat[6]);
+										if(r_seat[7]!=null){
+											reserve.setReserve_seat1(r_seat[7]);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 			
 			return mv;
 		}

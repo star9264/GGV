@@ -206,6 +206,20 @@ public class Dao {
 		}
 		return res;
 	}
+	
+	public void reserve(Reservation reserve){
+		SqlSession ss = null;
+		
+		try {
+			ss = sessionFactory.openSession(true);
+			ss.insert("reserve", reserve);
+			ss.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally{
+			ss.close();
+		}
+	}
 
 }
 

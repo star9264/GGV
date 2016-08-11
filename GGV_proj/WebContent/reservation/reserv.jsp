@@ -71,7 +71,7 @@ input[name="reserved"]:disabled+label {
 </script>
 </head>
 <body>
-	<form>
+	<form action="reserv_chk.do">
 		<div>
 			<%
 				seat: for (int i = 0; i < 50; i++) {
@@ -100,7 +100,7 @@ input[name="reserved"]:disabled+label {
 				}
 			%>
 		</div>
-		<input type="submit">
+		<input type="submit" value="예매하기">
 	</form>
 </body>
 </html>

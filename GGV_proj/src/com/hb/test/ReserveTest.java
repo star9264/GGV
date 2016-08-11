@@ -27,7 +27,7 @@ public class ReserveTest extends HttpServlet {
 		list.add(45);
 		
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/reservation/test.jsp").forward(request, response);
+		request.getRequestDispatcher("/reservation/reserv.jsp").forward(request, response);
 	}
 
 	@Override
