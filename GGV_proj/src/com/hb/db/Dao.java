@@ -238,7 +238,24 @@ public class Dao {
 		}
 
 	}
-
+	// 박스오피스
+		public List<Movie_VO> getMovie_list01(){
+			SqlSession ss = null;
+			List<Movie_VO> list = null;
+			System.out.println("1");
+			try{
+				System.out.println("2");
+				ss = sessionFactory.openSession(true);
+				list = ss.selectList("movie_list01");
+				for (Movie_VO k : list) {
+					System.out.println(k.getPoster());
+				}
+				System.out.println("3");
+			}catch (Exception e) {
+	          System.out.println(e);
+			}
+			return list;
+		}
 
 	}
 

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hb.db.Dao;
 
 import com.hb.db.Member_VO;
+import com.hb.db.Movie_VO;
 import com.hb.db.P_VO;
 
 import com.hb.db.Pageing;
@@ -438,6 +439,36 @@ public class MyController {
 			return mv;
 		} 
 		///////////////////////////////////////////////////////////////////////////////
+		
+		//  영화목록-박스오피스 최신상영작 상영예정작
+				@RequestMapping("/movie_list01.do")
+				public ModelAndView getMovie_list01(){
+					ModelAndView mv = new ModelAndView("movielist_1/movie_list01");
+					List<Movie_VO> list= dao.getMovie_list01();
+					System.out.println("4");
+					for (Movie_VO k : list) {
+						System.out.println(k.getPoster());
+					}
+					System.out.println("5");
+					mv.addObject("list",list);
+					System.out.println("6");
+					return mv;
+				}
+				@RequestMapping("/menu_bar.do")
+				public ModelAndView getMenu(){
+					ModelAndView mv = new ModelAndView("home/menu_bar");
+					return mv;
+				}
+				@RequestMapping("/movie_list02.do")
+				public ModelAndView getMovie_list02(){
+					ModelAndView mv = new ModelAndView("movielist_1/movie_list02");
+					return mv;
+				}
+				@RequestMapping("/movie_list03.do")
+				public ModelAndView getMovie_list03(){
+					ModelAndView mv = new ModelAndView("movielist_1/movie_list03");
+					return mv;
+				}
 }
 
 
