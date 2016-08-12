@@ -40,21 +40,6 @@
    		insert into ggv_member values(#{member_id}, #{pwd}, #{name}, #{addr}, #{phone}, #{birthday}, #{gender}, #{email_addr}, 0, 0, 0)
    </insert>
 
- <select id="q_list" parameterType="Map" resultType="com.hb.db.Q_VO">
-		select * from ggv_question where type='ask' order by QUESTION_IDX
-	</select>
-	<select id="login" parameterType="Map" resultType="com.hb.db.Member_VO">
-		select * from ggv_member where member_id = #{member_id} and pwd = #{pwd}
-	</select>
-	<update id="info_update" parameterType="com.hb.db.Member_VO">
-		update ggv_member set addr = #{addr}, phone = #{phone}, email_addr =
-		#{email_addr} where pwd = #{pwd} and member_id = #{member_id}
-	</update>
-	
-	<select id="package_information" parameterType="String" resultType="com.hb.db.P_VO" >
-			 select * from ggv_package where package_idx=#{idx}
-	</select>
-
 	<insert id="p_r_insert" parameterType="com.hb.db.PR_VO" > 
 	insert into ggv_package_res values(#{reservation_num},null,sysdate,sysdate,#{reservation_package})
 	</insert>  

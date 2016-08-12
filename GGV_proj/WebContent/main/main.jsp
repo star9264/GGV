@@ -15,7 +15,7 @@
 		padding-bottom: 100px;
 		padding-left: 100px;
 	}
-</style>
+</style>  
 </head>
 <body>
 	<div id="menu">
