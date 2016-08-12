@@ -55,17 +55,9 @@
 	</select>
 	<insert id="reserve" parameterType="com.hb.db.Reservation" > 
 		insert into ggv_reserve values(reserve_idx_seq.nextval, #{member_id}, #{movie_idx}, #{reserve_date}, #{reserve_time}, #{reserve_seat1}, #{reserve_seat2}, #{reserve_seat3}, #{reserve_seat4}, #{reserve_seat5}, #{reserve_seat6}, #{reserve_seat7}, #{reserve_seat8}, #{reserve_price})
-
-	</insert> 
-	<update id="package_reservation" parameterType="Map">
-		update ggv_member set package_reservation=#{person} where member_id=#{id}
-	</update>
-	<select id="get_reservation" parameterType="String" resultType="String">
-		select package_reservation from ggv_member where member_id = #{id}
-	</select>
+	</insert>
 	<select id="movieList" resultType="com.hb.db.Movie_VO">
 		select * from ggv_movie
-
 	</select>
 </mapper>
 
