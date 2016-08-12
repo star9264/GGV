@@ -483,11 +483,18 @@ public class MyController {
 			qvo.setContent(request.getParameter("content"));
 			qvo.setState("미답변");
 			dao.getQWrite_ok(qvo);
-			ModelAndView mv = new ModelAndView("redirect:/q_list.do");
+			ModelAndView mv = new ModelAndView("redirect:/q_list.do?type="+qvo.getType());
 			mv.addObject("qvo",qvo);
 			return mv;
 		} 
-		///////////////////////////////////////////////////////////////////////////////
+		
+		// login alert
+		@RequestMapping("/login_alert.do")
+		public ModelAndView loginAlert(){
+			System.out.println("로그인하시길");
+			return new ModelAndView("qna/login_alert");
+		}
+		//////////////////////////////////윤경끝/////////////////////////////////////////////
 		
 		//  영화목록-박스오피스 최신상영작 상영예정작
 				@RequestMapping("/movie_list01.do")

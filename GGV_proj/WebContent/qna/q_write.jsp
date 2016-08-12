@@ -79,8 +79,8 @@
 				<tbody>
 					<tr>
 						<th>아이디</th>
-						<!-- <td><input type="text" name="id"></td> -->
-						<td>${info.member_id }</td>
+						<td><input type="text" name="id"></td>
+						<%-- <td>${info.member_id }</td> --%>
 					</tr>
 					<tr>
 						<th>이름</th>
