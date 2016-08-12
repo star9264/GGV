@@ -52,6 +52,20 @@ a{
 }
 
 </style>
+<script type="text/javascript">
+     function list01(f) {
+	f.action="movie_list01.do";
+		f.submit();
+	}
+     function list02(f) {
+		f.action="movie_list02.do";
+		f.submit();
+	}
+    function list03(f) {
+ 		f.action="movie_list03.do";
+ 		f.submit();
+ 	}
+</script>
 </head>
 <body>
 <div id="menu">
@@ -65,10 +79,10 @@ a{
 <br>
 		<div align="center">
 			<span><input type="button" value="박스오피스" id="top_btn"
-				style="position: relative; left: 6px;"></span> 
-				<span><input type="button" value="최신개봉작" id="top_btn"></span> 
+				style="position: relative; left: 6px;" onclick="list01(this.form)" /></span> 
+				<span><input type="button" value="최신개봉작" id="top_btn" onclick="list02(this.form)" /></span> 
 				<span><input type="button" value="상영예정작" id="top_btn"
-				style="position: relative; right: 6px;"></span>
+				style="position: relative; right: 6px;" onclick="list03(this.form)" /></span>
 		</div>
 		<table align="center" style="margin-top: 50px;">
 		  <body>

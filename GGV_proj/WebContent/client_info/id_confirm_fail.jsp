@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	alert("이미 존재하는 아이디입니다.");
 	history.go(-1);
-</script>
+</script> 
 </head>
 <body>
 

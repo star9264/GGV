@@ -1,5 +1,6 @@
 package com.hb.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,16 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
 import com.hb.db.Dao;
 
 import com.hb.db.Member_VO;
+import com.hb.db.Movie_VO;
 import com.hb.db.P_VO;
 
 import com.hb.db.Pageing;
+import com.hb.db.Q_VO;
 import com.hb.db.Reservation;
 
 @Controller
@@ -365,35 +368,67 @@ public class MyController {
 		}
 		
 		// 확인
-		@RequestMapping("reserv_chk.do")
-		public ModelAndView reserv_chk(HttpServletRequest request){
-			ModelAndView mv = new ModelAndView("reservation/reserve_suc");
+				@RequestMapping("reserve.do")
+				public ModelAndView reserve(HttpServletRequest request) {
+					ModelAndView mv = new ModelAndView("reservation/reserve");
+					
+					List<Reservation> r_list = dao.getReserveList();
+					List<Integer> list = new ArrayList<Integer>();
+					for (Reservation k : r_list) {
+						if(k.getReserve_seat1()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat1()));
+						}else if(k.getReserve_seat2()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat2()));
+						}else if(k.getReserve_seat3()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat3()));
+						}else if(k.getReserve_seat4()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat4()));
+						}else if(k.getReserve_seat5()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat5()));
+						}else if(k.getReserve_seat6()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat6()));
+						}else if(k.getReserve_seat7()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat7()));
+						}else if(k.getReserve_seat8()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat8()));
+						}
+					}
+					mv.addObject("list", list);
+					
+					return mv;
+				}
 			
-			String[] r_seat = new String[8];
-			r_seat = request.getParameterValues("chkseat");
-			Reservation reserve = new Reservation();
-			reserve.setMember_id("wonjun123");
-			reserve.setMovie_idx("1");
-			reserve.setReserve_date("2016-08-12");
-			reserve.setReserve_time("16:00");
-			reserve.setReserve_price(String.valueOf(8000*r_seat.length));
-			
-			if(r_seat.length>0){
-				reserve.setReserve_seat1(r_seat[0]);
-				if(r_seat.length>1){
-					reserve.setReserve_seat2(r_seat[1]);
-					if(r_seat.length>2){
-						reserve.setReserve_seat3(r_seat[2]);
-						if(r_seat.length>3){
-							reserve.setReserve_seat4(r_seat[3]);
-							if(r_seat.length>4){
-								reserve.setReserve_seat5(r_seat[4]);
-								if(r_seat.length>5){
-									reserve.setReserve_seat6(r_seat[5]);
-									if(r_seat.length>6){
-										reserve.setReserve_seat7(r_seat[6]);
-										if(r_seat.length>7){
-											reserve.setReserve_seat8(r_seat[7]);
+			// 확인
+			@RequestMapping("reserv_chk.do")
+			public ModelAndView reserv_chk(HttpServletRequest request) {
+				ModelAndView mv = new ModelAndView("reservation/reserve_suc");
+
+				String[] r_seat = new String[8];
+				r_seat = request.getParameterValues("chkseat");
+				Reservation reserve = new Reservation();
+				reserve.setMember_id("wonjun123");
+				reserve.setMovie_idx("1");
+				reserve.setReserve_date("2016-08-12");
+				reserve.setReserve_time("16:00");
+				reserve.setReserve_price(String.valueOf(8000 * r_seat.length));
+
+				if (r_seat.length > 0) {
+					reserve.setReserve_seat1(r_seat[0]);
+					if (r_seat.length > 1) {
+						reserve.setReserve_seat2(r_seat[1]);
+						if (r_seat.length > 2) {
+							reserve.setReserve_seat3(r_seat[2]);
+							if (r_seat.length > 3) {
+								reserve.setReserve_seat4(r_seat[3]);
+								if (r_seat.length > 4) {
+									reserve.setReserve_seat5(r_seat[4]);
+									if (r_seat.length > 5) {
+										reserve.setReserve_seat6(r_seat[5]);
+										if (r_seat.length > 6) {
+											reserve.setReserve_seat7(r_seat[6]);
+											if (r_seat.length > 7) {
+												reserve.setReserve_seat8(r_seat[7]);
+											}
 										}
 									}
 								}
@@ -401,11 +436,88 @@ public class MyController {
 						}
 					}
 				}
+				dao.reserve(reserve);
+				return mv;
 			}
-			dao.reserve(reserve);
-			
+
+			// 영화 목록 불러오기
+			@RequestMapping("movielist.do")
+			public ModelAndView movieList(HttpServletRequest request) {
+				ModelAndView mv = new ModelAndView("reservation/reservation");
+				List<Movie_VO> list = dao.movieList();
+				mv.addObject("list", list);
+
+				return mv;
+			}
+		
+		
+		////////////////////board(별아 건드리지마)///////////////////////////////
+		// qna list
+		@RequestMapping("/q_list.do")
+		public ModelAndView getQList(@RequestParam String type){
+			Map<String, String> map = new HashMap<>();
+			map.put("type", type);
+			List<Q_VO> q_list = dao.getQ_list(map);
+			ModelAndView mv = new ModelAndView("qna/q_list");
+			mv.addObject("q_list",q_list);
 			return mv;
 		}
+		// write
+		@RequestMapping("/q_write.do")
+		public ModelAndView getQWrite(){
+			return new ModelAndView("qna/q_write");
+		}
+		
+		// write_ok
+		@RequestMapping("/q_write_ok.do")
+		public ModelAndView getQWrite_ok(HttpServletRequest request){
+			Q_VO qvo = new Q_VO();
+			System.out.println("write"+request.getParameter("type"));
+			qvo.setType(request.getParameter("type"));
+			qvo.setSubject(request.getParameter("subject"));
+			qvo.setMember_name(request.getParameter("name"));
+			qvo.setMember_id(request.getParameter("id"));
+			qvo.setMember_phone(request.getParameter("phone"));
+			qvo.setMember_email(request.getParameter("email"));
+			qvo.setSubject(request.getParameter("subject"));
+			qvo.setContent(request.getParameter("content"));
+			qvo.setState("미답변");
+			dao.getQWrite_ok(qvo);
+			ModelAndView mv = new ModelAndView("redirect:/q_list.do");
+			mv.addObject("qvo",qvo);
+			return mv;
+		} 
+		///////////////////////////////////////////////////////////////////////////////
+		
+		//  영화목록-박스오피스 최신상영작 상영예정작
+				@RequestMapping("/movie_list01.do")
+				public ModelAndView getMovie_list01(){
+					ModelAndView mv = new ModelAndView("movielist_1/movie_list01");
+					List<Movie_VO> list= dao.getMovie_list01();
+					System.out.println("4");
+					for (Movie_VO k : list) {
+						System.out.println(k.getPoster());
+					}
+					System.out.println("5");
+					mv.addObject("list",list);
+					System.out.println("6");
+					return mv;
+				}
+				@RequestMapping("/menu_bar.do")
+				public ModelAndView getMenu(){
+					ModelAndView mv = new ModelAndView("home/menu_bar");
+					return mv;
+				}
+				@RequestMapping("/movie_list02.do")
+				public ModelAndView getMovie_list02(){
+					ModelAndView mv = new ModelAndView("movielist_1/movie_list02");
+					return mv;
+				}
+				@RequestMapping("/movie_list03.do")
+				public ModelAndView getMovie_list03(){
+					ModelAndView mv = new ModelAndView("movielist_1/movie_list03");
+					return mv;
+				}
 }
 
 

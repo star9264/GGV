@@ -11,18 +11,19 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 public class Dao {
 	private SqlSessionFactory sessionFactory;
-	
-	
+
 	public SqlSessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
-
 
 	public void setSessionFactory(SqlSessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
+	///////////////////////////// board(별아
+	///////////////////////////// 건드리지마)///////////////////////////////////////////////
 	// q_list
+
 		public List<Q_VO> getQ_list(Map<String, String> map){
 			SqlSession ss =  null;
 			List<Q_VO> q_list = null;
@@ -87,39 +88,25 @@ public class Dao {
 			
 		}
 		
-/*	// view
-	public BbsVO getView(String b_idx) {
-		SqlSession ss = null;
-		BbsVO bvo = null;
-		try {
-			ss = sessionFactory.openSession(true);
-			bvo = ss.selectOne("onelist", b_idx);
-
-		} catch (Exception e) {
-			ss.close();
-		} finally {
-			ss.close();
-		}
-		return bvo;
-	}
-		
 	// write
-	public int getWrite_ok(BbsVO bvo) {
+	public int getQWrite_ok(Q_VO qvo) {
 		SqlSession ss = null;
 		int result = 0;
 		try {
 			ss = sessionFactory.openSession();
-			result = ss.insert("insert", bvo);
+			result = ss.insert("q_insert", qvo);
+			System.out.println("dao");
 		} catch (Exception e) {
-
+			System.out.println(e);
 		} finally {
 			ss.close();
 		}
 		return result;
-	}*/
-	
+	}
+	//////////////////////////////////////////////////////////////////////////////////////
+
 	// login
-	public Member_VO getLogin(String member_id, String pwd){
+	public Member_VO getLogin(String member_id, String pwd) {
 		SqlSession ss = null;
 		Member_VO member_VO = new Member_VO();
 		Map<String, String> map = new HashMap<>();
@@ -133,12 +120,12 @@ public class Dao {
 		} finally {
 			ss.close();
 		}
-		
+
 		return member_VO;
 	}
-	
+
 	// 정보수정
-	public int getInfo_update(Member_VO member_VO){
+	public int getInfo_update(Member_VO member_VO) {
 		SqlSession ss = null;
 		int res = 0;
 		try {
@@ -147,15 +134,15 @@ public class Dao {
 			ss.commit();
 		} catch (Exception e) {
 			System.out.println(e);
-		}finally {
+		} finally {
 			ss.close();
 		}
-		
+
 		return res;
 	}
-	
+
 	// 비밀번호 변경
-	public int getPwd_update(String member_id, String pwd, String pwd2){
+	public int getPwd_update(String member_id, String pwd, String pwd2) {
 		SqlSession ss = null;
 		int res = 0;
 		Map<String, String> map = new HashMap<>();
@@ -168,17 +155,17 @@ public class Dao {
 			ss.commit();
 		} catch (Exception e) {
 			System.out.println(e);
-		}finally {
+		} finally {
 			ss.close();
 		}
 		return res;
 	}
-	
+
 	// 아이디 찾기
-	public List<Member_VO> getId_find(Member_VO member_VO){
+	public List<Member_VO> getId_find(Member_VO member_VO) {
 		SqlSession ss = null;
 		List<Member_VO> list = null;
-		
+
 		try {
 			ss = sessionFactory.openSession(true);
 			list = ss.selectList("id_find", member_VO);
@@ -187,9 +174,9 @@ public class Dao {
 		}
 		return list;
 	}
-	
+
 	// 비밀번호 찾기
-	public Member_VO getPwd_find(String member_id, String name, String phone){
+	public Member_VO getPwd_find(String member_id, String name, String phone) {
 		SqlSession ss = null;
 		Member_VO member_VO = new Member_VO();
 		Map<String, String> map = new HashMap<>();
@@ -204,12 +191,12 @@ public class Dao {
 		}
 		return member_VO;
 	}
-	
+
 	// 회원탈퇴
-	public int getClient_leave(String member_id, String pwd){
+	public int getClient_leave(String member_id, String pwd) {
 		SqlSession ss = null;
 		Map<String, String> map = new HashMap<>();
-		map.put("member_id", member_id);  
+		map.put("member_id", member_id);
 		map.put("pwd", pwd);
 		int res = 0;
 		try {
@@ -218,15 +205,14 @@ public class Dao {
 			ss.commit();
 		} catch (Exception e) {
 			System.out.println(e);
-		}finally {
+		} finally {
 			ss.close();
 		}
 		return res;
 	}
-	
 
 	// 아이디 중복확인
-	public Member_VO getId_confirm(String member_id){
+	public Member_VO getId_confirm(String member_id) {
 		SqlSession ss = null;
 		Member_VO member_VO = new Member_VO();
 		System.out.println(member_id);
@@ -239,9 +225,9 @@ public class Dao {
 		}
 		return member_VO;
 	}
-	
+
 	// 회원가입
-	public int getJoin(Member_VO member_VO){
+	public int getJoin(Member_VO member_VO) {
 		SqlSession ss = null;
 		int res2 = 0;
 		try {
@@ -250,52 +236,82 @@ public class Dao {
 			ss.commit();
 		} catch (Exception e) {
 			System.out.println(e);
-		}finally {
+		} finally {
 			ss.close();
 		}
 		return res2;
 	}
-	
-	public void reserve(Reservation reserve){
+
+	//////////////////////////// 예 매  /////////////////////////////////////////////////////////
+	public void reserve(Reservation reserve) {
 		SqlSession ss = null;
-		
+
 		try {
 			ss = sessionFactory.openSession(true);
-			
+
 			ss.insert("reserve", reserve);
 			ss.commit();
 		} catch (Exception e) {
 			System.out.println("오류!");
-		}finally{
+		} finally {
 			ss.close();
 		}
+
 	}
+
+	public List<Movie_VO> movieList() {
+		SqlSession ss = null;
+		List<Movie_VO> list = null;
+
+		try {
+			ss = sessionFactory.openSession();
+			list = ss.selectList("movieList");
+			if (list.isEmpty()) {
+				System.out.println("Empty!");
+			}
+		} catch (Exception e) {
+			System.out.println("movie list!");
+		} finally {
+			ss.close();
+		}
+		System.out.println("Here!");
+		return list;
+	}
+
+	public List<Reservation> getReserveList() {
+		SqlSession ss = null;
+		List<Reservation> list = null;
+
+		try {
+			ss = sessionFactory.openSession();
+			list = ss.selectList("reserveList");
+		} catch (Exception e) {
+			System.out.println("reserve list!");
+		} finally {
+			ss.close();
+		}
+
+		return list;
+	}
+
+	///////////////////////////////////////////////////////////////////////////////////////////
+	// 박스오피스
+	public List<Movie_VO> getMovie_list01() {
+		SqlSession ss = null;
+		List<Movie_VO> list = null;
+		System.out.println("1");
+		try {
+			System.out.println("2");
+			ss = sessionFactory.openSession(true);
+			list = ss.selectList("movie_list01");
+			for (Movie_VO k : list) {
+				System.out.println(k.getPoster());
+			}
+			System.out.println("3");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return list;
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
