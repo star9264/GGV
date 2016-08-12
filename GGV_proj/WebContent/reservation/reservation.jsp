@@ -182,6 +182,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../home/menu_bar.jsp" /><br><br><br><br><br>
 	<div>
 		<a href="movielist.do?year=<%=year%>&month=<%=month%>&day=<%=day-1%>"><img src="/GGV_proj/img/pre.png" /></a>
 		<span style="font-size: 50px;"><%=month%>. <%=day%>(<%=yoil%>)</span>

@@ -5,8 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function suc() {
+		alert("예매 성공!");
+		<% response.sendRedirect("");%>
+	}
+</script>
 </head>
-<body>
-	<h1>예약 성공!!</h1>
+<body onload="suc()">
 </body>
 </html>
