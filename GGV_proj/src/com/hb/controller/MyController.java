@@ -1,5 +1,6 @@
 package com.hb.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -360,35 +361,67 @@ public class MyController {
 		}
 		
 		// 확인
-		@RequestMapping("reserv_chk.do")
-		public ModelAndView reserv_chk(HttpServletRequest request){
-			ModelAndView mv = new ModelAndView("reservation/reserve_suc");
+				@RequestMapping("reserve.do")
+				public ModelAndView reserve(HttpServletRequest request) {
+					ModelAndView mv = new ModelAndView("reservation/reserve");
+					
+					List<Reservation> r_list = dao.getReserveList();
+					List<Integer> list = new ArrayList<Integer>();
+					for (Reservation k : r_list) {
+						if(k.getReserve_seat1()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat1()));
+						}else if(k.getReserve_seat2()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat2()));
+						}else if(k.getReserve_seat3()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat3()));
+						}else if(k.getReserve_seat4()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat4()));
+						}else if(k.getReserve_seat5()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat5()));
+						}else if(k.getReserve_seat6()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat6()));
+						}else if(k.getReserve_seat7()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat7()));
+						}else if(k.getReserve_seat8()!=null){
+							list.add(Integer.parseInt(k.getReserve_seat8()));
+						}
+					}
+					mv.addObject("list", list);
+					
+					return mv;
+				}
 			
-			String[] r_seat = new String[8];
-			r_seat = request.getParameterValues("chkseat");
-			Reservation reserve = new Reservation();
-			reserve.setMember_id("wonjun123");
-			reserve.setMovie_idx("1");
-			reserve.setReserve_date("2016-08-12");
-			reserve.setReserve_time("16:00");
-			reserve.setReserve_price(String.valueOf(8000*r_seat.length));
-			
-			if(r_seat.length>0){
-				reserve.setReserve_seat1(r_seat[0]);
-				if(r_seat.length>1){
-					reserve.setReserve_seat2(r_seat[1]);
-					if(r_seat.length>2){
-						reserve.setReserve_seat3(r_seat[2]);
-						if(r_seat.length>3){
-							reserve.setReserve_seat4(r_seat[3]);
-							if(r_seat.length>4){
-								reserve.setReserve_seat5(r_seat[4]);
-								if(r_seat.length>5){
-									reserve.setReserve_seat6(r_seat[5]);
-									if(r_seat.length>6){
-										reserve.setReserve_seat7(r_seat[6]);
-										if(r_seat.length>7){
-											reserve.setReserve_seat8(r_seat[7]);
+			// 확인
+			@RequestMapping("reserv_chk.do")
+			public ModelAndView reserv_chk(HttpServletRequest request) {
+				ModelAndView mv = new ModelAndView("reservation/reserve_suc");
+
+				String[] r_seat = new String[8];
+				r_seat = request.getParameterValues("chkseat");
+				Reservation reserve = new Reservation();
+				reserve.setMember_id("wonjun123");
+				reserve.setMovie_idx("1");
+				reserve.setReserve_date("2016-08-12");
+				reserve.setReserve_time("16:00");
+				reserve.setReserve_price(String.valueOf(8000 * r_seat.length));
+
+				if (r_seat.length > 0) {
+					reserve.setReserve_seat1(r_seat[0]);
+					if (r_seat.length > 1) {
+						reserve.setReserve_seat2(r_seat[1]);
+						if (r_seat.length > 2) {
+							reserve.setReserve_seat3(r_seat[2]);
+							if (r_seat.length > 3) {
+								reserve.setReserve_seat4(r_seat[3]);
+								if (r_seat.length > 4) {
+									reserve.setReserve_seat5(r_seat[4]);
+									if (r_seat.length > 5) {
+										reserve.setReserve_seat6(r_seat[5]);
+										if (r_seat.length > 6) {
+											reserve.setReserve_seat7(r_seat[6]);
+											if (r_seat.length > 7) {
+												reserve.setReserve_seat8(r_seat[7]);
+											}
 										}
 									}
 								}
@@ -396,10 +429,19 @@ public class MyController {
 						}
 					}
 				}
+				dao.reserve(reserve);
+				return mv;
 			}
-			dao.reserve(reserve);
-			return mv;
-		}
+
+			// 영화 목록 불러오기
+			@RequestMapping("movielist.do")
+			public ModelAndView movieList(HttpServletRequest request) {
+				ModelAndView mv = new ModelAndView("reservation/reservation");
+				List<Movie_VO> list = dao.movieList();
+				mv.addObject("list", list);
+
+				return mv;
+			}
 		
 		
 		////////////////////board(별아 건드리지마)///////////////////////////////

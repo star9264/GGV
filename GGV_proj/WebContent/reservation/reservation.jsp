@@ -67,6 +67,17 @@
 			day = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 		}
 	}
+	
+	String today=null;
+	if(month<10){
+		if(day<10){
+			today=year+"-0"+month+"-0"+day;
+		}else{
+			today=year+"-0"+month+"-"+day;
+		}
+	}else{
+		today=year+"-"+month+"-"+day;
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -176,35 +187,14 @@
 	</div>
 	
 	<h1>상영시간표</h1>
-	<div class="movie">
-		<button class="movie-subject">영화1</button>
+	
+	<c:forEach items="${list}" var="k">
+		<div class="movie">
+		<button class="movie-subject">${k.title}</button>
 		<div class="movie-time">
-			<a href="#">Link1</a> <a href="#">Link 2</a> <a href="#">Link 3</a> <a href="#">Link 4</a> <a href="#">Link 5</a>
+			<a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=08:00&reserve_date=<%=today%>">08:00</a> <a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=11:00&reserve_date=<%=today%>">11:00</a> <a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=14:00&reserve_date=<%=today%>">14:00</a> <a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=17:00&reserve_date=<%=today%>">17:00</a> <a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=20:00&reserve_date=<%=today%>">20:00</a>
 		</div>
 	</div>
-	<div class="movie">
-		<button class="movie-subject">영화2</button>
-		<div class="movie-time">
-			<a href="#">Link1</a> <a href="#">Link 2</a> <a href="#">Link 3</a> <a href="#">Link 4</a> <a href="#">Link 5</a>
-		</div>
-	</div>
-	<div class="movie">
-		<button class="movie-subject">영화3</button>
-		<div class="movie-time">
-			<a href="#">Link1</a> <a href="#">Link 2</a> <a href="#">Link 3</a> <a href="#">Link 4</a> <a href="#">Link 5</a>
-		</div>
-	</div>
-	<div class="movie">
-		<button class="movie-subject">영화4</button>
-		<div class="movie-time">
-			<a href="#">Link1</a> <a href="#">Link 2</a> <a href="#">Link 3</a> <a href="#">Link 4</a> <a href="#">Link 5</a>
-		</div>
-	</div>
-	<div class="movie">
-		<button class="movie-subject">영화5</button>
-		<div class="movie-time">
-			<a href="#">Link1</a> <a href="#">Link 2</a> <a href="#">Link 3</a> <a href="#">Link 4</a> <a href="#">Link 5</a>
-		</div>
-	</div>
+	</c:forEach>
 </body>
 </html>
