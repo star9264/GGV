@@ -107,13 +107,10 @@ table tr{
 									<dl>
 										<dt><a>예매</a></dt>
 										<dd>
-											<a href="#home">각자 할꺼 넣기 남는건 지우기</a>
+											<a href="../movielist.do">일정별 예매</a>
 										</dd>
 										<dd>
-											<a href="#home">2</a>
-										</dd>
-										<dd>
-											<a href="#home">3</a>
+											<a href="#home">예매 조회</a>
 										</dd>
 									</dl>
 									<dl>
