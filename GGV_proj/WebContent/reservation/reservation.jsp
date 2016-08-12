@@ -1,8 +1,10 @@
+<%@page import="com.hb.db.Movie_VO"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
+<%	
 	Calendar cal = Calendar.getInstance();
 	int today_year = cal.get(Calendar.YEAR);
 	int today_month = cal.get(Calendar.MONTH) + 1;
@@ -181,9 +183,9 @@
 </head>
 <body>
 	<div>
-		<a href="/GGV_proj/reservation/reservation.jsp?year=<%=year%>&month=<%=month%>&day=<%=day-1%>"><img src="/GGV_proj/img/pre.png" /></a>
+		<a href="movielist.do?year=<%=year%>&month=<%=month%>&day=<%=day-1%>"><img src="/GGV_proj/img/pre.png" /></a>
 		<span style="font-size: 50px;"><%=month%>. <%=day%>(<%=yoil%>)</span>
-		<a href="/GGV_proj/reservation/reservation.jsp?year=<%=year%>&month=<%=month%>&day=<%=day+1%>"><img src="/GGV_proj/img/next.png" /></a>
+		<a href="movielist.do?year=<%=year%>&month=<%=month%>&day=<%=day+1%>"><img src="/GGV_proj/img/next.png" /></a>
 	</div>
 	
 	<h1>상영시간표</h1>
@@ -192,7 +194,7 @@
 		<div class="movie">
 		<button class="movie-subject">${k.title}</button>
 		<div class="movie-time">
-			<a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=08:00&reserve_date=<%=today%>">08:00</a> <a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=11:00&reserve_date=<%=today%>">11:00</a> <a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=14:00&reserve_date=<%=today%>">14:00</a> <a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=17:00&reserve_date=<%=today%>">17:00</a> <a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=20:00&reserve_date=<%=today%>">20:00</a>
+			<a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=08:00&reserve_date=<%=today%>&title=${k.title}">08:00</a> <a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=11:00&reserve_date=<%=today%>&title=${k.title}">11:00</a> <a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=14:00&reserve_date=<%=today%>&title=${k.title}">14:00</a> <a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=17:00&reserve_date=<%=today%>&title=${k.title}">17:00</a> <a href="reserve.do?movie_idx=${k.movie_idx}&reserve_time=20:00&reserve_date=<%=today%>&title=${k.title}">20:00</a>
 		</div>
 	</div>
 	</c:forEach>

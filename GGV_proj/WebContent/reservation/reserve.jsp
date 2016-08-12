@@ -4,9 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	List<Integer> list = (List<Integer>)request.getAttribute("list");
-	if(list.isEmpty()){
-		out.print("<h2>비어있음</h2>");
-	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -74,6 +71,7 @@ input[name="reserved"]:disabled+label {
 </script>
 </head>
 <body>
+	<h2><%=request.getParameter("title") %></h2>
 	<form action="reserv_chk.do" method="post">
 		<div>
 			<%
@@ -103,7 +101,19 @@ input[name="reserved"]:disabled+label {
 				}
 			%>
 		</div>
+		<input type="hidden" value="<%=request.getParameter("reserve_date")%>" name="reserve_date" />
+		<input type="hidden" value="<%=request.getParameter("reserve_time")%>" name="reserve_time" />
+		<input type="hidden" value="${info.member_id}" name="member_id" />
+		<input type="hidden" value="<%=request.getParameter("movie_idx") %>" name="movie_idx" />		
 		<input type="submit" value="예매하기">
 	</form>
 </body>
 </html>
+
+
+
+
+
+
+
+
