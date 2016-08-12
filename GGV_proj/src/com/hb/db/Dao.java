@@ -38,7 +38,21 @@ public class Dao {
 			}
 			return q_list;
 		}
-	
+		// write
+		public int getQWrite_ok(Q_VO qvo) {
+			SqlSession ss = null;
+			int result = 0;
+			try {
+				ss = sessionFactory.openSession();
+				result = ss.insert("q_insert", qvo);
+				System.out.println("dao");
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				ss.close();
+			}
+			return result;
+		}
 
 		public List<P_VO> getpackage_info(String idx){
 			SqlSession ss = null;
@@ -88,21 +102,7 @@ public class Dao {
 			
 		}
 		
-	// write
-	public int getQWrite_ok(Q_VO qvo) {
-		SqlSession ss = null;
-		int result = 0;
-		try {
-			ss = sessionFactory.openSession();
-			result = ss.insert("q_insert", qvo);
-			System.out.println("dao");
-		} catch (Exception e) {
-			System.out.println(e);
-		} finally {
-			ss.close();
-		}
-		return result;
-	}
+
 	//////////////////////////////////////////////////////////////////////////////////////
 
 	// login
