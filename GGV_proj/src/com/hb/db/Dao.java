@@ -57,7 +57,6 @@ public class Dao {
 		
 		public void go_res(Map map){
 			SqlSession ss = null;
-			List<P_VO> package_list = null;
 			try {
 				ss = sessionFactory.openSession();
 				ss.update("package_reservation",map);
@@ -70,6 +69,24 @@ public class Dao {
 			}
 			
 		}
+		
+		public String get_res(String id){
+			SqlSession ss = null;
+			String now_reservation = null;
+			try {
+				ss = sessionFactory.openSession();
+				now_reservation = ss.selectOne("get_reservation", id);
+			} catch (Exception e) {
+				System.out.println(e);
+
+			} finally {
+				ss.close();
+			}
+	
+			return now_reservation;
+			
+		}
+		
 /*	// view
 	public BbsVO getView(String b_idx) {
 		SqlSession ss = null;

@@ -8,7 +8,12 @@
 </head>
 <body>
 	<form method="post">
-	<input type="hidden" name="id" value="${info.id}">
+	<%
+	
+	String id = request.getParameter("id");
+	%>
+	<h2><%=id %></h2>
+	<input type="hidden" name="member_id" value="id">
 	</form>
   
 </body>

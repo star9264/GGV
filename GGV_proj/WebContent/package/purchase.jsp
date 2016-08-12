@@ -53,6 +53,8 @@ h5 {
 		String package_name = request.getParameter("package_name");
 		String su = request.getParameter("package_su");
 		String total_price = request.getParameter("total_price");
+
+		
 	%>
   
 	<table id="package_charge">
@@ -91,10 +93,12 @@ h5 {
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
 					type="button" value="취소" id="purchase_cancel" onclick="cancel()">
 					<input type="submit" value="결제" id="purchase_ok">
+					<input type="hidden" name="id" value="${info.member_id}">
+
+					<h2>아 슈방 좀 되라 ${info.member_id }</h2>
 					<input type="hidden" name="package_name" value="<%=package_name%>">
 					<input type="hidden" name="su" value="<%=su%>">
 					<input type="hidden" name="total_price" value="<%=total_price%>">
-					
 
 				</td>
 

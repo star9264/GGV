@@ -69,7 +69,7 @@ public class MyController {
 		
 		Member_VO member_VO = dao.getLogin(member_id, pwd);
 		if(member_VO!=null){
-			mv = new ModelAndView("client_info/info_update");
+			mv = new ModelAndView("main/main");
 		}else{
 			mv = new ModelAndView("client_info/login_fail");
 		}
@@ -306,6 +306,8 @@ public class MyController {
 			return mv;
 
 		}
+		
+		
 
 		@RequestMapping("purchase_ok.do")
 		public ModelAndView go_purchase(HttpServletRequest request) {
@@ -331,15 +333,20 @@ public class MyController {
 			int r_su = Integer.parseInt(su);
 			int total_su = pack_person*r_su;
 			String total_person =String.valueOf(total_su); 
-			String id ="";
+			String id = request.getParameter("id");
 			System.out.println(id);
 			Map<String, String> map = new HashMap<>();
 			map.put("id", id);
-			map.put("person", total_person);
-			System.out.println("total_person" + total_person);
-			
+
 			try {
 				System.out.println("try안");
+				//member db속 package_reservation 넘버가져오기
+				String now_reservation = dao.get_res(id);
+				int r_now_reservation = Integer.parseInt(now_reservation);
+				int total_info = total_su +r_now_reservation;
+				String person = String.valueOf(total_info);
+				map.put("person", person);
+				System.out.println(person + "total_person");
 				dao.go_res(map);
 			
 				
