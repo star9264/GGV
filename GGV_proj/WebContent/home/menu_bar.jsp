@@ -110,9 +110,7 @@ table tr{
 								<td>
 									<dl>
 										<dt><a>Home</a></dt>
-										<dd>
-											<a href="#home">Home</a>
-										</dd>
+										
 									</dl>
 									<dl>
 										<dt><a>예매</a></dt>
@@ -146,15 +144,7 @@ table tr{
 									</dl>
 									<dl>
 										<dt><a>나의 메가박스</a></dt>
-										<dd>
-											<a href="#home">1</a>
-										</dd>
-										<dd>
-											<a href="#home">2</a>
-										</dd>
-										<dd>
-											<a href="#home">3</a>
-										</dd>
+										
 									</dl>
 
 								</td>
@@ -200,15 +190,7 @@ table tr{
 								<td>
 									<dl>
 										<dt><a>회사소개</a></dt>
-										<dd>
-											<a href="#home">각자 할꺼 넣기 남는건 지우기</a>
-										</dd>
-										<dd>
-											<a href="#home">2</a>
-										</dd>
-										<dd>
-											<a href="#home">3</a>
-										</dd>
+										
 									</dl>
 								</td>
 								<c:if test="${!empty info.member_id}">
@@ -223,7 +205,7 @@ table tr{
 			</li>
 			<div style="margin-top: 20px">
 				<li><a href=###>HOME</a></li>
-				<li><a href=#>영화</a></li>
+				<li><a href=movie_list01.do>영화</a></li>
 				<li><a href=#>영화관</a></li>
 				<li><a href="package_main.do">스토어</a></li>
 				<c:if test="${empty info}">
