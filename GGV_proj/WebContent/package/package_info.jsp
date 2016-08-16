@@ -78,7 +78,7 @@ h2 {
 
 		/* window.open('purchase.do','패키지 구매','scrollbars=no, resizable=no, width=680,height=420')  */
 		var open = window.open("", "패키지 구매",
-				"scrollbars=1, menubar=1,resizable=1");
+				" width = 700px , height = 500px, scrollbars=1, menubar=1,resizable=1");
 		var openform = document.package_information;
 		openform.action = "purchase.do";
 		openform.target = "패키지 구매";

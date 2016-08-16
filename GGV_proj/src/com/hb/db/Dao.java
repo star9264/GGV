@@ -102,6 +102,23 @@ public class Dao {
 		return now_reservation;
 
 	}
+	
+	public List<Member_VO> getpackage_res(String id){
+		SqlSession ss = null;
+		List<Member_VO> package_res = null;
+		
+		try {
+			ss = sessionFactory.openSession();
+			package_res = ss.selectList("package_res",id);
+			
+		} catch (Exception e) {
+			System.out.println(e);
+
+		} finally {
+			ss.close();
+		}
+		return package_res;
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////////
 

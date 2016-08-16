@@ -141,7 +141,7 @@ table tr{
 									<dl>
 										<dt><a>스토어</a></dt>
 										<dd>
-											<a href="#home">각자 할꺼 넣기 남는건 지우기</a>
+											<a href="package_main.do">GGV 패키지</a>
 										</dd>
 										<dd>
 											<a href="#home">2</a>
@@ -231,7 +231,7 @@ table tr{
 				<li><a href=###>HOME</a></li>
 				<li><a href=#>영화</a></li>
 				<li><a href=#>영화관</a></li>
-				<li><a href=#>스토어</a></li>
+				<li><a href="package_main.do">스토어</a></li>
 				<c:if test="${empty info}">
 				<li><a href="login.do">로그인</a></li>
 				</c:if>

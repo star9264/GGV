@@ -388,6 +388,18 @@ public class MyController {
 
 		}
 		
+
+		@RequestMapping("/package_res.do")
+		public ModelAndView package_res(HttpServletRequest request){
+			ModelAndView mv = new ModelAndView("package/package_res");
+			String id = request.getParameter("id");
+			System.out.println(id);
+			List<Member_VO> list = dao.getpackage_res(id);
+			System.out.println(list.size());
+			mv.addObject("list",list);
+			return mv;
+		}
+		
 		// 확인
 		@RequestMapping("reserve.do")
 		public ModelAndView reserve(HttpServletRequest request) {

@@ -24,6 +24,6 @@
 	<h2>아이디 : ${info.member_id}</h2>
 	<div>
 			<jsp:include page="../movielist_1/movie_list01.jsp"/>
-	</div>
+	</div>  
 </body>
 </html>
