@@ -293,6 +293,36 @@ public class Dao {
 			ss = sessionFactory.openSession();
 			list = ss.selectList("reserveList", reserve);
 		} catch (Exception e) {
+			System.out.println("reserve view!");
+		} finally {
+			ss.close();
+		}
+
+		return list;
+	}
+	
+	public void getReserveCancel(String reserve_idx){
+		SqlSession ss = null;
+		System.out.println(reserve_idx);
+		try {
+			ss = sessionFactory.openSession(true);
+			ss.delete("reserve_cancel", reserve_idx);
+			ss.commit();
+		} catch (Exception e) {
+			System.out.println("reserve cancel!");
+		} finally {
+			ss.close();
+		}
+	}
+	
+	public List<Reservation> getReserveView(String member_id){
+		SqlSession ss = null;
+		List<Reservation> list = null;
+
+		try {
+			ss = sessionFactory.openSession();
+			list = ss.selectList("reserveView", member_id);
+		} catch (Exception e) {
 			System.out.println("reserve list!");
 		} finally {
 			ss.close();

@@ -60,6 +60,12 @@
 	<select id="movieList" resultType="com.hb.db.Movie_VO">
 		select * from ggv_movie
 	</select>
+	<select id="reserveView" parameterType="String" resultType="com.hb.db.Reservation">
+		select * from ggv_reserve where member_id=#{member_id} order by reserve_date asc
+	</select>
+	<delete id="reserve_cancel" parameterType="String">
+		delete from ggv_reserve where reserve_idx=#{reserve_idx}
+	</delete>
 </mapper>
 
 

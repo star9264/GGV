@@ -410,9 +410,35 @@ public class MyController {
 			return mv;
 		}
 	
+	// 예매확인
+	@RequestMapping("reserve_view.do")
+	public ModelAndView reserve_view(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView("reservation/reserve_view");
+		
+		String id = request.getParameter("member_id");
+		
+		List<Reservation> list = dao.getReserveView(id);
+		
+		mv.addObject("list", list);		
+		
+		return mv;
+	}
+	
+	// 예매취소
+	@RequestMapping("reserve_cancel.do")
+	public ModelAndView reserve_cancel(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView("reservation/reserve_cancel");
+		
+		String reserve_idx = request.getParameter("reserve_idx");
+		dao.getReserveCancel(reserve_idx);
+		return mv;
+	}
+	
 	// 확인
 	@RequestMapping("reserv_chk.do")
 	public ModelAndView reserv_chk(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("reservation/reserve_suc");
+		
 		String[] r_seat = new String[8];
 		r_seat = request.getParameterValues("chkseat");
 		Reservation reserve = new Reservation();
@@ -451,9 +477,7 @@ public class MyController {
 		
 		System.out.println(res);
 		
-		ModelAndView mv = null;
 		
-		mv = new ModelAndView("reservation/reserve_suc");
 		
 		if(res!=0){
 			mv = new ModelAndView("reservation/reserve_fail");
