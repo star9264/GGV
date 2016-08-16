@@ -45,9 +45,14 @@
 	</insert>  
 	
 	<update id="package_reservation" parameterType="Map">
-		update ggv_member set package_reservation = #{total_person} where id=#{id}
+		update ggv_member set package_reservation = #{total_person} where member_id=#{id}
 	</update> 
-
+	<select id="package_res" parameterType="String" resultType="com.hb.db.Member_VO">
+		select * from ggv_member where member_id = #{id}
+	</select>
+<select id="get_reservation" parameterType="String" resultType="String">
+		select package_reservation from ggv_member where member_id = #{id}
+	</select>
 
 	<!-- Reserve -->
 	<select id="reserveList" parameterType="com.hb.db.Reservation" resultType="com.hb.db.Reservation">
@@ -66,6 +71,7 @@
 	<delete id="reserve_cancel" parameterType="String">
 		delete from ggv_reserve where reserve_idx=#{reserve_idx}
 	</delete>
+	
 </mapper>
 
 

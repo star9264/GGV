@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ÆÐÅ°Áö »óÇ°</title>
+<title>íŒ¨í‚¤ì§€ ìƒí’ˆ</title>
  
 <style type="text/css">
 
@@ -22,7 +22,12 @@ h6{
 #menu{
 		padding-bottom: 100px;
 		padding-left: 100px;
-	}  
+	} 
+	
+#package_res{
+	color: black;
+	
+} 
 
 </style>
 
@@ -39,36 +44,39 @@ h6{
 	
 	<tr height="100px" >
 		<td > 
-			<h2 id="package_subject" >GGV ÆÐÅ°Áö</h2>
+			<h2 id="package_subject" >GGV íŒ¨í‚¤ì§€</h2>
+			<input type="hidden" value="{info.member_id}" name="id">
 		</td>
 	</tr>
 
 	
 	<tr>
 		<td class="package_type">
-		<a onClick="javascript:window.open('package_info.do?type=package_1','½Ì±ÛÆÐÅ°Áö','scrollbars=no, resizable=no, width=1180,height=700')"><img class="package_img" alt="½Ì±ÛÆÐÅ°Áö" src="http://image2.megabox.co.kr/mop/store/2016/F9/D92F1E-CC77-450A-AA85-D65249A4DBED.large.jpg" width="250" height="280"></a><br/>
-		<h6 align="center">°ü¶÷±Ç 1¸Å, ÆËÄÜ(R), Åº»êÀ½·á(R)</h6>
-		<h4 align="center">½Ì±Û ÆÐÅ°Áö</h4>
+		<a onClick="javascript:window.open('package_info.do?type=package_1','ì‹±ê¸€íŒ¨í‚¤ì§€','scrollbars=no, resizable=no, width=1180,height=700')"><img class="package_img" alt="ì‹±ê¸€íŒ¨í‚¤ì§€" src="http://image2.megabox.co.kr/mop/store/2016/F9/D92F1E-CC77-450A-AA85-D65249A4DBED.large.jpg" width="250" height="280"></a><br/>
+		<h6 align="center">ê´€ëžŒê¶Œ 1ë§¤, íŒì½˜(R), íƒ„ì‚°ìŒë£Œ(R)</h6>
+		<h4 align="center">ì‹±ê¸€ íŒ¨í‚¤ì§€</h4>
 		
 		</td>
 		
 		<td class="package_type">
-		<a onClick="javascript:window.open('package_info.do?type=package_2','·¯ºêÄÞº¸ÆÐÅ°Áö','scrollbars=yes, resizable=no, width1180,height=700')"><img class="package_img" alt="·¯ºêÆÐÅ°Áö" src="http://image2.megabox.co.kr/mop/store/2016/3A/1E814A-1495-4B80-97FF-858C19A3E737.large.jpg" width="250" height="280"></a><br/>
-		<h6 align="center">°ü¶÷±Ç 2¸Å + ·¯ºêÄÞº¸ (ÆËÄÜL 1 + Åº»êÀ½·áR 2)</h6>
-		<h4 align="center">·¯ºêÄÞº¸ ÆÐÅ°Áö</h4>
+		<a onClick="javascript:window.open('package_info.do?type=package_2','ëŸ¬ë¸Œì½¤ë³´íŒ¨í‚¤ì§€','scrollbars=yes, resizable=no, width1180,height=700')"><img class="package_img" alt="ëŸ¬ë¸ŒíŒ¨í‚¤ì§€" src="http://image2.megabox.co.kr/mop/store/2016/3A/1E814A-1495-4B80-97FF-858C19A3E737.large.jpg" width="250" height="280"></a><br/>
+		<h6 align="center">ê´€ëžŒê¶Œ 2ë§¤ + ëŸ¬ë¸Œì½¤ë³´ (íŒì½˜L 1 + íƒ„ì‚°ìŒë£ŒR 2)</h6>
+		<h4 align="center">ëŸ¬ë¸Œì½¤ë³´ íŒ¨í‚¤ì§€</h4>
 		</td>
 		
 		<td class="package_type">
-		<a onClick="javascript:window.open('package_info.do?type=package_3','ÆÐ¹Ð¸®ÆÐÅ°Áö','scrollbars=yes, resizable=no, width=1180,height=700')"><img class="package_img" alt="ÆÐ¹Ð¸®ÆÐÅ°Áö" src="http://image2.megabox.co.kr/mop/store/2016/15/8D541D-B1AE-4EFF-9C8B-BAC90A1C9EF7.large.jpg" width="250" height="280"></a><br/>
-		<h6 align="center">°ü¶÷±Ç 3¸Å, ÆËÄÜ(R)2, Åº»êÀ½·á(R)2</h6>
-		<h4 align="center">ÆÐ¹Ð¸® ÆÐÅ°Áö</h4>
+		<a onClick="javascript:window.open('package_info.do?type=package_3','íŒ¨ë°€ë¦¬íŒ¨í‚¤ì§€','scrollbars=yes, resizable=no, width=1180,height=700')"><img class="package_img" alt="íŒ¨ë°€ë¦¬íŒ¨í‚¤ì§€" src="http://image2.megabox.co.kr/mop/store/2016/15/8D541D-B1AE-4EFF-9C8B-BAC90A1C9EF7.large.jpg" width="250" height="280"></a><br/>
+		<h6 align="center">ê´€ëžŒê¶Œ 3ë§¤, íŒì½˜(R)2, íƒ„ì‚°ìŒë£Œ(R)2</h6>
+		<h4 align="center">íŒ¨ë°€ë¦¬ íŒ¨í‚¤ì§€</h4>
 		</td>
 		
 		<td class="package_type">
-		<a onClick="javascript:window.open('package_info.do?type=package_4','½´ÆÛÆÐ¹Ð¸®ÆÐÅ°Áö','scrollbars=yes, resizable=no, width=1180,height=700')"><img class="package_img"alt="½´ÆÛÆÐ¹Ð¸®ÆÐÅ°Áö" src="http://image2.megabox.co.kr/mop/store/2016/ED/6A77CD-64C3-4A3C-9A4B-34416A8EE9AF.large.jpg" width="250" height="280"></a><br/>
-		<h6 align="center">°ü¶÷±Ç 4¸Å, ÆËÄÜ(R)2, À½·á(R)2, ³ªÃÝ1, ÆÑ¿ÀÂ¡¾î 1</h6>
-		<h4 align="center">½´ÆÛÆÐ¹Ð¸® ÆÐÅ°Áö</h4>
+		<a onClick="javascript:window.open('package_info.do?type=package_4','ìŠˆí¼íŒ¨ë°€ë¦¬íŒ¨í‚¤ì§€','scrollbars=yes, resizable=no, width=1180,height=700')"><img class="package_img"alt="ìŠˆí¼íŒ¨ë°€ë¦¬íŒ¨í‚¤ì§€" src="http://image2.megabox.co.kr/mop/store/2016/ED/6A77CD-64C3-4A3C-9A4B-34416A8EE9AF.large.jpg" width="250" height="280"></a><br/>
+		<h6 align="center">ê´€ëžŒê¶Œ 4ë§¤, íŒì½˜(R)2, ìŒë£Œ(R)2, ë‚˜ìµ¸1, íŒ©ì˜¤ì§•ì–´ 1</h6>
+		<h4 align="center">ìŠˆí¼íŒ¨ë°€ë¦¬ íŒ¨í‚¤ì§€</h4>
 		</td>
+		
+	
 		
 	</tr>
 	</tbody>
@@ -76,6 +84,10 @@ h6{
 	<tfoot>
 	</tfoot>
 	
+	
+	
+	<a href="package_res.do?id=${info.member_id}" style="text-decoration: none; width: 100px;" ><h3 id="package_res">ì˜ˆë§¤ê¶Œ í™•ì¸</h3></a>	
+	</form>
 	</table>
 	
 	

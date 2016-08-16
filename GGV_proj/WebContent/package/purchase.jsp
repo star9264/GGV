@@ -95,7 +95,6 @@ h5 {
 					<input type="submit" value="결제" id="purchase_ok">
 					<input type="hidden" name="id" value="${info.member_id}">
 
-					<h2>아 슈방 좀 되라 ${info.member_id }</h2>
 					<input type="hidden" name="package_name" value="<%=package_name%>">
 					<input type="hidden" name="su" value="<%=su%>">
 					<input type="hidden" name="total_price" value="<%=total_price%>">
