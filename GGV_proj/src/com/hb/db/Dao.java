@@ -24,84 +24,84 @@ public class Dao {
 	///////////////////////////// 건드리지마)///////////////////////////////////////////////
 	// q_list
 
-		public List<Q_VO> getQ_list(Map<String, String> map){
-			SqlSession ss =  null;
-			List<Q_VO> q_list = null;
-			try {
-				ss=  sessionFactory.openSession();
-				q_list = ss.selectList("q_list");
-			}catch (Exception e) {
-				System.out.println(e);
-				// TODO: handle exception
-			}finally {
-				ss.close();
-			}
-			return q_list;
+	public List<Q_VO> getQ_list(Map<String, String> map) {
+		SqlSession ss = null;
+		List<Q_VO> q_list = null;
+		try {
+			ss = sessionFactory.openSession();
+			q_list = ss.selectList("q_list");
+		} catch (Exception e) {
+			System.out.println(e);
+			// TODO: handle exception
+		} finally {
+			ss.close();
 		}
-		// write
-		public int getQWrite_ok(Q_VO qvo) {
-			SqlSession ss = null;
-			int result = 0;
-			try {
-				ss = sessionFactory.openSession();
-				result = ss.insert("q_insert", qvo);
-				System.out.println("dao");
-			} catch (Exception e) {
-				System.out.println(e);
-			} finally {
-				ss.close();
-			}
-			return result;
+		return q_list;
+	}
+
+	// write
+	public int getQWrite_ok(Q_VO qvo) {
+		SqlSession ss = null;
+		int result = 0;
+		try {
+			ss = sessionFactory.openSession();
+			result = ss.insert("q_insert", qvo);
+			System.out.println("dao");
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			ss.close();
+		}
+		return result;
+	}
+
+	public List<P_VO> getpackage_info(String idx) {
+		SqlSession ss = null;
+		List<P_VO> package_list = null;
+		try {
+			ss = sessionFactory.openSession();
+			package_list = ss.selectList("package_information", idx);
+		} catch (Exception e) {
+			System.out.println(e);
+
+		} finally {
+			ss.close();
+		}
+		return package_list;
+
+	}
+
+	public void go_res(Map map) {
+		SqlSession ss = null;
+		try {
+			ss = sessionFactory.openSession();
+			ss.update("package_reservation", map);
+
+		} catch (Exception e) {
+			System.out.println(e);
+
+		} finally {
+			ss.close();
 		}
 
-		public List<P_VO> getpackage_info(String idx){
-			SqlSession ss = null;
-			List<P_VO> package_list = null;
-			try {
-				ss = sessionFactory.openSession();
-				package_list = ss.selectList("package_information",idx);
-			} catch (Exception e) {
-				System.out.println(e);
+	}
 
-			} finally {
-				ss.close();
-			}
-			return package_list;
-			
-		}
-		
-		public void go_res(Map map){
-			SqlSession ss = null;
-			try {
-				ss = sessionFactory.openSession();
-				ss.update("package_reservation",map);
-				
-			} catch (Exception e) {
-				System.out.println(e);
+	public String get_res(String id) {
+		SqlSession ss = null;
+		String now_reservation = null;
+		try {
+			ss = sessionFactory.openSession();
+			now_reservation = ss.selectOne("get_reservation", id);
+		} catch (Exception e) {
+			System.out.println(e);
 
-			} finally {
-				ss.close();
-			}
-			
+		} finally {
+			ss.close();
 		}
-		
-		public String get_res(String id){
-			SqlSession ss = null;
-			String now_reservation = null;
-			try {
-				ss = sessionFactory.openSession();
-				now_reservation = ss.selectOne("get_reservation", id);
-			} catch (Exception e) {
-				System.out.println(e);
 
-			} finally {
-				ss.close();
-			}
-	
-			return now_reservation;
-			
-		}
-		
+		return now_reservation;
+
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
@@ -242,219 +242,220 @@ public class Dao {
 		return res2;
 	}
 
-////////////////////////////예 매
-//////////////////////////// /////////////////////////////////////////////////////////
-public int reserve(Reservation reserve) {
-SqlSession ss = null;
+	//////////////////////////// 예 매
+	//////////////////////////// /////////////////////////////////////////////////////////
+	public int reserve(Reservation reserve) {
+		SqlSession ss = null;
 
-int res = getChk(reserve);
+		System.out.println("getChk() 이전");
+		int res = getChk(reserve);
+		System.out.println("getChk() 이후");
+		if (res == 0) {
+			try {
+				ss = sessionFactory.openSession(true);
+				ss.insert("reserve", reserve);
+				ss.commit();
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				ss.close();
+			}
+		} else {
+			return res;
+		}
+		return 0;
+	}
 
-if (res == 0) {
-try {
-ss = sessionFactory.openSession(true);
-ss.insert("reserve", reserve);
-ss.commit();
-} catch (Exception e) {
-System.out.println(e);
-} finally {
-ss.close();
-}
-}else{
-return res;
-}
-return 0;
-}
+	public List<Movie_VO> movieList() {
+		SqlSession ss = null;
+		List<Movie_VO> list = null;
 
-public List<Movie_VO> movieList() {
-SqlSession ss = null;
-List<Movie_VO> list = null;
+		try {
+			ss = sessionFactory.openSession();
+			list = ss.selectList("movieList");
+			if (list.isEmpty()) {
+				System.out.println("Empty!");
+			}
+		} catch (Exception e) {
+			System.out.println("movie list!");
+		} finally {
+			ss.close();
+		}
+		System.out.println("Here!");
+		return list;
+	}
 
-try {
-ss = sessionFactory.openSession();
-list = ss.selectList("movieList");
-if (list.isEmpty()) {
-System.out.println("Empty!");
-}
-} catch (Exception e) {
-System.out.println("movie list!");
-} finally {
-ss.close();
-}
-System.out.println("Here!");
-return list;
-}
+	public List<Reservation> getReserveList(Reservation reserve) {
+		SqlSession ss = null;
+		List<Reservation> list = null;
 
-public List<Reservation> getReserveList(Reservation reserve) {
-SqlSession ss = null;
-List<Reservation> list = null;
+		try {
+			ss = sessionFactory.openSession();
+			list = ss.selectList("reserveList", reserve);
+		} catch (Exception e) {
+			System.out.println("reserve list!");
+		} finally {
+			ss.close();
+		}
 
-try {
-ss = sessionFactory.openSession();
-list = ss.selectList("reserveList", reserve);
-} catch (Exception e) {
-System.out.println("reserve list!");
-} finally {
-ss.close();
-}
+		return list;
+	}
 
-return list;
-}
+	public int getChk(Reservation reserve) {
+		List<Reservation> list = getReserveList(reserve);
 
-public int getChk(Reservation reserve) {
-List<Reservation> list = getReserveList(reserve);
+		int res = 0;
 
-int res = 0;
+		for (Reservation k : list) {
+			if (reserve.getReserve_seat1() == k.getReserve_seat1()) {
+				res = Integer.parseInt(reserve.getReserve_seat1());
+			} else if (reserve.getReserve_seat1() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat1());
+			} else if (reserve.getReserve_seat1() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat1());
+			} else if (reserve.getReserve_seat1() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat1());
+			} else if (reserve.getReserve_seat1() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat1());
+			} else if (reserve.getReserve_seat1() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat1());
+			} else if (reserve.getReserve_seat1() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat1());
+			} else if (reserve.getReserve_seat1() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat1());
+			}
 
-for (Reservation k : list) {
-if (reserve.getReserve_seat1() == k.getReserve_seat1()) {
-res = Integer.parseInt(reserve.getReserve_seat1());
-} else if (reserve.getReserve_seat1() == k.getReserve_seat2()) {
-res = Integer.parseInt(reserve.getReserve_seat1());
-} else if (reserve.getReserve_seat1() == k.getReserve_seat3()) {
-res = Integer.parseInt(reserve.getReserve_seat1());
-} else if (reserve.getReserve_seat1() == k.getReserve_seat4()) {
-res = Integer.parseInt(reserve.getReserve_seat1());
-} else if (reserve.getReserve_seat1() == k.getReserve_seat5()) {
-res = Integer.parseInt(reserve.getReserve_seat1());
-} else if (reserve.getReserve_seat1() == k.getReserve_seat6()) {
-res = Integer.parseInt(reserve.getReserve_seat1());
-} else if (reserve.getReserve_seat1() == k.getReserve_seat7()) {
-res = Integer.parseInt(reserve.getReserve_seat1());
-} else if (reserve.getReserve_seat1() == k.getReserve_seat8()) {
-res = Integer.parseInt(reserve.getReserve_seat1());
-}
+			if (reserve.getReserve_seat2() == k.getReserve_seat1()) {
+				res = Integer.parseInt(reserve.getReserve_seat2());
+			} else if (reserve.getReserve_seat2() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat2());
+			} else if (reserve.getReserve_seat2() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat2());
+			} else if (reserve.getReserve_seat2() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat2());
+			} else if (reserve.getReserve_seat2() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat2());
+			} else if (reserve.getReserve_seat2() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat2());
+			} else if (reserve.getReserve_seat2() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat2());
+			} else if (reserve.getReserve_seat2() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat2());
+			}
 
-if (reserve.getReserve_seat2() == k.getReserve_seat1()) {
-res = Integer.parseInt(reserve.getReserve_seat2());
-} else if (reserve.getReserve_seat2() == k.getReserve_seat2()) {
-res = Integer.parseInt(reserve.getReserve_seat2());
-} else if (reserve.getReserve_seat2() == k.getReserve_seat3()) {
-res = Integer.parseInt(reserve.getReserve_seat2());
-} else if (reserve.getReserve_seat2() == k.getReserve_seat4()) {
-res = Integer.parseInt(reserve.getReserve_seat2());
-} else if (reserve.getReserve_seat2() == k.getReserve_seat5()) {
-res = Integer.parseInt(reserve.getReserve_seat2());
-} else if (reserve.getReserve_seat2() == k.getReserve_seat6()) {
-res = Integer.parseInt(reserve.getReserve_seat2());
-} else if (reserve.getReserve_seat2() == k.getReserve_seat7()) {
-res = Integer.parseInt(reserve.getReserve_seat2());
-} else if (reserve.getReserve_seat2() == k.getReserve_seat8()) {
-res = Integer.parseInt(reserve.getReserve_seat2());
-}
+			if (reserve.getReserve_seat3() == k.getReserve_seat1()) {
+				res = Integer.parseInt(reserve.getReserve_seat3());
+			} else if (reserve.getReserve_seat3() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat3());
+			} else if (reserve.getReserve_seat3() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat3());
+			} else if (reserve.getReserve_seat3() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat3());
+			} else if (reserve.getReserve_seat3() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat3());
+			} else if (reserve.getReserve_seat3() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat3());
+			} else if (reserve.getReserve_seat3() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat3());
+			} else if (reserve.getReserve_seat3() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat3());
+			}
 
-if (reserve.getReserve_seat3() == k.getReserve_seat1()) {
-res = Integer.parseInt(reserve.getReserve_seat3());
-} else if (reserve.getReserve_seat3() == k.getReserve_seat2()) {
-res = Integer.parseInt(reserve.getReserve_seat3());
-} else if (reserve.getReserve_seat3() == k.getReserve_seat3()) {
-res = Integer.parseInt(reserve.getReserve_seat3());
-} else if (reserve.getReserve_seat3() == k.getReserve_seat4()) {
-res = Integer.parseInt(reserve.getReserve_seat3());
-} else if (reserve.getReserve_seat3() == k.getReserve_seat5()) {
-res = Integer.parseInt(reserve.getReserve_seat3());
-} else if (reserve.getReserve_seat3() == k.getReserve_seat6()) {
-res = Integer.parseInt(reserve.getReserve_seat3());
-} else if (reserve.getReserve_seat3() == k.getReserve_seat7()) {
-res = Integer.parseInt(reserve.getReserve_seat3());
-} else if (reserve.getReserve_seat3() == k.getReserve_seat8()) {
-res = Integer.parseInt(reserve.getReserve_seat3());
-}
+			if (reserve.getReserve_seat4() == k.getReserve_seat1()) {
+				res = Integer.parseInt(reserve.getReserve_seat4());
+			} else if (reserve.getReserve_seat4() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat4());
+			} else if (reserve.getReserve_seat4() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat4());
+			} else if (reserve.getReserve_seat4() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat4());
+			} else if (reserve.getReserve_seat4() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat4());
+			} else if (reserve.getReserve_seat4() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat4());
+			} else if (reserve.getReserve_seat4() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat4());
+			} else if (reserve.getReserve_seat4() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat4());
+			}
 
-if (reserve.getReserve_seat4() == k.getReserve_seat1()) {
-res = Integer.parseInt(reserve.getReserve_seat4());
-} else if (reserve.getReserve_seat4() == k.getReserve_seat2()) {
-res = Integer.parseInt(reserve.getReserve_seat4());
-} else if (reserve.getReserve_seat4() == k.getReserve_seat3()) {
-res = Integer.parseInt(reserve.getReserve_seat4());
-} else if (reserve.getReserve_seat4() == k.getReserve_seat4()) {
-res = Integer.parseInt(reserve.getReserve_seat4());
-} else if (reserve.getReserve_seat4() == k.getReserve_seat5()) {
-res = Integer.parseInt(reserve.getReserve_seat4());
-} else if (reserve.getReserve_seat4() == k.getReserve_seat6()) {
-res = Integer.parseInt(reserve.getReserve_seat4());
-} else if (reserve.getReserve_seat4() == k.getReserve_seat7()) {
-res = Integer.parseInt(reserve.getReserve_seat4());
-} else if (reserve.getReserve_seat4() == k.getReserve_seat8()) {
-res = Integer.parseInt(reserve.getReserve_seat4());
-}
+			if (reserve.getReserve_seat5() == k.getReserve_seat1()) {
+				res = Integer.parseInt(reserve.getReserve_seat5());
+			} else if (reserve.getReserve_seat5() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat5());
+			} else if (reserve.getReserve_seat5() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat5());
+			} else if (reserve.getReserve_seat5() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat5());
+			} else if (reserve.getReserve_seat5() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat5());
+			} else if (reserve.getReserve_seat5() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat5());
+			} else if (reserve.getReserve_seat5() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat5());
+			} else if (reserve.getReserve_seat5() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat5());
+			}
 
-if (reserve.getReserve_seat5() == k.getReserve_seat1()) {
-res = Integer.parseInt(reserve.getReserve_seat5());
-} else if (reserve.getReserve_seat5() == k.getReserve_seat2()) {
-res = Integer.parseInt(reserve.getReserve_seat5());
-} else if (reserve.getReserve_seat5() == k.getReserve_seat3()) {
-res = Integer.parseInt(reserve.getReserve_seat5());
-} else if (reserve.getReserve_seat5() == k.getReserve_seat4()) {
-res = Integer.parseInt(reserve.getReserve_seat5());
-} else if (reserve.getReserve_seat5() == k.getReserve_seat5()) {
-res = Integer.parseInt(reserve.getReserve_seat5());
-} else if (reserve.getReserve_seat5() == k.getReserve_seat6()) {
-res = Integer.parseInt(reserve.getReserve_seat5());
-} else if (reserve.getReserve_seat5() == k.getReserve_seat7()) {
-res = Integer.parseInt(reserve.getReserve_seat5());
-} else if (reserve.getReserve_seat5() == k.getReserve_seat8()) {
-res = Integer.parseInt(reserve.getReserve_seat5());
-}
+			if (reserve.getReserve_seat6() == k.getReserve_seat1()) {
+				res = Integer.parseInt(reserve.getReserve_seat6());
+			} else if (reserve.getReserve_seat6() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat6());
+			} else if (reserve.getReserve_seat6() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat6());
+			} else if (reserve.getReserve_seat6() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat6());
+			} else if (reserve.getReserve_seat6() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat6());
+			} else if (reserve.getReserve_seat6() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat6());
+			} else if (reserve.getReserve_seat6() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat6());
+			} else if (reserve.getReserve_seat6() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat6());
+			}
 
-if (reserve.getReserve_seat6() == k.getReserve_seat1()) {
-res = Integer.parseInt(reserve.getReserve_seat6());
-} else if (reserve.getReserve_seat6() == k.getReserve_seat2()) {
-res = Integer.parseInt(reserve.getReserve_seat6());
-} else if (reserve.getReserve_seat6() == k.getReserve_seat3()) {
-res = Integer.parseInt(reserve.getReserve_seat6());
-} else if (reserve.getReserve_seat6() == k.getReserve_seat4()) {
-res = Integer.parseInt(reserve.getReserve_seat6());
-} else if (reserve.getReserve_seat6() == k.getReserve_seat5()) {
-res = Integer.parseInt(reserve.getReserve_seat6());
-} else if (reserve.getReserve_seat6() == k.getReserve_seat6()) {
-res = Integer.parseInt(reserve.getReserve_seat6());
-} else if (reserve.getReserve_seat6() == k.getReserve_seat7()) {
-res = Integer.parseInt(reserve.getReserve_seat6());
-} else if (reserve.getReserve_seat6() == k.getReserve_seat8()) {
-res = Integer.parseInt(reserve.getReserve_seat6());
-}
+			if (reserve.getReserve_seat7() == k.getReserve_seat1()) {
+				res = Integer.parseInt(reserve.getReserve_seat7());
+			} else if (reserve.getReserve_seat7() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat7());
+			} else if (reserve.getReserve_seat7() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat7());
+			} else if (reserve.getReserve_seat7() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat7());
+			} else if (reserve.getReserve_seat7() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat7());
+			} else if (reserve.getReserve_seat7() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat7());
+			} else if (reserve.getReserve_seat7() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat7());
+			} else if (reserve.getReserve_seat7() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat7());
+			}
 
-if (reserve.getReserve_seat7() == k.getReserve_seat1()) {
-res = Integer.parseInt(reserve.getReserve_seat7());
-} else if (reserve.getReserve_seat7() == k.getReserve_seat2()) {
-res = Integer.parseInt(reserve.getReserve_seat7());
-} else if (reserve.getReserve_seat7() == k.getReserve_seat3()) {
-res = Integer.parseInt(reserve.getReserve_seat7());
-} else if (reserve.getReserve_seat7() == k.getReserve_seat4()) {
-res = Integer.parseInt(reserve.getReserve_seat7());
-} else if (reserve.getReserve_seat7() == k.getReserve_seat5()) {
-res = Integer.parseInt(reserve.getReserve_seat7());
-} else if (reserve.getReserve_seat7() == k.getReserve_seat6()) {
-res = Integer.parseInt(reserve.getReserve_seat7());
-} else if (reserve.getReserve_seat7() == k.getReserve_seat7()) {
-res = Integer.parseInt(reserve.getReserve_seat7());
-} else if (reserve.getReserve_seat7() == k.getReserve_seat8()) {
-res = Integer.parseInt(reserve.getReserve_seat7());
-}
+			if (reserve.getReserve_seat8() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat8());
+			} else if (reserve.getReserve_seat8() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat8());
+			} else if (reserve.getReserve_seat8() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat8());
+			} else if (reserve.getReserve_seat8() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat8());
+			} else if (reserve.getReserve_seat8() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat8());
+			} else if (reserve.getReserve_seat8() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat8());
+			} else if (reserve.getReserve_seat8() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat8());
+			} else if (reserve.getReserve_seat8() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
+				res = Integer.parseInt(reserve.getReserve_seat8());
+			}
+		}
 
-if (reserve.getReserve_seat8() == k.getReserve_seat8()) {
-res = Integer.parseInt(reserve.getReserve_seat8());
-} else if (reserve.getReserve_seat8() == k.getReserve_seat2()) {
-res = Integer.parseInt(reserve.getReserve_seat8());
-} else if (reserve.getReserve_seat8() == k.getReserve_seat3()) {
-res = Integer.parseInt(reserve.getReserve_seat8());
-} else if (reserve.getReserve_seat8() == k.getReserve_seat4()) {
-res = Integer.parseInt(reserve.getReserve_seat8());
-} else if (reserve.getReserve_seat8() == k.getReserve_seat5()) {
-res = Integer.parseInt(reserve.getReserve_seat8());
-} else if (reserve.getReserve_seat8() == k.getReserve_seat6()) {
-res = Integer.parseInt(reserve.getReserve_seat8());
-} else if (reserve.getReserve_seat8() == k.getReserve_seat7()) {
-res = Integer.parseInt(reserve.getReserve_seat8());
-} else if (reserve.getReserve_seat8() == k.getReserve_seat8()) {
-res = Integer.parseInt(reserve.getReserve_seat8());
-}
-}
+		return res;
+	}
 
-return res;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////
 	// 박스오피스
 	public List<Movie_VO> getMovie_list01() {
 		SqlSession ss = null;

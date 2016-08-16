@@ -424,21 +424,21 @@ public class MyController {
 		reserve.setReserve_price(String.valueOf(8000 * r_seat.length));
 
 		if (r_seat.length > 0) {
-			reserve.setReserve_seat1(r_seat[0]);
+			reserve.setReserve_seat1(r_seat[0].trim());
 			if (r_seat.length > 1) {
-				reserve.setReserve_seat2(r_seat[1]);
+				reserve.setReserve_seat2(r_seat[1].trim());
 				if (r_seat.length > 2) {
-					reserve.setReserve_seat3(r_seat[2]);
+					reserve.setReserve_seat3(r_seat[2].trim());
 					if (r_seat.length > 3) {
-						reserve.setReserve_seat4(r_seat[3]);
+						reserve.setReserve_seat4(r_seat[3].trim());
 						if (r_seat.length > 4) {
-							reserve.setReserve_seat5(r_seat[4]);
+							reserve.setReserve_seat5(r_seat[4].trim());
 							if (r_seat.length > 5) {
-								reserve.setReserve_seat6(r_seat[5]);
+								reserve.setReserve_seat6(r_seat[5].trim());
 								if (r_seat.length > 6) {
-									reserve.setReserve_seat7(r_seat[6]);
+									reserve.setReserve_seat7(r_seat[6].trim());
 									if (r_seat.length > 7) {
-										reserve.setReserve_seat8(r_seat[7]);
+										reserve.setReserve_seat8(r_seat[7].trim());
 									}
 								}
 							}
@@ -449,16 +449,16 @@ public class MyController {
 		}
 		int res = dao.reserve(reserve);
 		
+		System.out.println(res);
+		
 		ModelAndView mv = null;
 		
-		if(res==0){
-			mv = new ModelAndView("reservation/reserve_suc");
-		}else{
+		mv = new ModelAndView("reservation/reserve_suc");
+		
+		if(res!=0){
 			mv = new ModelAndView("reservation/reserve_fail");
 			mv.addObject("seat", res);
 		}
-		
-		System.out.println("hi");
 		
 		return mv;
 	}
