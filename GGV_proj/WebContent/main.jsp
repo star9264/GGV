@@ -1,7 +1,7 @@
 <%@page import="com.hb.db.Member_VO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%
+<%
 	Member_VO member_VO = (Member_VO)request.getAttribute("member_vo");
 	session.setAttribute("info", member_VO);
 %>

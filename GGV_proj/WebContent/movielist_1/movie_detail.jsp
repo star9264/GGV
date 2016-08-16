@@ -21,6 +21,25 @@ a{
 }
 .star_rating a:first-child {margin-left:0;}
 .star_rating a:HOVER  { color:#777;}
+#top_btn {
+	width: 25%;
+	background-color: white;
+	border-style: solid;
+	border-color: #f7f7f7;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: bold;
+	color: gray;
+	
+	
+}
+
+#top_btn:HOVER {
+	color: skyblue;
+}
+a{
+  text-decoration: none;
+}
 </style>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script type="text/javascript">
@@ -29,38 +48,56 @@ $( ".star_rating a" ).click(function() {
     $(this).addClass("on").prevAll("a").addClass("on");
     return false;
 });
+
+function list01(f) {
+f.action="movie_list01.do";
+	f.submit();
+}
+function list02(f) {
+	f.action="movie_list02.do";
+	f.submit();
+}
+function list03(f) {
+	f.action="movie_list03.do";
+	f.submit();
+}
 </script>
 </head>
 <body>
-
+<form method="post">
+     	<div align="center">
+			<span><input type="button" value="박스오피스" id="top_btn"onclick="list01(this.form)" /></span> 
+				<span><input type="button" value="최신개봉작" id="top_btn" onclick="list02(this.form)" /></span> 
+				<span><input type="button" value="상영예정작" id="top_btn" onclick="list03(this.form)" /></span>
+		</div>
 	<table class="movie_Detail" align="center" width="1000px">
 
 		<!--기본정보-->
 		<tbody>
 			<tr>
-				<td rowspan="1" width="250px" height="350px"><img alt="" src="">
+				<td rowspan="1" width="250px" height="350px"><img alt="" src="${movie_VO.poster}">
 				</td>
 				<td width="750px">
 					<h2>
-						<i class=""></i>영화제목
+						<i class=""></i>${movie_VO.title}
 					</h2>
 					<hr color="purple"> <span style="float: right"> <input
 						type="button" id="btn1" value="예매하기"
 						style="background-color: purple; color: white; width: 100px; height: 40px;">
 				</span>
 					<h3>
-						평점 : <strong>/</strong>
+						평점 : ${movie_VO.rate}
 					</h3>
-					<p>장르 :</p>
-					<p>감독 :</p>
-					<p>상영시간 :</p>
-					<p>개봉일</p>
+					<p>장르 : ${movie_VO.genre}</p>
+					<p>감독 : ${movie_VO.director}</p>
+					<p>상영시간 : ${movie_VO.running_time}</p>
+					<p>개봉일 : ${movie_VO.start_time.substring(0,10)}</p>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2"><h4>
-						줄거리
-						</h3></td>
+						${movie_VO.story}
+						</h4></td>
 			</tr>
 		</tbody>
 	</table>
@@ -70,16 +107,26 @@ $( ".star_rating a" ).click(function() {
 				<td colspan="2">
 					<h4>
 						한줄평
-						</h3>
+						</h4>
 				</td>
 				
 			</tr>
 			<tr style="border: 1px solid #e1e8f0;">
-				<td width="150px">
-				<p class="star_rating">
-						<a href="#" class="on" id="a">★</a> <a href="#" class="on" id="b">★</a> <a
-							href="#" class="on" id="c">★</a> <a href="#" id="d">★</a> <a href="#" id="e">★</a>
-					</p>
+				<td width="150px" align="center">
+						 <select name="combo" style="width: 80px; height: 30px;" >
+                           <OPTION value="0">0점</OPTION>
+                           <OPTION value="1">1점</OPTION>
+                           <OPTION value="2">2점</OPTION>
+                           <OPTION value="3">3점</OPTION>
+                           <OPTION value="4">4점</OPTION>
+                           <OPTION value="5">5점</OPTION>
+                           <OPTION value="6">6점</OPTION>
+                           <OPTION value="7">7점</OPTION>
+                           <OPTION value="8">8점</OPTION>
+                           <OPTION value="9">9점</OPTION>
+                           <OPTION value="10">10점</OPTION>
+                         </select> 
+					
 				</td>
 				<td colspan="2" width="850px"><textarea title="댓글쓰기" id="btn2"
 						name="comment" rows="5" style="width: 88%; resize: none;">
@@ -94,5 +141,6 @@ $( ".star_rating a" ).click(function() {
 			</tr>
 		</tbody>
 	</table>
+	</form>
 </body>
 </html>

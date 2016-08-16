@@ -71,12 +71,13 @@ public class MyController {
 		System.out.println(member_id+pwd);
 		
 		Member_VO member_VO = dao.getLogin(member_id, pwd);
+		List<Movie_VO> list = dao.getMovie_list01();
 		if(member_VO!=null){
-			mv = new ModelAndView("main/main");
+			mv = new ModelAndView("start");
 		}else{
 			mv = new ModelAndView("client_info/login_fail");
 		}
-		
+		mv.addObject("list", list);
 		mv.addObject("member_VO", member_VO);
 		
 		return mv;
@@ -563,35 +564,58 @@ public class MyController {
 		}
 		//////////////////////////////////윤경끝/////////////////////////////////////////////
 		
-		//  영화목록-박스오피스 최신상영작 상영예정작
-				@RequestMapping("/movie_list01.do")
-				public ModelAndView getMovie_list01(){
-					ModelAndView mv = new ModelAndView("movielist_1/movie_list01");
-					List<Movie_VO> list= dao.getMovie_list01();
-					System.out.println("4");
-					for (Movie_VO k : list) {
-						System.out.println(k.getPoster());
-					}
-					System.out.println("5");
-					mv.addObject("list",list);
-					System.out.println("6");
-					return mv;
-				}
-				@RequestMapping("/menu_bar.do")
-				public ModelAndView getMenu(){
-					ModelAndView mv = new ModelAndView("home/menu_bar");
-					return mv;
-				}
-				@RequestMapping("/movie_list02.do")
-				public ModelAndView getMovie_list02(){
-					ModelAndView mv = new ModelAndView("movielist_1/movie_list02");
-					return mv;
-				}
-				@RequestMapping("/movie_list03.do")
-				public ModelAndView getMovie_list03(){
-					ModelAndView mv = new ModelAndView("movielist_1/movie_list03");
-					return mv;
-				}
+		@RequestMapping("/movie_list01.do")
+        public ModelAndView getMovie_list01(){
+           ModelAndView mv = new ModelAndView("main/main");
+           List<Movie_VO> list= dao.getMovie_list01();
+           for (Movie_VO k : list) {
+              System.out.println(k.getPoster());
+           }
+           mv.addObject("list",list);
+           return mv;
+        }
+        @RequestMapping("/menu_bar.do")
+        public ModelAndView getMenu(){
+           ModelAndView mv = new ModelAndView("main/main");
+           return mv;
+        }
+        @RequestMapping("/movie_list02.do")
+        public ModelAndView getMovie_list02(){
+           ModelAndView mv = new ModelAndView("movielist_1/movie_list02");
+           List<Movie_VO> list = dao.getMovie_list02();
+           System.out.println(list.size());
+           mv.addObject("list",list);
+           for (Movie_VO k : list) {
+              System.out.println(k.getStart_time());
+           }
+           return mv;
+        }
+        @RequestMapping("/movie_list03.do")
+        public ModelAndView getMovie_list03(){
+           ModelAndView mv = new ModelAndView("movielist_1/movie_list03");
+           List<Movie_VO> list = dao.getMovie_list03();
+           mv.addObject("list",list);
+           for (Movie_VO k : list) {
+              System.out.println(k.getStart_time());
+           }
+           return mv;
+        }
+        @RequestMapping("/movie_detail.do")
+        public ModelAndView getMovie_detail(HttpServletRequest request, HttpServletResponse response){
+           ModelAndView mv = new ModelAndView("movielist_1/movie_detail");
+           String movie_idx = null;
+           movie_idx = request.getParameter("movie_idx");
+           System.out.println(movie_idx);
+           System.out.println("값" + movie_idx);
+           Movie_VO movie_VO = dao.getMovie_detail(movie_idx);
+           mv.addObject("movie_VO", movie_VO);
+           
+           return mv;
+        }
+				
+				
+				
+				
 }
 
 

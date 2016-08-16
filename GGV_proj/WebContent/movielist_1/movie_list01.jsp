@@ -17,8 +17,6 @@
 	font-size: 15px;
 	font-weight: bold;
 	color: gray;
-	
-	
 }
 
 #top_btn:HOVER {
@@ -48,7 +46,6 @@ a{
 	font-weight: bold;
 	color: gray;
 }
-
 #btn2:HOVER {
 	color: #6ed3cf;
 	background-color: white;
@@ -70,13 +67,13 @@ a{
  		f.action="movie_list03.do";
  		f.submit();
  	}
-
+    function detail_go(f) {
+		f.action="movie_detail.do"
+		f.submit();
+	}
 </script>
 </head>
 <body>
-<div id="menu">
-			<jsp:include page="../home/menu_bar.jsp"/>
-	</div>	
 <form method="post">
 <br>
 <br>
@@ -85,11 +82,9 @@ a{
 <br>
   
 		<div align="center">
-			<span><input type="button" value="박스오피스" id="top_btn"
-				style="position: relative; left: 6px;" onclick="list01(this.form)" /></span> 
+			<span><input type="button" value="박스오피스" id="top_btn"onclick="list01(this.form)" /></span> 
 				<span><input type="button" value="최신개봉작" id="top_btn" onclick="list02(this.form)" /></span> 
-				<span><input type="button" value="상영예정작" id="top_btn"
-				style="position: relative; right: 6px;" onclick="list03(this.form)" /></span>
+				<span><input type="button" value="상영예정작" id="top_btn" onclick="list03(this.form)" /></span>
 		</div>
 		<table align="center" style="margin-top: 50px;">
 		  <body>
@@ -102,21 +97,23 @@ a{
                        </tr>
                        <tr>
                         <td>평점 ${k.rate }</td> 
-                         <td><p class="star_rating">
+                        <td><p class="star_rating">
 						<a href="#" class="on" id="a">★</a> <a href="#" class="on" id="b">★</a> <a
 							href="#" class="on" id="c">★</a> <a href="#" id="d">★</a> <a href="#" id="e">★</a>
 					     </p></td>
                        </tr>
                        <tr>
-                         <td align="center"><img alt="12" src="../img/12.png"> </td>
+                         <td align="center"><img alt="12" src="${k.age_img }" style="width: 17px;height: 17px; margin-top: 3px;"> </td>
                         
                          <td style="font-weight: bold; font-size: 18px; color: black; ">
                          <div style="width: 160px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><a href="" >${k.title}</a></div></td>
                        	
                        </tr>
                        <tr>
-                       <td colspan="2" align="center"><input type="button" value="상세정보" id="btn2">
-                         <input type="button" value="예매하기" id="btn2"></td>
+                       <td colspan="2" align="center">
+                       <input type="hidden" name="movie_idx" value="${k.movie_idx}"/>
+                       <input type="button" value="상세정보" id="btn2" name="detail" onclick="detail_go(this.form)">
+                       <input type="button" value="예매하기" id="btn2"></td>
                        </tr>
 					</table>
 				</td>
@@ -139,14 +136,16 @@ a{
 					     </p></td>
                        </tr>
                        <tr>
-                         <td align="center"><img alt="12" src="../img/12.png"> </td>
+                             <td align="center"><img alt="12" src="${k.age_img }" style="width: 17px;height: 17px; margin-top: 3px;"> </td>
                          
                          <td style="font-weight: bold; font-size: 18px; color: black;">
                          	<div style="width: 160px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><a href="" >${k.title}</a></div></td>
                        	 
                        </tr>
                        <tr>
-                       <td colspan="2" align="center"><input type="button" value="상세정보" id="btn2">
+                       <td colspan="2" align="center">
+                       <input type="hidden" name="movie_idx" value="${k.movie_idx}"/>
+                       <input type="button" value="상세정보" id="btn2" name="detail" onclick="detail_go(this.form)">
                          <input type="button" value="예매하기" id="btn2"></td>
                        </tr>
 					</table>

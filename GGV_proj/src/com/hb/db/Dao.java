@@ -567,19 +567,53 @@ public class Dao {
 
 	///////////////////////////////////////////////////////////////////////////////////////////
 	// 박스오피스
-	public List<Movie_VO> getMovie_list01() {
-		SqlSession ss = null;
-		List<Movie_VO> list = null;
-		try {
-			ss = sessionFactory.openSession(true);
-			list = ss.selectList("movie_list01");
-			for (Movie_VO k : list) {
-				System.out.println(k.getPoster());
-			}
-			System.out.println("3");
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return list;
-	}
+	
+	public List<Movie_VO> getMovie_list01(){
+        SqlSession ss = null;
+        List<Movie_VO> list = null;
+        try{
+           ss = sessionFactory.openSession(true);
+           list = ss.selectList("movie_list01");
+           for (Movie_VO k : list) {
+              System.out.println(k.getPoster());
+           }
+        }catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+     }
+      public List<Movie_VO> getMovie_list02(){
+         SqlSession ss = null;
+         List<Movie_VO> list = null;
+         try {
+        ss= sessionFactory.openSession(true);
+        list = ss.selectList("movie_list02");
+     } catch (Exception e) {
+          System.out.println(e);
+     }
+         return list;
+      }
+      public List<Movie_VO> getMovie_list03(){
+         SqlSession ss = null;
+         List<Movie_VO> list = null;
+         try {
+        ss= sessionFactory.openSession(true);
+        list = ss.selectList("movie_list03");
+     } catch (Exception e) {
+          System.out.println(e);
+     }
+         return list;
+      }
+      public Movie_VO getMovie_detail(String movie_idx){
+         SqlSession ss = null;
+         Movie_VO movie_VO = new Movie_VO();
+         try {
+        ss= sessionFactory.openSession(true);
+        movie_VO = ss.selectOne("movie_detail",movie_idx);
+     } catch (Exception e) {
+         System.out.println(e);
+     }
+         return movie_VO;
+      }
+	
 }

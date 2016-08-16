@@ -66,6 +66,19 @@
 	<delete id="reserve_cancel" parameterType="String">
 		delete from ggv_reserve where reserve_idx=#{reserve_idx}
 	</delete>
+	
+	<select id="movie_list01" resultType="com.hb.db.Movie_VO">
+       select * from ggv_movie 
+    </select>
+     <select id="movie_list02" resultType="com.hb.db.Movie_VO">
+       select * from ggv_movie
+    </select>
+    <select id="movie_list03" resultType="com.hb.db.Movie_VO">
+       select * from ggv_movie where start_time >= sysdate
+    </select>
+    <select id="movie_detail" parameterType="String" resultType="com.hb.db.Movie_VO">
+       select * from ggv_movie where movie_idx =#{movie_idx}
+    </select>
 </mapper>
 
 
