@@ -55,7 +55,7 @@
 	</select>
 	<insert id="reserve" parameterType="com.hb.db.Reservation" > 
 		insert into ggv_reserve 
-		values(reserve_idx_seq.nextval, #{member_id}, #{movie_idx}, #{reserve_date}, #{reserve_time}, #{reserve_seat1, jdbcType=VARCHAR}, #{reserve_seat2, jdbcType=VARCHAR}, #{reserve_seat3, jdbcType=VARCHAR}, #{reserve_seat4, jdbcType=VARCHAR}, #{reserve_seat5, jdbcType=VARCHAR}, #{reserve_seat6, jdbcType=VARCHAR}, #{reserve_seat7, jdbcType=VARCHAR}, #{reserve_seat8, jdbcType=VARCHAR}, #{reserve_price})
+		values(reserve_idx_seq.nextval, #{member_id}, #{movie_idx}, #{reserve_date}, #{reserve_time}, #{reserve_seat1, jdbcType=VARCHAR}, #{reserve_seat2, jdbcType=VARCHAR}, #{reserve_seat3, jdbcType=VARCHAR}, #{reserve_seat4, jdbcType=VARCHAR}, #{reserve_seat5, jdbcType=VARCHAR}, #{reserve_seat6, jdbcType=VARCHAR}, #{reserve_seat7, jdbcType=VARCHAR}, #{reserve_seat8, jdbcType=VARCHAR}, #{reserve_price}, #{title})
 	</insert>
 	<select id="movieList" resultType="com.hb.db.Movie_VO">
 		select * from ggv_movie

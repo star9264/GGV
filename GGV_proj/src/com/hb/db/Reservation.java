@@ -1,7 +1,7 @@
 package com.hb.db;
 
 public class Reservation {
-	String reserve_idx, member_id, movie_idx, reserve_date, reserve_time, reserve_price;
+	String reserve_idx, member_id, movie_idx, reserve_date, reserve_time, reserve_price, title;
 	String reserve_seat1, reserve_seat2, reserve_seat3, reserve_seat4, reserve_seat5, reserve_seat6, reserve_seat7, reserve_seat8;
 	
 	public String getReserve_idx() {
@@ -87,5 +87,11 @@ public class Reservation {
 	}
 	public void setReserve_time(String reserve_time) {
 		this.reserve_time = reserve_time;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

@@ -420,6 +420,7 @@ public class MyController {
 		reserve.setMovie_idx(request.getParameter("movie_idx"));
 		reserve.setReserve_date(request.getParameter("reserve_date"));
 		reserve.setReserve_time(request.getParameter("reserve_time"));
+		reserve.setTitle(request.getParameter("title"));
 		reserve.setReserve_price(String.valueOf(8000 * r_seat.length));
 
 		if (r_seat.length > 0) {
@@ -456,8 +457,10 @@ public class MyController {
 			mv = new ModelAndView("reservation/reserve_fail");
 			mv.addObject("seat", res);
 		}
-		return mv;
 		
+		System.out.println("hi");
+		
+		return mv;
 	}
 
 	// 영화 목록 불러오기

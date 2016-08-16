@@ -104,7 +104,8 @@ input[name="reserved"]:disabled+label {
 		<input type="hidden" value="<%=request.getParameter("reserve_date")%>" name="reserve_date" />
 		<input type="hidden" value="<%=request.getParameter("reserve_time")%>" name="reserve_time" />
 		<input type="hidden" value="${info.member_id}" name="member_id" />
-		<input type="hidden" value="<%=request.getParameter("movie_idx") %>" name="movie_idx" />		
+		<input type="hidden" value="<%=request.getParameter("movie_idx") %>" name="movie_idx" />
+		<input type="hidden" value="<%=request.getParameter("title")%>" name="title" />		
 		<input type="submit" value="예매하기">
 	</form>
 </body>
