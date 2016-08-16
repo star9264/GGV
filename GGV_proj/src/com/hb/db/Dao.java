@@ -309,146 +309,226 @@ public class Dao {
 		for (Reservation k : list) {
 			if (reserve.getReserve_seat1() == k.getReserve_seat1()) {
 				res = Integer.parseInt(reserve.getReserve_seat1());
-			} else if (reserve.getReserve_seat1() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat1());
-			} else if (reserve.getReserve_seat1() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat1());
-			} else if (reserve.getReserve_seat1() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat1());
-			} else if (reserve.getReserve_seat1() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat1());
-			} else if (reserve.getReserve_seat1() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat1());
-			} else if (reserve.getReserve_seat1() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat1());
-			} else if (reserve.getReserve_seat1() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat1());
+				if (reserve.getReserve_seat1() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+					res = Integer.parseInt(reserve.getReserve_seat1());
+					if (reserve.getReserve_seat1() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+						res = Integer.parseInt(reserve.getReserve_seat1());
+						if (reserve.getReserve_seat1() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+							res = Integer.parseInt(reserve.getReserve_seat1());
+							if (reserve.getReserve_seat1() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+								res = Integer.parseInt(reserve.getReserve_seat1());
+								if (reserve.getReserve_seat1() == k.getReserve_seat6()
+										&& k.getReserve_seat6() != null) {
+									res = Integer.parseInt(reserve.getReserve_seat1());
+									if (reserve.getReserve_seat1() == k.getReserve_seat7()
+											&& k.getReserve_seat7() != null) {
+										res = Integer.parseInt(reserve.getReserve_seat1());
+										if (reserve.getReserve_seat1() == k.getReserve_seat8()
+												&& k.getReserve_seat8() != null) {
+											res = Integer.parseInt(reserve.getReserve_seat1());
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 
 			if (reserve.getReserve_seat2() == k.getReserve_seat1()) {
 				res = Integer.parseInt(reserve.getReserve_seat2());
-			} else if (reserve.getReserve_seat2() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat2());
-			} else if (reserve.getReserve_seat2() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat2());
-			} else if (reserve.getReserve_seat2() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat2());
-			} else if (reserve.getReserve_seat2() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat2());
-			} else if (reserve.getReserve_seat2() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat2());
-			} else if (reserve.getReserve_seat2() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat2());
-			} else if (reserve.getReserve_seat2() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat2());
+				if (reserve.getReserve_seat2() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+					res = Integer.parseInt(reserve.getReserve_seat2());
+					if (reserve.getReserve_seat2() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+						res = Integer.parseInt(reserve.getReserve_seat2());
+						if (reserve.getReserve_seat2() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+							res = Integer.parseInt(reserve.getReserve_seat2());
+							if (reserve.getReserve_seat2() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+								res = Integer.parseInt(reserve.getReserve_seat2());
+								if (reserve.getReserve_seat2() == k.getReserve_seat6()
+										&& k.getReserve_seat6() != null) {
+									res = Integer.parseInt(reserve.getReserve_seat2());
+									if (reserve.getReserve_seat2() == k.getReserve_seat7()
+											&& k.getReserve_seat7() != null) {
+										res = Integer.parseInt(reserve.getReserve_seat2());
+										if (reserve.getReserve_seat2() == k.getReserve_seat8()
+												&& k.getReserve_seat8() != null) {
+											res = Integer.parseInt(reserve.getReserve_seat2());
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 
 			if (reserve.getReserve_seat3() == k.getReserve_seat1()) {
 				res = Integer.parseInt(reserve.getReserve_seat3());
-			} else if (reserve.getReserve_seat3() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat3());
-			} else if (reserve.getReserve_seat3() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat3());
-			} else if (reserve.getReserve_seat3() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat3());
-			} else if (reserve.getReserve_seat3() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat3());
-			} else if (reserve.getReserve_seat3() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat3());
-			} else if (reserve.getReserve_seat3() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat3());
-			} else if (reserve.getReserve_seat3() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat3());
+				if (reserve.getReserve_seat3() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+					res = Integer.parseInt(reserve.getReserve_seat3());
+					if (reserve.getReserve_seat3() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+						res = Integer.parseInt(reserve.getReserve_seat3());
+						if (reserve.getReserve_seat3() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+							res = Integer.parseInt(reserve.getReserve_seat3());
+							if (reserve.getReserve_seat3() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+								res = Integer.parseInt(reserve.getReserve_seat3());
+								if (reserve.getReserve_seat3() == k.getReserve_seat6()
+										&& k.getReserve_seat6() != null) {
+									res = Integer.parseInt(reserve.getReserve_seat3());
+									if (reserve.getReserve_seat3() == k.getReserve_seat7()
+											&& k.getReserve_seat7() != null) {
+										res = Integer.parseInt(reserve.getReserve_seat3());
+										if (reserve.getReserve_seat3() == k.getReserve_seat8()
+												&& k.getReserve_seat8() != null) {
+											res = Integer.parseInt(reserve.getReserve_seat3());
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 
 			if (reserve.getReserve_seat4() == k.getReserve_seat1()) {
 				res = Integer.parseInt(reserve.getReserve_seat4());
-			} else if (reserve.getReserve_seat4() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat4());
-			} else if (reserve.getReserve_seat4() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat4());
-			} else if (reserve.getReserve_seat4() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat4());
-			} else if (reserve.getReserve_seat4() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat4());
-			} else if (reserve.getReserve_seat4() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat4());
-			} else if (reserve.getReserve_seat4() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat4());
-			} else if (reserve.getReserve_seat4() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat4());
+				if (reserve.getReserve_seat4() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+					res = Integer.parseInt(reserve.getReserve_seat4());
+					if (reserve.getReserve_seat4() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+						res = Integer.parseInt(reserve.getReserve_seat4());
+						if (reserve.getReserve_seat4() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+							res = Integer.parseInt(reserve.getReserve_seat4());
+							if (reserve.getReserve_seat4() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+								res = Integer.parseInt(reserve.getReserve_seat4());
+								if (reserve.getReserve_seat4() == k.getReserve_seat6()
+										&& k.getReserve_seat6() != null) {
+									res = Integer.parseInt(reserve.getReserve_seat4());
+									if (reserve.getReserve_seat4() == k.getReserve_seat7()
+											&& k.getReserve_seat7() != null) {
+										res = Integer.parseInt(reserve.getReserve_seat4());
+										if (reserve.getReserve_seat4() == k.getReserve_seat8()
+												&& k.getReserve_seat8() != null) {
+											res = Integer.parseInt(reserve.getReserve_seat4());
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 
 			if (reserve.getReserve_seat5() == k.getReserve_seat1()) {
 				res = Integer.parseInt(reserve.getReserve_seat5());
-			} else if (reserve.getReserve_seat5() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat5());
-			} else if (reserve.getReserve_seat5() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat5());
-			} else if (reserve.getReserve_seat5() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat5());
-			} else if (reserve.getReserve_seat5() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat5());
-			} else if (reserve.getReserve_seat5() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat5());
-			} else if (reserve.getReserve_seat5() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat5());
-			} else if (reserve.getReserve_seat5() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat5());
+				if (reserve.getReserve_seat5() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+					res = Integer.parseInt(reserve.getReserve_seat5());
+					if (reserve.getReserve_seat5() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+						res = Integer.parseInt(reserve.getReserve_seat5());
+						if (reserve.getReserve_seat5() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+							res = Integer.parseInt(reserve.getReserve_seat5());
+							if (reserve.getReserve_seat5() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+								res = Integer.parseInt(reserve.getReserve_seat5());
+								if (reserve.getReserve_seat5() == k.getReserve_seat6()
+										&& k.getReserve_seat6() != null) {
+									res = Integer.parseInt(reserve.getReserve_seat5());
+									if (reserve.getReserve_seat5() == k.getReserve_seat7()
+											&& k.getReserve_seat7() != null) {
+										res = Integer.parseInt(reserve.getReserve_seat5());
+										if (reserve.getReserve_seat5() == k.getReserve_seat8()
+												&& k.getReserve_seat8() != null) {
+											res = Integer.parseInt(reserve.getReserve_seat5());
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 
 			if (reserve.getReserve_seat6() == k.getReserve_seat1()) {
 				res = Integer.parseInt(reserve.getReserve_seat6());
-			} else if (reserve.getReserve_seat6() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat6());
-			} else if (reserve.getReserve_seat6() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat6());
-			} else if (reserve.getReserve_seat6() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat6());
-			} else if (reserve.getReserve_seat6() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat6());
-			} else if (reserve.getReserve_seat6() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat6());
-			} else if (reserve.getReserve_seat6() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat6());
-			} else if (reserve.getReserve_seat6() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat6());
+				if (reserve.getReserve_seat6() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+					res = Integer.parseInt(reserve.getReserve_seat6());
+					if (reserve.getReserve_seat6() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+						res = Integer.parseInt(reserve.getReserve_seat6());
+						if (reserve.getReserve_seat6() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+							res = Integer.parseInt(reserve.getReserve_seat6());
+							if (reserve.getReserve_seat6() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+								res = Integer.parseInt(reserve.getReserve_seat6());
+								if (reserve.getReserve_seat6() == k.getReserve_seat6()
+										&& k.getReserve_seat6() != null) {
+									res = Integer.parseInt(reserve.getReserve_seat6());
+									if (reserve.getReserve_seat6() == k.getReserve_seat7()
+											&& k.getReserve_seat7() != null) {
+										res = Integer.parseInt(reserve.getReserve_seat6());
+										if (reserve.getReserve_seat6() == k.getReserve_seat8()
+												&& k.getReserve_seat8() != null) {
+											res = Integer.parseInt(reserve.getReserve_seat6());
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 
 			if (reserve.getReserve_seat7() == k.getReserve_seat1()) {
 				res = Integer.parseInt(reserve.getReserve_seat7());
-			} else if (reserve.getReserve_seat7() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat7());
-			} else if (reserve.getReserve_seat7() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat7());
-			} else if (reserve.getReserve_seat7() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat7());
-			} else if (reserve.getReserve_seat7() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat7());
-			} else if (reserve.getReserve_seat7() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat7());
-			} else if (reserve.getReserve_seat7() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat7());
-			} else if (reserve.getReserve_seat7() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat7());
+				if (reserve.getReserve_seat7() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+					res = Integer.parseInt(reserve.getReserve_seat7());
+					if (reserve.getReserve_seat7() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+						res = Integer.parseInt(reserve.getReserve_seat7());
+						if (reserve.getReserve_seat7() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+							res = Integer.parseInt(reserve.getReserve_seat7());
+							if (reserve.getReserve_seat7() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+								res = Integer.parseInt(reserve.getReserve_seat7());
+								if (reserve.getReserve_seat7() == k.getReserve_seat6()
+										&& k.getReserve_seat6() != null) {
+									res = Integer.parseInt(reserve.getReserve_seat7());
+									if (reserve.getReserve_seat7() == k.getReserve_seat7()
+											&& k.getReserve_seat7() != null) {
+										res = Integer.parseInt(reserve.getReserve_seat7());
+										if (reserve.getReserve_seat7() == k.getReserve_seat8()
+												&& k.getReserve_seat8() != null) {
+											res = Integer.parseInt(reserve.getReserve_seat7());
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 
 			if (reserve.getReserve_seat8() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
 				res = Integer.parseInt(reserve.getReserve_seat8());
-			} else if (reserve.getReserve_seat8() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat8());
-			} else if (reserve.getReserve_seat8() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat8());
-			} else if (reserve.getReserve_seat8() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat8());
-			} else if (reserve.getReserve_seat8() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat8());
-			} else if (reserve.getReserve_seat8() == k.getReserve_seat6() && k.getReserve_seat6() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat8());
-			} else if (reserve.getReserve_seat8() == k.getReserve_seat7() && k.getReserve_seat7() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat8());
-			} else if (reserve.getReserve_seat8() == k.getReserve_seat8() && k.getReserve_seat8() != null) {
-				res = Integer.parseInt(reserve.getReserve_seat8());
+				if (reserve.getReserve_seat8() == k.getReserve_seat2() && k.getReserve_seat2() != null) {
+					res = Integer.parseInt(reserve.getReserve_seat8());
+					if (reserve.getReserve_seat8() == k.getReserve_seat3() && k.getReserve_seat3() != null) {
+						res = Integer.parseInt(reserve.getReserve_seat8());
+						if (reserve.getReserve_seat8() == k.getReserve_seat4() && k.getReserve_seat4() != null) {
+							res = Integer.parseInt(reserve.getReserve_seat8());
+							if (reserve.getReserve_seat8() == k.getReserve_seat5() && k.getReserve_seat5() != null) {
+								res = Integer.parseInt(reserve.getReserve_seat8());
+								if (reserve.getReserve_seat8() == k.getReserve_seat6()
+										&& k.getReserve_seat6() != null) {
+									res = Integer.parseInt(reserve.getReserve_seat8());
+									if (reserve.getReserve_seat8() == k.getReserve_seat7()
+											&& k.getReserve_seat7() != null) {
+										res = Integer.parseInt(reserve.getReserve_seat8());
+										if (reserve.getReserve_seat8() == k.getReserve_seat8()
+												&& k.getReserve_seat8() != null) {
+											res = Integer.parseInt(reserve.getReserve_seat8());
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 
@@ -460,9 +540,7 @@ public class Dao {
 	public List<Movie_VO> getMovie_list01() {
 		SqlSession ss = null;
 		List<Movie_VO> list = null;
-		System.out.println("1");
 		try {
-			System.out.println("2");
 			ss = sessionFactory.openSession(true);
 			list = ss.selectList("movie_list01");
 			for (Movie_VO k : list) {
@@ -474,5 +552,4 @@ public class Dao {
 		}
 		return list;
 	}
-
 }
