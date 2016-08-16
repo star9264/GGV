@@ -50,7 +50,7 @@
 		}
 	}
 	function pwd_update_go(f) {
-		f.action="client_info/pwd_update.jsp?member_id=${member_VO.member_id}";
+		f.action="pwd_update_go.do";
 		f.submit();
 	}
 	function client_leave_ok(f) {
@@ -90,7 +90,7 @@
 			<tbody>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*아이디</td>
-					<td><input id="id" type="text" name="member_id" style="height: 18px;" value="${member_VO.member_id}" disabled="disabled"/></td>
+					<td><input id="id" type="text" name="member_id" style="height: 18px;" value="${info.member_id}" disabled="disabled"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*비밀번호</td>
@@ -98,27 +98,27 @@
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*이름</td>
-					<td><input type="text" style="height: 18px;" value="${member_VO.name}" disabled="disabled"/></td>
+					<td><input type="text" style="height: 18px;" value="${info.name}" disabled="disabled"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*생년월일</td>
-					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="2" value="${member_VO.birthday.substring(0,4)}" disabled="disabled"/>&nbsp;년
-					<input type="text" style="height: 18px;" size="1"  value="${member_VO.birthday.substring(4,6)}" disabled="disabled"/>&nbsp;월&nbsp;
-					<input type="text" style="height: 18px;" size="1"  value="${member_VO.birthday.substring(6,8)}" disabled="disabled"/>&nbsp;일</td>
+					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="2" value="${info.birthday.substring(0,4)}" disabled="disabled"/>&nbsp;년
+					<input type="text" style="height: 18px;" size="1"  value="${info.birthday.substring(4,6)}" disabled="disabled"/>&nbsp;월&nbsp;
+					<input type="text" style="height: 18px;" size="1"  value="${info.birthday.substring(6,8)}" disabled="disabled"/>&nbsp;일</td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*전화번호</td>
-					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="1" value="${member_VO.phone.substring(0,3)}" name="phone"/>&nbsp;-
-					<input type="text" style="height: 18px;" size="2"  value="${member_VO.phone.substring(3,7)}" name="phone2"/>&nbsp;-&nbsp;
-					<input type="text" style="height: 18px;" size="2" value="${member_VO.phone.substring(7,11)}" name="phone3"/>&nbsp;</td>
+					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="1" value="${info.phone.substring(0,3)}" name="phone"/>&nbsp;-
+					<input type="text" style="height: 18px;" size="2"  value="${info.phone.substring(3,7)}" name="phone2"/>&nbsp;-&nbsp;
+					<input type="text" style="height: 18px;" size="2" value="${info.phone.substring(7,11)}" name="phone3"/>&nbsp;</td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*주소</td>
-					<td><input type="text" style="height: 18px;" size="40" value="${member_VO.addr}" name="addr"/></td>
+					<td><input type="text" style="height: 18px;" size="40" value="${info.addr}" name="addr"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*이메일</td>
-					<td><input type="text" style="height: 18px;" value="${member_VO.email_addr}" name="email_addr"/></td>
+					<td><input type="text" style="height: 18px;" value="${info.email_addr}" name="email_addr"/></td>
 				</tr>
 			</tbody>		
 		</table>

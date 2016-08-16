@@ -6,10 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-
+	alert("접속이 종료되었습니다.");
 </script>
 </head>
 <body>
-
+	<%
+	session.removeAttribute("info");
+	response.sendRedirect("login.do");
+	%>
 </body>
 </html>

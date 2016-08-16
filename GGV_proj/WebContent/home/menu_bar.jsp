@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -83,10 +83,19 @@ table tr{
 	function imgChg(img) {
 		document.img_hover.src=img;
 	}
+	function logout() {
+		var chk = confirm("접속을 종료하시겠습니까?");
+		if(chk==true){
+			location.href="logout.do";
+			alert("접속이 종료되었습니다.");
+		}else{
+			return;
+		}
+	}
 </script>
 </head>
 <body>
-	<div>
+	<div style="position:relative; z-index: 5;">
 		<ul id="list">
 			<li id="site">
 				<div id="dropdown">
@@ -175,15 +184,22 @@ table tr{
 									</dl>
 									<dl>
 										<dt><a>회원서비스</a></dt>
+										<c:if test="${empty info.member_id}">
 										<dd>
-											<a href="#home">1</a>
+											<a href="join.do">회원가입</a>
 										</dd>
 										<dd>
-											<a href="#home">2</a>
+											<a href="info_find.do">아이디 / 비밀번호 찾기</a>
+										</dd>
+										</c:if>
+										<c:if test="${!empty info.member_id}">
+										<dd>
+											<a href="info_update_form.do">정보수정</a>
 										</dd>
 										<dd>
-											<a href="#home">3</a>
+											<a href="pwd_update_go.do">비밀번호 변경</a>
 										</dd>
+										</c:if>
 									</dl>
 
 								</td>
@@ -201,6 +217,11 @@ table tr{
 										</dd>
 									</dl>
 								</td>
+								<c:if test="${!empty info.member_id}">
+								<td>
+									<input onclick="logout()" type="button" value="로그아웃" style="background-color: #9068be; outline: none; color: white; border: none; cursor: pointer; font-weight: bolder;"/>
+								</td>
+								</c:if>
 							</tr>
 						</table>
 					</div>
@@ -211,7 +232,9 @@ table tr{
 				<li><a href=#>영화</a></li>
 				<li><a href=#>영화관</a></li>
 				<li><a href=#>스토어</a></li>
-				<li><a href=#>로그인</a></li>
+				<c:if test="${empty info}">
+				<li><a href="login.do">로그인</a></li>
+				</c:if>
 			</div>
 		</ul>
 	</div>

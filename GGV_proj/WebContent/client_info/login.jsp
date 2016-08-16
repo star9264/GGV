@@ -38,7 +38,8 @@ input{
 		}
 	}
 	if("${res}"==1){
-		alert("비밀번호가 변경되었습니다.");
+		alert("비밀번호가 변경되었습니다.\n다시 로그인 해주세요.");
+		<%session.removeAttribute("info");%>
 	}else if("${res}"==2){
 		alert("탈퇴 되었습니다.");
 	}else if("${res2}"==1){
@@ -53,7 +54,7 @@ input{
 	<form method="post">
 	<table align="center">
 		<thead>
-			<p align="center" style="color: #9068be; font-size: 30px; font-weight: bolder;">M E G A B O X</p>
+			<p align="center" style="color: #9068be; font-size: 30px; font-weight: bolder;">G G V</p>
 		</thead>
 		<tbody>
 			<h3 align="center">로그인</h3>

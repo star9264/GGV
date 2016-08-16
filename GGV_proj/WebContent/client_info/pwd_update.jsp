@@ -35,7 +35,7 @@ function pwd_update_ok(f) {
 	}else{
 		var chk = confirm("정말 수정하시겠습니까?");
 		if(chk==true){	
-			f.action="../pwd_update.do";
+			f.action="pwd_update.do";
 			f.submit();
 		}
 	}
@@ -51,8 +51,8 @@ function cancel(f) {
     	<jsp:include page="../home/menu_bar.jsp"/>
 	</div>
 	<form method="post">
-		<%String member_id = request.getParameter("member_id"); %>
-		<input type="hidden" name="member_id" value="<%=member_id %>" />
+		
+		<input type="hidden" name="member_id" value="${info.member_id}" />
 		<span id="top_span" style="color: #9068be; font-weight: bolder;">/</span>
 		<span id="top_span" style="font-size: large; font-weight: bolder;">비밀번호 변경</span>
 		<span id="top_span" style="font-size: small;">현재 비밀번호를 입력한 후 새로 사용할 비밀번호를 입력하세요.</span>

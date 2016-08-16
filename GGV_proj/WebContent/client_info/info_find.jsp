@@ -10,6 +10,7 @@
 	#top_span{
 		position: relative;
 		right: -300px;
+		z-index: 1;
 	}
 	input{
 		outline: none;
@@ -100,7 +101,7 @@ if("${res}"==4){
 					<input type="text" style="height: 18px;" size="2" name="phone2"/>&nbsp;-&nbsp;
 					<input type="text" style="height: 18px;" size="2" name="phone3"/>&nbsp;</td>
 				</tr>
-			</tbody>		
+			</tbody>	
 		</table>
 		</span>
 		<div id="top_span" align="" style="margin-top: 20px;">

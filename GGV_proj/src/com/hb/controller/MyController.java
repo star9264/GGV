@@ -81,6 +81,13 @@ public class MyController {
 		
 		return mv;
 	}
+	
+	// 정보 수정 화면
+	@RequestMapping("/info_update_form.do")
+	public ModelAndView getInfo_update_form(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mv = new ModelAndView("client_info/info_update");
+		return mv;
+	}
 
 	// 정보 수정
 	@RequestMapping("/info_update.do")
@@ -113,6 +120,12 @@ public class MyController {
 		return mv;
 	}
 	
+	// 비밀번호 변경화면
+	@RequestMapping("/pwd_update_go.do")
+	public ModelAndView getPwd_update_go(){
+		ModelAndView mv = new ModelAndView("client_info/pwd_update");
+		return mv;
+	}
 
 	// 비밀번호 변경
 	@RequestMapping("/pwd_update.do")
@@ -132,6 +145,13 @@ public class MyController {
 			mv = new ModelAndView("client_info/pwd_update_fail");
 		}
 		mv.addObject("res", res);
+		return mv;
+	}
+	
+	// 로그아웃
+	@RequestMapping("/logout.do")
+	public ModelAndView getLogout(){
+		ModelAndView mv = new ModelAndView("client_info/logout");
 		return mv;
 	}
 	
