@@ -20,40 +20,149 @@ public class Dao {
 		this.sessionFactory = sessionFactory;
 	}
 
+
 	///////////////////////////// board(별아
 	///////////////////////////// 건드리지마)///////////////////////////////////////////////
 	// q_list
 
-	public List<Q_VO> getQ_list(Map<String, String> map) {
-		SqlSession ss = null;
-		List<Q_VO> q_list = null;
-		try {
-			ss = sessionFactory.openSession();
-			q_list = ss.selectList("q_list");
-		} catch (Exception e) {
-			System.out.println(e);
-			// TODO: handle exception
-		} finally {
-			ss.close();
+		public List<Q_VO> getQ_list(Map<String, String> map){
+			SqlSession ss =  null;
+			List<Q_VO> q_list = null;
+			try {
+				ss=  sessionFactory.openSession();
+				q_list = ss.selectList("q_list", map);
+			}catch (Exception e) {
+				System.out.println(e);
+				// TODO: handle exception
+			}finally {
+				ss.close();
+			}
+			return q_list;
 		}
-		return q_list;
-	}
+		// n_list
+		
+		public List<Q_VO> getN_list(String type){
+			SqlSession ss =  null;
+			List<Q_VO> n_list = null;
+			try {
+				ss=  sessionFactory.openSession();
+				n_list = ss.selectList("n_list", type);
+			}catch (Exception e) {
+				System.out.println(e);
+				// TODO: handle exception
+			}finally {
+				ss.close();
+			}
+			return n_list;
+		}
+		// getFQ_list_list
+		
+		public List<FQ_VO> getFQ_list(){
+			SqlSession ss =  null;
+			List<FQ_VO> f_list = null;
+			try {
+				ss=  sessionFactory.openSession();
+				f_list = ss.selectList("f_list");
+			}catch (Exception e) {
+				System.out.println(e);
+				// TODO: handle exception
+			}finally {
+				ss.close();
+			}
+			return f_list;
+		}
+		// write
+		public int getQWrite_ok(Q_VO qvo) {
+			SqlSession ss = null;
+			int result = 0;
+			try {
+				ss = sessionFactory.openSession();
+				result = ss.insert("q_insert", qvo);
+				System.out.println("dao");
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				ss.close();
+			}
+			return result;
+		}
+		// fqwrite
+		public int getFQWrite_ok(FQ_VO fvo) {
+			SqlSession ss = null;
+			int result = 0;
+			try {
+				ss = sessionFactory.openSession();
+				result = ss.insert("f_insert", fvo);
+				System.out.println("dao");
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				ss.close();
+			}
+			return result;
+		}
+		// q_view
+		public Q_VO getQView(String question_idx) {
+			SqlSession ss = null;
+			Q_VO qvo = null;
+			try {
+				ss = sessionFactory.openSession(true);
+				qvo = ss.selectOne("q_view", question_idx);
 
-	// write
-	public int getQWrite_ok(Q_VO qvo) {
-		SqlSession ss = null;
-		int result = 0;
-		try {
-			ss = sessionFactory.openSession();
-			result = ss.insert("q_insert", qvo);
-			System.out.println("dao");
-		} catch (Exception e) {
-			System.out.println(e);
-		} finally {
-			ss.close();
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				ss.close();
+			}
+			return qvo;
 		}
-		return result;
-	}
+		// fq_view
+		public FQ_VO getFQView(String f_idx) {
+			SqlSession ss = null;
+			FQ_VO fvo = null;
+			try {
+				ss = sessionFactory.openSession(true);
+				fvo = ss.selectOne("fq_view", f_idx);
+				
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				ss.close();
+			}
+			return fvo;
+		}
+		// q_answer
+		public int getQAnswer(A_VO avo){
+			SqlSession ss = null;
+			int result = 0;
+			System.out.println("avo"+avo.getContent());
+			System.out.println("avo"+avo.getQuestion_idx());
+			try{
+				ss = sessionFactory.openSession();
+				result = ss.insert("q_answer",avo);
+			}catch(Exception e){
+				System.out.println("q_answer"+e);
+			}finally {
+				ss.close();
+			}
+			return result;
+		}
+		public A_VO getQAnswer_list(String question_idx){
+			SqlSession ss =  null;
+			A_VO avo = null;
+			System.out.println("avo"+question_idx);
+			try {
+				ss=  sessionFactory.openSession();
+				avo = ss.selectOne("a_list", question_idx);
+			}catch (Exception e) {
+				System.out.println(e);
+				// TODO: handle exception
+			}finally {
+				ss.close();
+			}
+			return avo;
+		}
+		
 
 	public List<P_VO> getpackage_info(String idx) {
 		SqlSession ss = null;

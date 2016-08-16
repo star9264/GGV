@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.hb.db.A_VO;
 import com.hb.db.Dao;
-
+import com.hb.db.FQ_VO;
 import com.hb.db.Member_VO;
 import com.hb.db.Movie_VO;
 import com.hb.db.P_VO;
@@ -531,50 +531,139 @@ public class MyController {
 	}
 		
 		
-		////////////////////board(별아 건드리지마)///////////////////////////////
-		// qna list
-		@RequestMapping("/q_list.do")
-		public ModelAndView getQList(@RequestParam String type){
-			Map<String, String> map = new HashMap<>();
-			map.put("type", type);
-			List<Q_VO> q_list = dao.getQ_list(map);
-			ModelAndView mv = new ModelAndView("qna/q_list");
-			mv.addObject("q_list",q_list);
-			return mv;
-		}
-		// write
-		@RequestMapping("/q_write.do")
-		public ModelAndView getQWrite(){
-			return new ModelAndView("qna/q_write");
-		}
-		
-		// write_ok
-		@RequestMapping("/q_write_ok.do")
-		public ModelAndView getQWrite_ok(HttpServletRequest request){
-			Q_VO qvo = new Q_VO();
-			System.out.println("write"+request.getParameter("type"));
-			qvo.setType(request.getParameter("type"));
-			qvo.setSubject(request.getParameter("subject"));
-			qvo.setMember_name(request.getParameter("name"));
-			qvo.setMember_id(request.getParameter("id"));
-			qvo.setMember_phone(request.getParameter("phone"));
-			qvo.setMember_email(request.getParameter("email"));
-			qvo.setSubject(request.getParameter("subject"));
-			qvo.setContent(request.getParameter("content"));
-			qvo.setState("미답변");
-			dao.getQWrite_ok(qvo);
-			ModelAndView mv = new ModelAndView("redirect:/q_list.do?type="+qvo.getType());
-			mv.addObject("qvo",qvo);
-			return mv;
-		} 
-		
-		// login alert
-		@RequestMapping("/login_alert.do")
-		public ModelAndView loginAlert(){
-			System.out.println("로그인하시길");
-			return new ModelAndView("qna/login_alert");
-		}
-		//////////////////////////////////윤경끝/////////////////////////////////////////////
+////////////////////board(별아 건드리지마)///////////////////////////////
+	// qna list
+	@RequestMapping("/q_list.do")
+	public ModelAndView getQList(@RequestParam String type) {
+		Map<String, String> map = new HashMap<>();
+		map.put("type", type);
+		List<Q_VO> q_list = dao.getQ_list(map);
+		ModelAndView mv = new ModelAndView("qna/q_list");
+		mv.addObject("q_list", q_list);
+		return mv;
+	}
+
+	@RequestMapping("/notice_list.do")
+	public ModelAndView getNList(@RequestParam String type) {
+
+		List<Q_VO> n_list = dao.getN_list(type);
+		ModelAndView mv = new ModelAndView("qna/notice_list");
+		mv.addObject("n_list", n_list);
+		return mv;
+	}
+
+	@RequestMapping("/fq_list.do")
+	public ModelAndView getFQList() {
+		System.out.println("ㅎㅎㅎ자주하는질문");
+		List<FQ_VO> f_list = dao.getFQ_list();
+		ModelAndView mv = new ModelAndView("qna/fq_list");
+		mv.addObject("f_list", f_list);
+		return mv;
+	}
+
+	// write
+	@RequestMapping("/q_write.do")
+	public ModelAndView getQWrite() {
+		return new ModelAndView("qna/q_write");
+	}
+
+	@RequestMapping("/notice_write.do")
+	public ModelAndView getNQWrite() {
+		return new ModelAndView("qna/notice_write");
+	}
+
+	// write
+	@RequestMapping("/fq_write.do")
+	public ModelAndView getFQWrite() {
+		return new ModelAndView("qna/fq_write");
+	}
+
+	// write_ok
+	@RequestMapping("/q_write_ok.do")
+	public ModelAndView getQWrite_ok(HttpServletRequest request) {
+		Q_VO qvo = new Q_VO();
+		System.out.println("write" + request.getParameter("type"));
+		System.out.println("id" + request.getParameter("id"));
+		qvo.setType(request.getParameter("type"));
+		qvo.setSubject(request.getParameter("subject"));
+		qvo.setMember_name(request.getParameter("name"));
+		qvo.setMember_id(request.getParameter("id"));
+		qvo.setMember_phone(request.getParameter("phone"));
+		qvo.setMember_email(request.getParameter("email"));
+		qvo.setSubject(request.getParameter("subject"));
+		qvo.setContent(request.getParameter("content"));
+		qvo.setState("미답변");
+		dao.getQWrite_ok(qvo);
+		ModelAndView mv = new ModelAndView("redirect:/q_list.do?type=" + qvo.getType());
+		mv.addObject("qvo", qvo);
+		return mv;
+	}
+
+	// fq_write
+	@RequestMapping("/fq_write_ok.do")
+	public ModelAndView getFQWrite_ok(HttpServletRequest request) {
+		FQ_VO fvo = new FQ_VO();
+		fvo.setSubject(request.getParameter("subject"));
+		fvo.setAnswer(request.getParameter("content"));
+		dao.getFQWrite_ok(fvo);
+		ModelAndView mv = new ModelAndView("redirect:/fq_list.do");
+		mv.addObject("fvo", fvo);
+		return mv;
+	}
+
+	// login alert
+	@RequestMapping("/login_alert.do")
+	public ModelAndView loginAlert() {
+		System.out.println("로그인하시길");
+		return new ModelAndView("qna/login_alert");
+	}
+
+	@RequestMapping("/q_view.do")
+	public ModelAndView getQView(@RequestParam String question_idx) {
+		Q_VO qvo = dao.getQView(question_idx);
+		A_VO avo = dao.getQAnswer_list(question_idx);
+
+		ModelAndView mv = new ModelAndView("qna/q_view");
+		mv.addObject("qvo", qvo);
+		mv.addObject("avo", avo);
+		return mv;
+	}
+
+	@RequestMapping("/fq_view.do")
+	public ModelAndView getFQView(@RequestParam String f_idx) {
+		FQ_VO fvo = dao.getFQView(f_idx);
+
+		ModelAndView mv = new ModelAndView("qna/fq_view");
+		mv.addObject("fvo", fvo);
+
+		return mv;
+	}
+
+	@RequestMapping("/notice_view.do")
+	public ModelAndView getNQView(@RequestParam String question_idx) {
+		Q_VO qvo = dao.getQView(question_idx);
+
+		ModelAndView mv = new ModelAndView("qna/notice_view");
+		mv.addObject("qvo", qvo);
+
+		return mv;
+	}
+
+	@RequestMapping("/q_answer_write.do")
+	public ModelAndView getQanswer(HttpServletRequest request) {
+		String question_idx = request.getParameter("question_idx");
+		String content = request.getParameter("content");
+		A_VO avo = new A_VO();
+		avo.setQuestion_idx(question_idx);
+		avo.setContent(content);
+		dao.getQAnswer(avo);
+		ModelAndView mv = new ModelAndView("redirect:/q_view.do?question_idx=" + avo.getQuestion_idx());
+		mv.addObject("avo", avo);
+		return mv;
+
+	}
+//////////////////////////////////윤경끝/////////////////////////////////////////////
+
 		
 		@RequestMapping("/movie_list01.do")
         public ModelAndView getMovie_list01(){
