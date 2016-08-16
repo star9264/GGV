@@ -120,7 +120,7 @@ table tr{
 											<a href="movielist.do">영화 예매</a>
 										</dd>
 										<dd>
-											<a href="#home">예매 조회</a>
+											<a href="reserve_view.do?member_id=${info.member_id}">예매 조회</a>
 										</dd>
 									</dl>
 									<dl>

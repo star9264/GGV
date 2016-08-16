@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	function suc() {
 		alert("예매 성공!");
-		<% response.sendRedirect("");%>
+		<% response.sendRedirect("login.do");%>
 	}
 </script>
 </head>
