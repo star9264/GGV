@@ -71,13 +71,13 @@ public class MyController {
 		System.out.println(member_id+pwd);
 		
 		Member_VO member_VO = dao.getLogin(member_id, pwd);
-		List<Movie_VO> list = dao.getMovie_list01();
+		
 		if(member_VO!=null){
-			mv = new ModelAndView("start");
+			mv = new ModelAndView("main/main");
 		}else{
 			mv = new ModelAndView("client_info/login_fail");
 		}
-		mv.addObject("list", list);
+	
 		mv.addObject("member_VO", member_VO);
 		
 		return mv;
@@ -388,6 +388,13 @@ public class MyController {
 
 		}
 		
+		@RequestMapping("gomain.do")
+	      public ModelAndView goMain(HttpServletRequest request){
+	         ModelAndView mv = new ModelAndView("main/main");
+	         List<Movie_VO> list = dao.getMovie_list01();
+	         mv.addObject("list", list);
+	         return mv;
+	      }
 
 		@RequestMapping("/package_res.do")
 		public ModelAndView package_res(HttpServletRequest request){
@@ -578,11 +585,8 @@ public class MyController {
 		
 		@RequestMapping("/movie_list01.do")
         public ModelAndView getMovie_list01(){
-           ModelAndView mv = new ModelAndView("main/main");
+           ModelAndView mv = new ModelAndView("movielist_1/movie_list01");
            List<Movie_VO> list= dao.getMovie_list01();
-           for (Movie_VO k : list) {
-              System.out.println(k.getPoster());
-           }
            mv.addObject("list",list);
            return mv;
         }
@@ -595,11 +599,8 @@ public class MyController {
         public ModelAndView getMovie_list02(){
            ModelAndView mv = new ModelAndView("movielist_1/movie_list02");
            List<Movie_VO> list = dao.getMovie_list02();
-           System.out.println(list.size());
            mv.addObject("list",list);
-           for (Movie_VO k : list) {
-              System.out.println(k.getStart_time());
-           }
+           
            return mv;
         }
         @RequestMapping("/movie_list03.do")
@@ -607,9 +608,6 @@ public class MyController {
            ModelAndView mv = new ModelAndView("movielist_1/movie_list03");
            List<Movie_VO> list = dao.getMovie_list03();
            mv.addObject("list",list);
-           for (Movie_VO k : list) {
-              System.out.println(k.getStart_time());
-           }
            return mv;
         }
         @RequestMapping("/movie_detail.do")

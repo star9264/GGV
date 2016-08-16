@@ -74,6 +74,9 @@ a{
 </script>
 </head>
 <body>
+<div id="menu">
+			<jsp:include page="../home/menu_bar.jsp"/>
+	</div>	
 <form method="post">
 <br>
 <br>

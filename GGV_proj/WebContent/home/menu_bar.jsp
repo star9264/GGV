@@ -126,13 +126,13 @@ table tr{
 									<dl>
 										<dt><a>영화</a></dt>
 										<dd>
-											<a href="#home">1</a>
+											<a href="movie_list01.do">박스오피스</a>
 										</dd>
 										<dd>
-											<a href="#home">2</a>
+											<a href="movie_list02.do">최신개봉작</a>
 										</dd>
 										<dd>
-											<a href="#home">3</a>
+											<a href="movie_list03.do">상영예정작</a>
 										</dd>
 									</dl>
 
@@ -142,12 +142,6 @@ table tr{
 										<dt><a>스토어</a></dt>
 										<dd>
 											<a href="package_main.do">GGV 패키지</a>
-										</dd>
-										<dd>
-											<a href="#home">2</a>
-										</dd>
-										<dd>
-											<a href="#home">3</a>
 										</dd>
 									</dl>
 									<dl>
