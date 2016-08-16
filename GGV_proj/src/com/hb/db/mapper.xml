@@ -94,8 +94,8 @@
        select * from ggv_movie where movie_idx =#{movie_idx}
     </select>
     
-        <select id="q_list" parameterType="Map" resultType="com.hb.db.Q_VO">
-         select * from ggv_board where type=#{type} order by QUESTION_IDX
+    <select id="q_list" parameterType="Map" resultType="com.hb.db.Q_VO">
+         select * from ggv_board where type=#{type} and member_id=#{member_id} order by QUESTION_IDX
    </select>
     <select id="n_list" parameterType="String" resultType="com.hb.db.Q_VO">
          select * from ggv_board where type=#{type} order by QUESTION_IDX

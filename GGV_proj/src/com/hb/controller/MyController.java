@@ -541,9 +541,12 @@ public class MyController {
 ////////////////////board(별아 건드리지마)///////////////////////////////
 	// qna list
 	@RequestMapping("/q_list.do")
-	public ModelAndView getQList(@RequestParam String type) {
+	public ModelAndView getQList(HttpServletRequest request) {
+		String type = request.getParameter("type");
+		String member_id = request.getParameter("id");
 		Map<String, String> map = new HashMap<>();
 		map.put("type", type);
+		map.put("member_id", member_id);
 		List<Q_VO> q_list = dao.getQ_list(map);
 		ModelAndView mv = new ModelAndView("qna/q_list");
 		mv.addObject("q_list", q_list);
