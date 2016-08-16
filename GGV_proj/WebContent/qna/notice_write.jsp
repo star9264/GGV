@@ -71,7 +71,7 @@
 			System.out.ln("김윤경바보");
 			return;
 		} */
-		f.action = "q_write_ok.do?type=ask";
+		f.action = "q_write_ok.do?type=notice";
 		f.submit();
 	
 	}

@@ -71,7 +71,7 @@
 			System.out.ln("김윤경바보");
 			return;
 		} */
-		f.action = "q_write_ok.do?type=ask";
+		f.action = "fq_write_ok.do";
 		f.submit();
 	
 	}
@@ -81,31 +81,14 @@
 	<div id="menu">
 			<jsp:include page="../home/menu_bar.jsp"/>
 	</div>
-	<div id="cap">
+	<!-- <div id="cap">
 		<h2 style="color: #9068be;"> 문의 사항</h2>
 		> 문의글 답변 운영시간 11:00 ~ 13:00
-	</div>
+	</div> -->
 	<div id="write">
 		<form method="post">
 			<table>
 				<tbody>
-					<tr>
-						<th>아이디</th>
-						<td><input type="text" name="id" value="${info.member_id }" ></td>
-						<%-- <td>${info.member_id }</td> --%>
-					</tr>
-					<tr>
-						<th>이름</th>
-						<td><input type="text" name="name" value="${info.name }" ></td>
-					</tr>
-					<tr>
-						<th>연락처</th>
-						<td><input type="text" name="phone" value="${info.phone }" ></td>
-					</tr>
-					<tr>
-						<th>이메일</th>
-						<td><input type="text" name="email" value="${info.email_addr }"></td>
-					</tr>
 					<tr>
 						<th>제목</th>
 						<td><input type="text" name="subject"></td>

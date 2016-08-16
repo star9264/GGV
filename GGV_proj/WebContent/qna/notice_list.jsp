@@ -56,14 +56,19 @@
 		> GGV의 최신 소식을 알려드립니다.
 	</div>
 	<div id="search">
-		<table>
+		<!-- <table>
 			<tr><td align="right">
 				<input type="text" id="word" />
 				<button>검색</button>
 			</td></tr>
-		</table>
+		</table> -->
 	</div>
 	<div id="tb">
+		<c:if test="${info.grade == '관리자' }">
+		<div style="width: 1000px" align="right">
+	<input type="button" value="글쓰기" onclick="javacript:location.href='notice_write.do'" /></td>
+	</div>
+	</c:if>
 		<table align="center">
 			<thead>
 				<tr class="title">
@@ -73,17 +78,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:if test="${empty list }">
+				<c:if test="${empty n_list }">
 					<tr>
 						<td colspan="4"> 공지사항이 없습니다.</td>
 					</tr>
 				</c:if>
-				<c:if test="${!empty list }">
-					<c:forEach items="${list }" var="k">
+				<c:if test="${!empty n_list }">
+					<c:forEach items="${n_list }" var="k">
 						<tr>
-							<td>${k.q_idx }</td>
-							<td>${k.subject}</td>
-							<td>${k.state }</td>
+							<td>${k.question_idx }</td>
+							<td><a href="notice_view.do?question_idx=${k.question_idx}">${k.subject}</a></td>
 							<td>${k.regdate }</td>
 						</tr>
 					</c:forEach>
