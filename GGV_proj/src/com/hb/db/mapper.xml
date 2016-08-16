@@ -89,7 +89,6 @@
 		reserve_date asc
 	</select>
 	<delete id="reserve_cancel" parameterType="String">
-<<<<<<< HEAD
 		delete from ggv_reserve where reserve_idx=#{reserve_idx}
 	</delete>
 	
@@ -105,12 +104,8 @@
     <select id="movie_detail" parameterType="String" resultType="com.hb.db.Movie_VO">
        select * from ggv_movie where movie_idx =#{movie_idx}
     </select>
-=======
-		delete from
-		ggv_reserve where reserve_idx=#{reserve_idx}
-	</delete>
 
->>>>>>> branch 'master' of https://github.com/star9264/GGV.git
+
 </mapper>
 
 
