@@ -224,7 +224,7 @@ table tr{
 								</c:if>
 							</tr>
 						</table>
-					</div>
+					</div> 
 				</div>
 			</li>
 			<div style="margin-top: 20px">
