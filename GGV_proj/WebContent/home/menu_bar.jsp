@@ -20,7 +20,7 @@
   	color: #c9c9c9;
   	text-align: center;
   	text-decoration: none;
-  	position: fixed;
+  	position: fixed; 
   	width: 1000px;
 	}
 	
@@ -170,10 +170,10 @@ table tr{
 										</c:if>
 										</dd>
 										<dd>
-											<a href="#home">2</a>
+											<a href="notice_list.do?type=notice">공지사항</a>
 										</dd>
 										<dd>
-											<a href="#home">3</a>
+											<a href="fq_list.do">자주하는 질문</a>
 										</dd>
 									</dl>
 									<dl>

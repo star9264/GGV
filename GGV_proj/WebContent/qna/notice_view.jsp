@@ -38,12 +38,7 @@
 		padding: 5px 10px;
 	}
 </style>
-<script>
-	function answer_go(f) {
-		f.action = "q_answer_write.do?question_idx=${qvo.question_idx}"
-		f.submit();
-	}
-</script>
+
 </head>
 <body>
 	<div id="menu">
@@ -54,37 +49,15 @@
 		<table>
 			<tr>
 				<th>제목</th>
-				<td colspan="3">${qvo.subject }</td>
-			</tr>
-			<tr>
-				<th>연락처</th>
-				<td>${qvo.member_phone }</td>
-				<th>이메일</th>
-				<td>${qvo.member_email }</td>
-			</tr>
-			<tr>
+				<td>${qvo.subject }</td>
 				<th>등록일</th>
 				<td>${qvo.regdate }</td>
-				<th>답변상태</th>
-				<td>${qvo.state }</td>
 			</tr>
 			<tr>
 				<th height="250px">내용</th>
 				<td colspan="3">${qvo.content }</td>
 			</tr>
-			<tr>
-				<th height="250px">[답변내용]</th>
-				<td colspan="3"> ${avo.content} </td>
-			</tr>
-			<c:if test="${info.grade == '관리자' && empty avo}">
-			
-			<tr>
-				<th>답변달기</th>
-				<td colspan="2"><textarea name="content" rows="5"	 cols="80"></textarea> </td>
-				<td><input type="button" value="답변등록" onclick="answer_go(this.form)"/></td>
-			</tr>
-			</c:if>
-			<tr><td colspan="4" align="left"><input type="button" value="목록으로" onclick="javacript:location.href='../q_list.do?type=ask'"/></td></tr>
+			<tr><td colspan="4" align="left"><input type="button" value="목록으로" onclick="javacript:location.href='notice_list.do?type=notice'"/></td></tr>
 		</table>
 		</form>
 	</div>
