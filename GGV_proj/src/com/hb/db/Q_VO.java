@@ -1,7 +1,7 @@
 package com.hb.db;
 
 public class Q_VO {
-	private String q_idx, type, subject, content, state, regdate, member_id, 
+	private String question_idx, type, subject, content, state, regdate, member_id, 
 		member_name, member_phone, member_email;
 
 	public String getMember_phone() {
@@ -36,12 +36,13 @@ public class Q_VO {
 		this.type = type;
 	}
 
-	public String getQ_idx() {
-		return q_idx;
+	
+	public String getQuestion_idx() {
+		return question_idx;
 	}
 
-	public void setQ_idx(String q_idx) {
-		this.q_idx = q_idx;
+	public void setQuestion_idx(String question_idx) {
+		this.question_idx = question_idx;
 	}
 
 	public String getSubject() {
