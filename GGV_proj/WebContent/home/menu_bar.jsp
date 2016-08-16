@@ -108,7 +108,7 @@ table tr{
 									<dl>
 										<dt><a>예매</a></dt>
 										<dd>
-											<a href="movielist.do">일정별 예매</a>
+											<a href="movielist.do">영화 예매</a>
 										</dd>
 										<dd>
 											<a href="#home">예매 조회</a>
