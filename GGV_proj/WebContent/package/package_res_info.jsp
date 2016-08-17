@@ -22,8 +22,9 @@
 	<c:if test="${!empty list }">
 		<c:forEach items="${list}" var="k">
 		<tr>
-		<th>아이디</th>
+		
 		<th>예약번호</th>
+		<th>아이디</th>
 		<th>예약 날짜</th>
 		<th>예약한 패키지명</th>
 		<th>매수</th>
