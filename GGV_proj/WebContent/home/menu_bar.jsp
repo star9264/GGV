@@ -132,6 +132,14 @@ table tr{
 										<dd>
 											<a href="movie_list03.do">상영예정작</a>
 										</dd>
+										<c:if test="${info.grade=='관리자'}">
+											<dd>
+											<a href="new_movie.do">새 영화 입력</a>
+											</dd>
+											<dd>
+											<a href="alert_movie">영화 정보 수정,삭제</a>
+											</dd>
+										</c:if>
 									</dl>
 
 								</td>
