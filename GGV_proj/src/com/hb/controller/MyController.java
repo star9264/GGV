@@ -604,7 +604,7 @@ public class MyController {
 		qvo.setContent(request.getParameter("content"));
 		qvo.setState("미답변");
 		dao.getQWrite_ok(qvo);
-		ModelAndView mv = new ModelAndView("redirect:/q_list.do?type=" + qvo.getType());
+		ModelAndView mv = new ModelAndView("redirect:/q_list.do?type=" + qvo.getType()+"&id="+qvo.getMember_id());
 		mv.addObject("qvo", qvo);
 		return mv;
 	}
