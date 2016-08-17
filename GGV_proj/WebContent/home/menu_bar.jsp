@@ -202,6 +202,14 @@ table tr{
 										<dt><a>회사소개</a></dt>
 										
 									</dl>
+									<c:if test="${info.grade=='관리자' }">
+										<dl>
+											<dt><a>관리자 모드</a></dt>
+											<dd>
+												<a>문의내역 답변달기</a>
+											</dd>
+										</dl>
+									</c:if>
 								</td>
 								<c:if test="${!empty info.member_id}">
 								<td>
