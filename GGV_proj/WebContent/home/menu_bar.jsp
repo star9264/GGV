@@ -87,7 +87,7 @@ table tr{
 		var chk = confirm("접속을 종료하시겠습니까?");
 		if(chk==true){
 			location.href="logout.do";
-			alert("접속이 종료되었습니다.");
+			alert("접속이 종료되었습니다."); 
 		}else{
 			return;
 		}
