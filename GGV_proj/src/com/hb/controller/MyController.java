@@ -398,6 +398,16 @@ public class MyController {
 
 		}
 		
+		@RequestMapping("package_res_info.do")
+		public ModelAndView package_res_info(HttpServletRequest request){
+			String id = request.getParameter("member_id");
+			System.out.println("pacakge_res_info"+id);
+			List<PR_VO> list = dao.getpackage_res_info(id);
+			System.out.println("컨트롤러 res_info size"+list.size());
+			ModelAndView mv = new ModelAndView("package/package_res_info");
+			mv.addObject("list",list);
+			return mv;
+		}
 
 		@RequestMapping("package_close.do")
 		public ModelAndView package_close(HttpServletRequest request) {

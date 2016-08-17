@@ -141,6 +141,9 @@ table tr{
 										<dd>
 											<a href="package_main.do">GGV 패키지</a>
 										</dd>
+										<dd>
+											<a href="package_res_info.do?member_id=${info.member_id}">GGV 패키지 예약 확인</a>
+										</dd>
 									</dl>
 									<dl>
 										<dt><a>나의 메가박스</a></dt>

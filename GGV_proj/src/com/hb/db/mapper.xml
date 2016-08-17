@@ -134,6 +134,9 @@
 	<select id="package_res" parameterType="String" resultType="com.hb.db.Member_VO">
 		select * from ggv_member where member_id = #{id}
 	</select>
+	<select id="package_res_info" parameterType="String" resultType="com.hb.db.PR_VO">
+	 	select * from ggv_package_res where member_id = #{id}
+	</select>
 </mapper>
 
 

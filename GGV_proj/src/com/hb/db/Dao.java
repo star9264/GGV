@@ -246,6 +246,24 @@ public class Dao {
 			return result;
 		
 		}
+		
+		public List<PR_VO> getpackage_res_info(String id){
+			SqlSession ss = null;
+			List<PR_VO> package_res_info = null;
+			
+			try {
+				ss = sessionFactory.openSession();
+				package_res_info = ss.selectList("package_res_info",id);
+				System.out.println("getpackage_res_info DAO"+package_res_info.size());
+	
+			} catch (Exception e) {
+				System.out.println(e);
+
+			} finally {
+				ss.close();
+			}
+			return package_res_info;
+		}
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
