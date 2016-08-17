@@ -3,55 +3,45 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ggv">
 
-<mapper namespace="ggv"> 
-   <select id="package_information" parameterType="String" resultType="com.hb.db.P_VO">
-         select * from ggv_package where package_idx=#{idx} 
-   </select>
-   
-   <select id="login" parameterType="Map" resultType="com.hb.db.Member_VO">
-         select * from ggv_member where member_id = #{member_id} and pwd = #{pwd}
-   </select>
-   <update id="info_update" parameterType="com.hb.db.Member_VO">
-         update ggv_member set addr = #{addr}, phone = #{phone}, email_addr = #{email_addr} where pwd = #{pwd} and member_id = #{member_id}
-   </update>
-   <update id="pwd_update" parameterType="Map">
-         update ggv_member set pwd = #{pwd2} where member_id = #{member_id} and pwd = #{pwd}
-   </update>
-   <select id="id_find" parameterType="com.hb.db.Member_VO" resultType="com.hb.db.Member_VO">
-         select * from ggv_member where name = #{name} and birthday = #{birthday} and phone = #{phone}
-   </select>
-   <select id="pwd_find" parameterType="Map" resultType="com.hb.db.Member_VO">
-         select * from ggv_member where member_id = #{member_id} and name = #{name} and phone = #{phone}
-   </select>
-   <delete id="client_leave" parameterType="Map">
-         delete from ggv_member where member_id = #{member_id} and pwd = #{pwd}
-   </delete>
-   <select id="id_confirm" parameterType="String" resultType="com.hb.db.Member_VO">
-         select * from ggv_member where member_id = #{member_id}
-   </select>
-   <insert id="join" parameterType="com.hb.db.Member_VO">
-         insert into ggv_member values(#{member_id}, #{pwd}, #{name}, #{addr}, #{phone}, #{birthday}, #{gender}, #{email_addr}, 0, 0, 0)
-   </insert>
-
-   <insert id="p_r_insert" parameterType="com.hb.db.PR_VO" > 
-   insert into ggv_package_res values(#{reservation_num},null,sysdate,sysdate,#{reservation_package})
-   </insert>  
-
-
-
-   <!-- Reserve -->
-   <delete id="reserve_cancel" parameterType="String">
-      delete from ggv_reserve where reserve_idx=#{reserve_idx}
-   </delete>
-
-	<update id="package_reservation" parameterType="Map">
-		update ggv_member
-		set package_reservation = #{total_person} where member_id=#{id}
-	</update>
-	<select id="package_res" parameterType="String" resultType="com.hb.db.Member_VO">
-		select * from ggv_member where member_id = #{id}
+	<select id="login" parameterType="Map" resultType="com.hb.db.Member_VO">
+		select * from ggv_member where member_id = #{member_id} and pwd = #{pwd}
 	</select>
+	<update id="info_update" parameterType="com.hb.db.Member_VO">
+		update ggv_member set addr = #{addr}, phone = #{phone}, email_addr =
+		#{email_addr} where pwd = #{pwd} and member_id = #{member_id}
+	</update>
+	<update id="pwd_update" parameterType="Map">
+		update ggv_member set pwd = #{pwd2} where member_id = #{member_id} and pwd =
+		#{pwd}
+	</update>
+	<select id="id_find" parameterType="com.hb.db.Member_VO"
+		resultType="com.hb.db.Member_VO">
+		select * from ggv_member where name = #{name} and birthday = #{birthday} and
+		phone = #{phone}
+	</select>
+	<select id="pwd_find" parameterType="Map" resultType="com.hb.db.Member_VO">
+		select * from ggv_member where member_id = #{member_id} and name = #{name}
+		and phone = #{phone}
+	</select>
+	<delete id="client_leave" parameterType="Map">
+		delete from ggv_member where member_id = #{member_id} and pwd = #{pwd}
+	</delete>
+	<select id="id_confirm" parameterType="String" resultType="com.hb.db.Member_VO">
+		select * from ggv_member where member_id = #{member_id}
+	</select>
+	<insert id="join" parameterType="com.hb.db.Member_VO">
+		insert into ggv_member values(#{member_id}, #{pwd}, #{name}, #{addr},
+		#{phone}, #{birthday}, #{gender}, #{email_addr}, 0, 0, 0)
+	</insert>
+
+
+	<!-- Reserve -->
+	<delete id="reserve_cancel" parameterType="String">
+		delete from ggv_reserve where reserve_idx=#{reserve_idx}
+	</delete>
+
 	<select id="get_reservation" parameterType="String" resultType="String">
 		select package_reservation from ggv_member where member_id = #{id}
 	</select>
@@ -64,15 +54,17 @@
 	</select>
 	<insert id="reserve" parameterType="com.hb.db.Reservation">
 		insert into ggv_reserve
-		values(reserve_idx_seq.nextval, #{member_id}, #{movie_idx}, #{reserve_date}, #{reserve_time},
-		#{reserve_seat1, jdbcType=VARCHAR}, #{reserve_seat2,
+		values(reserve_idx_seq.nextval, #{member_id}, #{movie_idx},
+		#{reserve_date}, #{reserve_time},
+		#{reserve_seat1, jdbcType=VARCHAR},
+		#{reserve_seat2,
 		jdbcType=VARCHAR}, #{reserve_seat3, jdbcType=VARCHAR},
 		#{reserve_seat4, jdbcType=VARCHAR}, #{reserve_seat5,
 		jdbcType=VARCHAR}, #{reserve_seat6, jdbcType=VARCHAR},
 		#{reserve_seat7, jdbcType=VARCHAR}, #{reserve_seat8,
 		jdbcType=VARCHAR}, #{reserve_price}, #{title})
 	</insert>
-	
+
 	<select id="movieList" resultType="com.hb.db.Movie_VO">
 		select * from ggv_movie
 	</select>
@@ -80,49 +72,68 @@
 		select * from ggv_reserve where member_id=#{member_id} order by
 		reserve_date asc
 	</select>
-    
-    <select id="movie_list01" resultType="com.hb.db.Movie_VO">
-       select * from ggv_movie 
-    </select>
-     <select id="movie_list02" resultType="com.hb.db.Movie_VO">
-       select * from ggv_movie
-    </select>
-    <select id="movie_list03" resultType="com.hb.db.Movie_VO">
-       select * from ggv_movie where start_time >= sysdate
-    </select>
-    <select id="movie_detail" parameterType="String" resultType="com.hb.db.Movie_VO">
-       select * from ggv_movie where movie_idx =#{movie_idx}
-    </select>
-    
-    <select id="q_list" parameterType="Map" resultType="com.hb.db.Q_VO">
-         select * from ggv_board where type=#{type} and member_id=#{member_id} order by QUESTION_IDX
-   </select>
-    <select id="n_list" parameterType="String" resultType="com.hb.db.Q_VO">
-         select * from ggv_board where type=#{type} order by QUESTION_IDX
-   </select>
-    <select id="f_list" resultType="com.hb.db.FQ_VO">
-         select * from ggv_fq order by f_idx
-   </select>
-   <insert id="q_insert" parameterType="com.hb.db.Q_VO">
-      insert into ggv_board values(QUESTION_IDX_SEQ.nextval, #{type},#{subject},#{content},#{state},
-         sysdate,#{member_id},#{member_name},#{member_phone},#{member_email})
-   </insert>
-   <insert id="f_insert" parameterType="com.hb.db.FQ_VO">
-      insert into ggv_fq values(f_idx_seq.nextval,#{subject},#{answer},sysdate)
-   </insert>
-   <select id="q_view" parameterType="String" resultType="com.hb.db.Q_VO">
-      select * from ggv_board where question_idx = #{question_idx}
-   </select>
-   <select id="fq_view" parameterType="String" resultType="com.hb.db.FQ_VO">
-      select * from ggv_fq where f_idx = #{f_idx}
-   </select>
-   <insert id="q_answer" parameterType="com.hb.db.A_VO">
-      insert into GGV_ANSWER values (ANSWER_IDX_SEQ.nextval,#{question_idx},#{content})
-   </insert>
-   <select id="a_list" parameterType="String" resultType="com.hb.db.A_VO">
-      select * from GGV_ANSWER where question_idx = #{question_idx}
-   </select>
-   
+
+	<select id="movie_list01" resultType="com.hb.db.Movie_VO">
+		select * from ggv_movie
+	</select>
+	<select id="movie_list02" resultType="com.hb.db.Movie_VO">
+		select * from ggv_movie
+	</select>
+	<select id="movie_list03" resultType="com.hb.db.Movie_VO">
+		select * from ggv_movie where start_time >= sysdate
+	</select>
+	<select id="movie_detail" parameterType="String" resultType="com.hb.db.Movie_VO">
+		select * from ggv_movie where movie_idx =#{movie_idx}
+	</select>
+
+	<select id="q_list" parameterType="Map" resultType="com.hb.db.Q_VO">
+		select * from ggv_board where type=#{type} and member_id=#{member_id} order
+		by QUESTION_IDX
+	</select>
+	<select id="n_list" parameterType="String" resultType="com.hb.db.Q_VO">
+		select * from ggv_board where type=#{type} order by QUESTION_IDX
+	</select>
+	<select id="f_list" resultType="com.hb.db.FQ_VO">
+		select * from ggv_fq order by f_idx
+	</select>
+	<insert id="q_insert" parameterType="com.hb.db.Q_VO">
+		insert into ggv_board values(QUESTION_IDX_SEQ.nextval,
+		#{type},#{subject},#{content},#{state},
+		sysdate,#{member_id},#{member_name},#{member_phone},#{member_email})
+	</insert>
+	<insert id="f_insert" parameterType="com.hb.db.FQ_VO">
+		insert into ggv_fq values(f_idx_seq.nextval,#{subject},#{answer},sysdate)
+	</insert>
+	<select id="q_view" parameterType="String" resultType="com.hb.db.Q_VO">
+		select * from ggv_board where question_idx = #{question_idx}
+	</select>
+	<select id="fq_view" parameterType="String" resultType="com.hb.db.FQ_VO">
+		select * from ggv_fq where f_idx = #{f_idx}
+	</select>
+	<insert id="q_answer" parameterType="com.hb.db.A_VO">
+		insert into GGV_ANSWER values
+		(ANSWER_IDX_SEQ.nextval,#{question_idx},#{content})
+	</insert>
+	<select id="a_list" parameterType="String" resultType="com.hb.db.A_VO">
+		select * from GGV_ANSWER where question_idx = #{question_idx}
+	</select>
+
+	<!--package mapper -->
+	<select id="package_information" parameterType="String"
+		resultType="com.hb.db.P_VO">
+		select * from ggv_package where package_idx=#{idx}
+	</select>
+	<insert id="p_r_insert" parameterType="com.hb.db.PR_VO">
+		insert into ggv_package_res
+		values(#{reservation_num},#{member_id},sysdate,#{reservation_package},#{package_su})
+	</insert>
+	<update id="package_reservation" parameterType="Map">
+		update ggv_member
+		set package_reservation =#{person} where member_id=#{id}
+	</update>
+	<select id="package_res" parameterType="String" resultType="com.hb.db.Member_VO">
+		select * from ggv_member where member_id = #{id}
+	</select>
 </mapper>
 
 

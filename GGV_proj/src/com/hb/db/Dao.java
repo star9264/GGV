@@ -164,70 +164,88 @@ public class Dao {
 		}
 		
 
-	public List<P_VO> getpackage_info(String idx) {
-		SqlSession ss = null;
-		List<P_VO> package_list = null;
-		try {
-			ss = sessionFactory.openSession();
-			package_list = ss.selectList("package_information", idx);
-		} catch (Exception e) {
-			System.out.println(e);
+		public List<P_VO> getpackage_info(String idx) {
+			SqlSession ss = null;
+			List<P_VO> package_list = null;
+			try {
+				ss = sessionFactory.openSession();
+				package_list = ss.selectList("package_information", idx);
+			} catch (Exception e) {
+				System.out.println(e);
 
-		} finally {
-			ss.close();
-		}
-		return package_list;
+			} finally {
+				ss.close();
+			}
+			return package_list;
 
-	}
-
-	public void go_res(Map map) {
-		SqlSession ss = null;
-		try {
-			ss = sessionFactory.openSession();
-			ss.update("package_reservation", map);
-
-		} catch (Exception e) {
-			System.out.println(e);
-
-		} finally {
-			ss.close();
 		}
 
-	}
+		public void go_res(Map map) {
+			SqlSession ss = null;
+			try {
+				ss = sessionFactory.openSession();
+				ss.update("package_reservation", map);
 
-	public String get_res(String id) {
-		SqlSession ss = null;
-		String now_reservation = null;
-		try {
-			ss = sessionFactory.openSession();
-			now_reservation = ss.selectOne("get_reservation", id);
-		} catch (Exception e) {
-			System.out.println(e);
+			} catch (Exception e) {
+				System.out.println(e);
 
-		} finally {
-			ss.close();
+			} finally {
+				ss.close();
+			}
+
 		}
 
-		return now_reservation;
+		public String get_res(String id) {
+			SqlSession ss = null;
+			String now_reservation = null;
+			try {
+				ss = sessionFactory.openSession();
+				now_reservation = ss.selectOne("get_reservation", id);
+			} catch (Exception e) {
+				System.out.println(e);
 
-	}
-	
-	public List<Member_VO> getpackage_res(String id){
-		SqlSession ss = null;
-		List<Member_VO> package_res = null;
+			} finally {
+				ss.close();
+			}
+
+			return now_reservation;
+
+		}
 		
-		try {
-			ss = sessionFactory.openSession();
-			package_res = ss.selectList("package_res",id);
+		public List<Member_VO> getpackage_res(String id){
+			SqlSession ss = null;
+			List<Member_VO> package_res = null;
 			
-		} catch (Exception e) {
-			System.out.println(e);
+			try {
+				ss = sessionFactory.openSession();
+				package_res = ss.selectList("package_res",id);
+				
+			} catch (Exception e) {
+				System.out.println(e);
 
-		} finally {
-			ss.close();
+			} finally {
+				ss.close();
+			}
+			return package_res;
 		}
-		return package_res;
-	}
+		
+		public int go_package_res(PR_VO pr_vo){
+			SqlSession ss = null;
+			int result = 0;
+			System.out.println(pr_vo.getReservation_package()+" go_package_res dao");
+			System.out.println(pr_vo.getReservation_num()+" go_package_res dao");
+			try {
+				ss = sessionFactory.openSession();
+				System.out.println("try안");
+				result = ss.insert("p_r_insert", pr_vo); 
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally{
+				ss.close();
+			}
+			return result;
+		
+		}
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
