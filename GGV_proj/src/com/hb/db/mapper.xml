@@ -117,7 +117,12 @@
 	<select id="a_list" parameterType="String" resultType="com.hb.db.A_VO">
 		select * from GGV_ANSWER where question_idx = #{question_idx}
 	</select>
-
+	<select id="admin_list" parameterType="String" resultType="com.hb.db.Q_VO">
+		select * from ggv_board where type=#{type} order by question_idx desc
+	</select>
+	<update id="state_update" parameterType="String">
+		update ggv_board set state='답변' where question_idx = #{question_idx}
+	</update>
 	<!--package mapper -->
 	<select id="package_information" parameterType="String"
 		resultType="com.hb.db.P_VO">

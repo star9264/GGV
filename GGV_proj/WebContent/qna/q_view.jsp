@@ -84,7 +84,14 @@
 				<td><input type="button" value="답변등록" onclick="answer_go(this.form)"/></td>
 			</tr>
 			</c:if>
-			<tr><td colspan="4" align="left"><input type="button" value="목록으로" onclick="javacript:location.href='../q_list.do?type=ask'"/></td></tr>
+			<tr>
+			<c:if test="${info.grade=='관리자' }">
+			<td colspan="4" align="left"><input type="button" value="목록으로" onclick="javacript:location.href='admin_qlist.do?type=ask'"/></td>
+			</c:if>
+			<c:if test="${! (info.grade == '관리자') }">
+			<td colspan="4" align="left"><input type="button" value="목록으로" onclick="javacript:location.href='q_list.do?type=ask&id=${info.member_id }'"/></td>
+			</c:if>
+			</tr>
 		</table>
 		</form>
 	</div>

@@ -214,7 +214,7 @@ table tr{
 										<dl>
 											<dt><a>관리자 모드</a></dt>
 											<dd>
-												<a>문의내역 답변달기</a>
+												<a href="admin_qlist.do?type=ask">문의내역 답변달기</a>
 											</dd>
 										</dl>
 									</c:if>

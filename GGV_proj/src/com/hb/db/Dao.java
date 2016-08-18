@@ -21,10 +21,8 @@ public class Dao {
 	}
 
 
-	///////////////////////////// board(별아
-	///////////////////////////// 건드리지마)///////////////////////////////////////////////
+	///////////////////////////// board(별아 건드리지마)///////////////////////////////////////////////
 	// q_list
-
 		public List<Q_VO> getQ_list(Map<String, String> map){
 			SqlSession ss =  null;
 			List<Q_VO> q_list = null;
@@ -162,7 +160,35 @@ public class Dao {
 			}
 			return avo;
 		}
+		public List<Q_VO> getAdminList(String type){
+			SqlSession ss = null;
+			List<Q_VO> admin_list = null;
+			try {
+				ss = sessionFactory.openSession();
+				admin_list = ss.selectList("admin_list",type);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}finally {
+				ss.close();
+			}
+			return admin_list;
+		}
+		// 답변 state update
+		public int getStateUpdate(String question_idx){
+			SqlSession ss = null;
+			int result = 0;
+			try {
+				ss = sessionFactory.openSession(true);
+				result = ss.update("state_update",question_idx);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}finally {
+				ss.close();
+			}
+			return result;
+		}
 		
+	////////////////////////////윤경끝//////////////////////////	
 
 		public List<P_VO> getpackage_info(String idx) {
 			SqlSession ss = null;

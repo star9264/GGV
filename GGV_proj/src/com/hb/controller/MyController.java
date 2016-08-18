@@ -691,15 +691,30 @@ public class MyController {
 	public ModelAndView getQanswer(HttpServletRequest request) {
 		String question_idx = request.getParameter("question_idx");
 		String content = request.getParameter("content");
+		Q_VO qvo = new Q_VO();
 		A_VO avo = new A_VO();
 		avo.setQuestion_idx(question_idx);
 		avo.setContent(content);
 		dao.getQAnswer(avo);
+		dao.getStateUpdate(question_idx);
 		ModelAndView mv = new ModelAndView("redirect:/q_view.do?question_idx=" + avo.getQuestion_idx());
 		mv.addObject("avo", avo);
 		return mv;
 
 	}
+	
+	//////////관리자모드//////
+	// 관리자 게시판 리스트
+	@RequestMapping("/admin_qlist.do")
+	public ModelAndView getAdminList(@RequestParam String type){
+		List<Q_VO> admin_list = dao.getAdminList(type);
+		ModelAndView mv = new ModelAndView("qna/admin_list");
+		mv.addObject("admin_list", admin_list);
+
+		return mv;
+	}
+	
+	
 //////////////////////////////////윤경끝/////////////////////////////////////////////
 
 		
