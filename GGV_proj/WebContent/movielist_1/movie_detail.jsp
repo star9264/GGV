@@ -40,6 +40,73 @@ a{
 a{
   text-decoration: none;
 }
+
+/* rating */
+.rating {
+    width: 300px;
+    height: 34px;
+    background-color: #f6f3f3;
+}
+ 
+.rating label {
+    text-indent: -100px;
+    width: 40px !important;
+    height: 30px;
+    overflow: hidden;
+    cursor: pointer;
+}
+ 
+.label {
+    float: left;
+    padding-top: 3px;
+}
+         
+input[type="radio"] {
+    padding-right: 4px;
+    position: absolute;
+    left: 340px;
+    margin-top: 10px;
+}
+                 
+input[type="radio"], .rating label.stars {
+    float: right;
+    line-height: 30px;
+    height: 30px;
+}
+ 
+span + input[type=radio] + label, legend + input[type=radio] + label {
+    clear: right;
+    margin-right: 80px;
+    counter-reset: checkbox;
+}
+ 
+.rating input[type="radio"]:required + label:after {
+    content: '';
+    position: absolute;
+    left: 340px; 
+    min-height: 10px;
+    margin-top: -36px;
+    text-align: right;
+    background: #6cbf00;
+    padding: 10px 10px;
+    display: block;
+    width: 50px;
+}
+ 
+.rating label.stars {
+    background: transparent url('img/star_off.png') no-repeat center center;
+}
+ 
+.rating label.stars:hover ~ label.stars, 
+.rating label.stars:hover, 
+.rating input[type=radio][name=stars]:checked ~ label.stars {
+    background-image: url('img/star.png');
+    counter-increment: checkbox;
+}
+ 
+.rating input[type=radio][name=stars]:required + label.stars:after {
+    content: counter(checkbox) " stars!";
+}
 </style>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script type="text/javascript">
@@ -118,7 +185,7 @@ function reserve_go(f) {
 			</tr>
 			<tr style="border: 1px solid #e1e8f0;">
 				<td width="150px" align="center">
-						 <select name="combo" style="width: 80px; height: 30px;" >
+						 <!-- <select name="combo" style="width: 80px; height: 30px;" >
                            <OPTION value="0">0점</OPTION>
                            <OPTION value="1">1점</OPTION>
                            <OPTION value="2">2점</OPTION>
@@ -130,9 +197,24 @@ function reserve_go(f) {
                            <OPTION value="8">8점</OPTION>
                            <OPTION value="9">9점</OPTION>
                            <OPTION value="10">10점</OPTION>
-                         </select> 
-					
-				</td>
+                         </select>  -->
+
+						<fieldset class="rating">
+							<input type="radio" name="stars" id="4_stars" value="4">
+							<label class="stars" for="4_stars">4 stars</label> <input
+								type="radio" name="stars" id="3_stars" value="3"> <label
+								class="stars" for="3_stars">3 stars</label> <input type="radio"
+								name="stars" id="2_stars" value="2"> <label
+								class="stars" for="2_stars">2 stars</label> <input type="radio"
+								name="stars" id="1_stars" value="1"> <label
+								class="stars" for="1_stars">1 star</label> <input type="radio"
+								name="stars" id="0_stars" value="0" required> <label
+								class="stars" for="0_stars">0 star</label>
+							<!-- <span  class="label"> Rating: </span> -->
+						</fieldset>
+
+
+					</td>
 				<td colspan="2" width="850px"><textarea title="댓글쓰기" id="btn2"
 						name="comment" rows="5" style="width: 88%; resize: none;">
 				</textarea> <span style="float: right"> <input type="button"
