@@ -51,6 +51,23 @@ a{
 	background-color: white;
 	border-color: #6ed3cf;
 }
+.btn2{
+    width: 100px;
+    height: 50px;
+	background-color: #e9ece5;
+	border-style: solid;
+	border-color: #f7f7f7;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: bold;
+	color: gray;
+}
+
+.btn2:HOVER {
+	color: #6ed3cf;
+	background-color: white;
+	border-color: #6ed3cf;
+}
 
 </style>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -67,10 +84,18 @@ a{
  		f.action="movie_list03.do";
  		f.submit();
  	}
-    function detail_go(f) {
-		f.action="movie_detail.do"
+  	$(function() {
+		$(".btn2").on('click', function() {
+			var movie_idx = $(this).attr("name");
+			location.href="movie_detail.do?movie_idx="+movie_idx;
+		});
+	});
+  	
+  	function reserve_go(f) {
+		f.action="movielist.do";
 		f.submit();
 	}
+   
 </script>
 </head>
 <body>
@@ -110,9 +135,8 @@ a{
                        </tr>
                        <tr>
                         <td colspan="2" align="center">
-                        <input type="hidden" name="movie_idx" value="${k.movie_idx}"/>
-                       <input type="button" value="상세정보" id="btn2" name="detail" onclick="detail_go(this.form)">
-                         <input type="button" value="예매하기" id="btn2"></td>
+                       <input type="button" value="상세정보" class="btn2" name="${k.movie_idx}">
+                       <input type="button" value="예매하기" id="btn2" onclick="reserve_go(this.form)"></td>
                        </tr>
 					</table>
 				</td>
@@ -138,9 +162,8 @@ a{
                        </tr>
                        <tr>
                         <td colspan="2" align="center">
-                          <input type="hidden" name="movie_idx" value="${k.movie_idx}"/>
-                       <input type="button" value="상세정보" id="btn2" name="detail" onclick="detail_go(this.form)">
-                         <input type="button" value="예매하기" id="btn2"></td>
+                       <input type="button" value="상세정보" class="btn2" name="${k.movie_idx}">
+                       <input type="button" value="예매하기" id="btn2" onclick="reserve_go(this.form)"></td>
                        </tr>
 					</table>
 				</td>

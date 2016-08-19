@@ -24,8 +24,8 @@
 	<div id="menu">
 			<jsp:include page="../home/menu_bar.jsp"/>
 	</div>
-	<h2>이름 : ${info.name}</h2>
-	<h2>아이디 : ${info.member_id}</h2>
-	  
+	<br/>
+	<br/>
+			<div align="center" style="color: #9068be; font-size: xx-large; font-weight: bolder;"><img alt="" src="img/ggv123123.png"></div>
 </body>
 </html>

@@ -44,7 +44,73 @@ public class MyController {
 		this.page = page;
 	}
 
-
+	@RequestMapping("/new_movie.do")
+	public ModelAndView getMovie_insert(){
+		ModelAndView mv = new ModelAndView("movielist_1/movie_insert");
+		return mv;
+	}
+	
+	// 관리자 영화입력
+	@RequestMapping("/movie_insert_ok.do")
+	public ModelAndView getMovie_insert_ok(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mv = new ModelAndView("movielist_1/movie_list01");
+		Movie_VO movie_VO = new Movie_VO();
+		movie_VO.setTitle(request.getParameter("title"));
+		movie_VO.setStory(request.getParameter("story"));
+		movie_VO.setGenre(request.getParameter("genre"));
+		movie_VO.setDirector(request.getParameter("director"));
+		movie_VO.setCast(request.getParameter("cast"));
+		movie_VO.setRunning_time(request.getParameter("running_time"));
+		movie_VO.setPoster(request.getParameter("poster"));
+		movie_VO.setStart_time(request.getParameter("start_time"));
+		movie_VO.setAge_img(request.getParameter("age_img"));
+		dao.getMovie_insert(movie_VO);
+		List<Movie_VO> list = dao.getMovie_list01();
+		mv.addObject("list", list);
+		return mv;
+	}
+	
+	// 관리자 영화수정 리스트
+	@RequestMapping("/movie_update.do")
+	public ModelAndView getMovie_update(){
+		ModelAndView mv = new ModelAndView("movielist_1/movie_update");
+		List<Movie_VO> list = dao.movieList();
+		mv.addObject("list", list);
+		return mv;
+	}
+	
+	// 관리자 영화수정 폼
+	@RequestMapping("/movie_update_go.do")
+	public ModelAndView getMovie_update_go(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView("movielist_1/movie_update_go");
+		String movie_idx = request.getParameter("movie_idx");
+		Movie_VO movie_VO = dao.getMovie_detail(movie_idx);
+		mv.addObject("movie_VO", movie_VO);
+		return mv;
+	}
+	
+	// 관리자 영화수정
+	@RequestMapping("/movie_update_ok.do")
+	public ModelAndView getMovie_update_ok(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView("movielist_1/movie_update");
+		Movie_VO movie_VO = new Movie_VO();
+		movie_VO.setMovie_idx(request.getParameter("movie_idx"));
+		movie_VO.setTitle(request.getParameter("title"));
+		movie_VO.setStory(request.getParameter("story"));
+		movie_VO.setRate(request.getParameter("rate"));
+		movie_VO.setGenre(request.getParameter("genre"));
+		movie_VO.setDirector(request.getParameter("director"));
+		movie_VO.setCast(request.getParameter("cast"));
+		movie_VO.setRunning_time(request.getParameter("running_time"));
+		movie_VO.setPoster(request.getParameter("poster"));
+		movie_VO.setStart_time(request.getParameter("start_time"));
+		movie_VO.setAge_img(request.getParameter("age_img"));
+		dao.getMovie_update(movie_VO);
+		
+		List<Movie_VO> list = dao.movieList();
+		mv.addObject("list", list);
+		return mv;
+	}
 	
 	// write
 	@RequestMapping("/write.do")
@@ -69,7 +135,7 @@ public class MyController {
 		ModelAndView mv = new ModelAndView();
 		String member_id = request.getParameter("member_id");
 		String pwd = request.getParameter("pwd");
-		System.out.println(member_id+pwd);
+		
 		
 		Member_VO member_VO = dao.getLogin(member_id, pwd);
 		
@@ -98,17 +164,21 @@ public class MyController {
 		Member_VO member_VO = new Member_VO();
 		int res = 0;
 		String pwd = request.getParameter("pwd");
+		String name = request.getParameter("name");
+		String birthday = request.getParameter("birthday1") + request.getParameter("birthday2") + request.getParameter("birthday3");
 		String phone = request.getParameter("phone")+request.getParameter("phone2")+request.getParameter("phone3");
 		String addr = request.getParameter("addr");
 		String email_addr = request.getParameter("email_addr");
 		String member_id = request.getParameter("member_id");
 		
 		member_VO.setMember_id(member_id);
+		member_VO.setName(name);
+		member_VO.setBirthday(birthday);
 		member_VO.setPwd(pwd);
 		member_VO.setPhone(phone);
 		member_VO.setAddr(addr);
 		member_VO.setEmail_addr(email_addr);
-		System.out.println("dddddd"+member_VO.getMember_id());
+
 		res = dao.getInfo_update(member_VO);
 		
 		if(res==1){
@@ -116,8 +186,8 @@ public class MyController {
 		}else{
 			mv = new ModelAndView("client_info/info_update_fail");
 		}
-		member_VO = dao.getLogin(member_id, pwd);
-		mv.addObject("member_VO", member_VO);
+
+		mv.addObject("info", member_VO);
 		
 		return mv;
 	}
@@ -137,7 +207,6 @@ public class MyController {
 		String member_id = request.getParameter("member_id");
 		String pwd = request.getParameter("pwd");
 		String pwd2 = request.getParameter("pwd2");
-		System.out.println(member_id + " :: " + pwd);
 		
 		res = dao.getPwd_update(member_id, pwd, pwd2);
 		
@@ -259,7 +328,7 @@ public class MyController {
 		}
 		mv.addObject("res", res);
 		mv.addObject("member_id", member_id);
-		System.out.println(member_id);
+	
 		
 		return mv;
 	}
@@ -302,7 +371,7 @@ public class MyController {
 		// package_main
 		@RequestMapping("/package_main.do")
 		public ModelAndView getpackage_main(HttpServletRequest request) {
-			System.out.println("패키지메인 컨트롤러");
+			
 			ModelAndView mv = new ModelAndView("package/package_main");
 			return mv;
 		}
@@ -310,10 +379,10 @@ public class MyController {
 		// package_info
 		@RequestMapping("/package_info.do")
 		public ModelAndView getPackage_info(HttpServletRequest request) {
-			System.out.println("package_info 컨트롤러");
+		
 			String type = request.getParameter("type");
 			String idx = null;
-			System.out.println(type);
+			
 			if (type.equals("package_1")) {
 				idx = "1";
 			} else if (type.equals("package_2")) {
@@ -334,7 +403,7 @@ public class MyController {
 		
 		@RequestMapping("purchase_ok.do")
 		public ModelAndView go_purchase(HttpServletRequest request) {
-			System.out.println("컨트롤러 go_purchase ");
+			
 			String package_name = request.getParameter("package_name");
 			int pack_person = 0;
 			if (package_name.equals("싱글패키지")) {
@@ -351,8 +420,7 @@ public class MyController {
 			
 			String total_price = request.getParameter("total_price");
 			String su = request.getParameter("su");
-			System.out.println(package_name + total_price + su);
-			System.out.println("패키지 하나당 몇명?" +pack_person);
+			
 			int r_su = Integer.parseInt(su);
 			int total_su = pack_person*r_su;
 			String total_person =String.valueOf(total_su); 
@@ -362,14 +430,14 @@ public class MyController {
 			map.put("id", id);
 
 			try {
-				System.out.println("try안");
+				
 				//member db속 package_reservation 넘버가져오기
 				String now_reservation = dao.get_res(id);
 				int r_now_reservation = Integer.parseInt(now_reservation);
 				int total_info = total_su +r_now_reservation;
 				String person = String.valueOf(total_info);
 				map.put("person", person);
-				System.out.println(person + "total_person");
+			
 				dao.go_res(map);
 				
 				// packagek_res db에 저장
@@ -428,9 +496,9 @@ public class MyController {
 		public ModelAndView package_res(HttpServletRequest request){
 			ModelAndView mv = new ModelAndView("package/package_res");
 			String id = request.getParameter("id");
-			System.out.println(id);
+			
 			List<Member_VO> list = dao.getpackage_res(id);
-			System.out.println(list.size());
+		
 			mv.addObject("list",list);
 			return mv;
 		}
@@ -543,7 +611,7 @@ public class MyController {
 		}
 		int res = dao.reserve(reserve);
 		
-		System.out.println(res);
+		
 		
 		
 		
@@ -581,6 +649,7 @@ public class MyController {
 		return mv;
 	}
 
+
 	@RequestMapping("/notice_list.do")
 	public ModelAndView getNList(@RequestParam String type) {
 
@@ -592,7 +661,7 @@ public class MyController {
 
 	@RequestMapping("/fq_list.do")
 	public ModelAndView getFQList() {
-		System.out.println("ㅎㅎㅎ자주하는질문");
+		
 		List<FQ_VO> f_list = dao.getFQ_list();
 		ModelAndView mv = new ModelAndView("qna/fq_list");
 		mv.addObject("f_list", f_list);
@@ -620,8 +689,7 @@ public class MyController {
 	@RequestMapping("/q_write_ok.do")
 	public ModelAndView getQWrite_ok(HttpServletRequest request) {
 		Q_VO qvo = new Q_VO();
-		System.out.println("write" + request.getParameter("type"));
-		System.out.println("id" + request.getParameter("id"));
+		
 		qvo.setType(request.getParameter("type"));
 		qvo.setSubject(request.getParameter("subject"));
 		qvo.setMember_name(request.getParameter("name"));
@@ -652,7 +720,7 @@ public class MyController {
 	// login alert
 	@RequestMapping("/login_alert.do")
 	public ModelAndView loginAlert() {
-		System.out.println("로그인하시길");
+		
 		return new ModelAndView("qna/login_alert");
 	}
 
@@ -703,6 +771,7 @@ public class MyController {
 
 	}
 	
+
 	//////////관리자모드//////
 	// 관리자 게시판 리스트
 	@RequestMapping("/admin_qlist.do")
@@ -715,6 +784,7 @@ public class MyController {
 	}
 	
 	
+
 //////////////////////////////////윤경끝/////////////////////////////////////////////
 
 		
@@ -748,11 +818,10 @@ public class MyController {
         @RequestMapping("/movie_detail.do")
         public ModelAndView getMovie_detail(HttpServletRequest request, HttpServletResponse response){
            ModelAndView mv = new ModelAndView("movielist_1/movie_detail");
-           String movie_idx = null;
-           movie_idx = request.getParameter("movie_idx");
-           System.out.println(movie_idx);
-           System.out.println("값" + movie_idx);
+           String movie_idx = request.getParameter("movie_idx");
+           
            Movie_VO movie_VO = dao.getMovie_detail(movie_idx);
+           System.out.println(movie_VO.getRunning_time());
            mv.addObject("movie_VO", movie_VO);
            
            return mv;

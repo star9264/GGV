@@ -61,6 +61,11 @@ function list03(f) {
 	f.action="movie_list03.do";
 	f.submit();
 }
+
+function reserve_go(f) {
+	f.action="movielist.do";
+	f.submit();
+}
 </script>
 </head>
 <body>
@@ -82,7 +87,7 @@ function list03(f) {
 						<i class=""></i>${movie_VO.title}
 					</h2>
 					<hr color="purple"> <span style="float: right"> <input
-						type="button" id="btn1" value="예매하기"
+						type="button" id="btn1" value="예매하기" onclick="reserve_go(this.form)"
 						style="background-color: purple; color: white; width: 100px; height: 40px;">
 				</span>
 					<h3>

@@ -60,7 +60,7 @@
 	text-decoration: none;
 	display: block;
 	text-align: left;
-/* 	padding-top: 0px; */
+/* 	padding-top: 0px; */ 
 }
 #dropdown-content a:HOVER{
 	color: #666666;
@@ -137,7 +137,7 @@ table tr{
 											<a href="new_movie.do">새 영화 입력</a>
 											</dd>
 											<dd>
-											<a href="alert_movie">영화 정보 수정,삭제</a>
+											<a href="movie_update.do">영화 정보 수정,삭제</a>
 											</dd>
 										</c:if>
 									</dl>
@@ -154,16 +154,18 @@ table tr{
 										</dd>
 									</dl>
 									<dl>
+
 										<dt><a>나의 메가박스</a></dt>
 										<dd>
 										<c:if test="${!empty info}">
-											<a href="q_list.do?type=ask&id=${info.member_id }">나의 문의내역</a>
+											<a href="q_list.do?type=ask&id=${info.member_id}">나의 문의내역</a>
 										</c:if>
 										<c:if test="${empty info}">
 											<a href="login_alert.do">나의 문의내역</a>
 										</c:if>
 										</dd>
 									</dl>
+
 
 								</td>
 								<td>
