@@ -18,6 +18,7 @@ import com.hb.db.Dao;
 import com.hb.db.FQ_VO;
 import com.hb.db.Member_VO;
 import com.hb.db.Movie_VO;
+import com.hb.db.PR_VO;
 import com.hb.db.P_VO;
 
 import com.hb.db.Pageing;
@@ -334,8 +335,6 @@ public class MyController {
 
 		}
 		
-		
-
 		@RequestMapping("purchase_ok.do")
 		public ModelAndView go_purchase(HttpServletRequest request) {
 			
@@ -374,6 +373,24 @@ public class MyController {
 				map.put("person", person);
 			
 				dao.go_res(map);
+				
+				// packagek_res db에 저장
+				for (int i = 0; i < r_su; i++) {
+					int res_num = (int)(Math.random()*1000000);
+					String reservation_num = String.valueOf(res_num);
+					PR_VO pr_vo = new PR_VO();
+					pr_vo.setMember_id(id);
+					pr_vo.setReservation_num(reservation_num);
+					pr_vo.setReservation_package(package_name);
+					pr_vo.setPackage_su(su);
+					System.out.println(pr_vo.getReservation_num()+"컨트롤러");
+					System.out.println(pr_vo.getReservation_package()+"컨트롤러");
+					int result = dao.go_package_res(pr_vo);
+					if(result<=0){
+						System.out.println("db에 값 안들어감");
+					}
+				}
+				
 			
 				
 			} catch (Exception e) {
@@ -381,6 +398,17 @@ public class MyController {
 			}
 			return new ModelAndView("redirect:package_close.do");
 
+		}
+		
+		@RequestMapping("package_res_info.do")
+		public ModelAndView package_res_info(HttpServletRequest request){
+			String id = request.getParameter("member_id");
+			System.out.println("pacakge_res_info"+id);
+			List<PR_VO> list = dao.getpackage_res_info(id);
+			System.out.println("컨트롤러 res_info size"+list.size());
+			ModelAndView mv = new ModelAndView("package/package_res_info");
+			mv.addObject("list",list);
+			return mv;
 		}
 
 		@RequestMapping("package_close.do")
@@ -543,17 +571,18 @@ public class MyController {
 ////////////////////board(별아 건드리지마)///////////////////////////////
 	// qna list
 	@RequestMapping("/q_list.do")
-	   public ModelAndView getQList(HttpServletRequest request) {
-	      String type = request.getParameter("type");
-	      String member_id = request.getParameter("id");
-	      Map<String, String> map = new HashMap<>();
-	      map.put("type", type);
-	      map.put("member_id", member_id);
-	      List<Q_VO> q_list = dao.getQ_list(map);
-	      ModelAndView mv = new ModelAndView("qna/q_list");
-	      mv.addObject("q_list", q_list);
-	      return mv;
-	   }
+	public ModelAndView getQList(HttpServletRequest request) {
+		String type = request.getParameter("type");
+		String member_id = request.getParameter("id");
+		Map<String, String> map = new HashMap<>();
+		map.put("type", type);
+		map.put("member_id", member_id);
+		List<Q_VO> q_list = dao.getQ_list(map);
+		ModelAndView mv = new ModelAndView("qna/q_list");
+		mv.addObject("q_list", q_list);
+		return mv;
+	}
+
 
 	@RequestMapping("/notice_list.do")
 	public ModelAndView getNList(@RequestParam String type) {
@@ -664,16 +693,32 @@ public class MyController {
 	public ModelAndView getQanswer(HttpServletRequest request) {
 		String question_idx = request.getParameter("question_idx");
 		String content = request.getParameter("content");
+		Q_VO qvo = new Q_VO();
 		A_VO avo = new A_VO();
 		avo.setQuestion_idx(question_idx);
 		avo.setContent(content);
 		dao.getQAnswer(avo);
+		dao.getStateUpdate(question_idx);
 		ModelAndView mv = new ModelAndView("redirect:/q_view.do?question_idx=" + avo.getQuestion_idx());
 		mv.addObject("avo", avo);
 		return mv;
 
 	}
 	
+
+	//////////관리자모드//////
+	// 관리자 게시판 리스트
+	@RequestMapping("/admin_qlist.do")
+	public ModelAndView getAdminList(@RequestParam String type){
+		List<Q_VO> admin_list = dao.getAdminList(type);
+		ModelAndView mv = new ModelAndView("qna/admin_list");
+		mv.addObject("admin_list", admin_list);
+
+		return mv;
+	}
+	
+	
+
 //////////////////////////////////윤경끝/////////////////////////////////////////////
 
 		

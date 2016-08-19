@@ -21,10 +21,8 @@ public class Dao {
 	}
 
 
-	///////////////////////////// board(별아
-	///////////////////////////// 건드리지마)///////////////////////////////////////////////
+	///////////////////////////// board(별아 건드리지마)///////////////////////////////////////////////
 	// q_list
-
 		public List<Q_VO> getQ_list(Map<String, String> map){
 			SqlSession ss =  null;
 			List<Q_VO> q_list = null;
@@ -162,72 +160,136 @@ public class Dao {
 			}
 			return avo;
 		}
+		public List<Q_VO> getAdminList(String type){
+			SqlSession ss = null;
+			List<Q_VO> admin_list = null;
+			try {
+				ss = sessionFactory.openSession();
+				admin_list = ss.selectList("admin_list",type);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}finally {
+				ss.close();
+			}
+			return admin_list;
+		}
+		// 답변 state update
+		public int getStateUpdate(String question_idx){
+			SqlSession ss = null;
+			int result = 0;
+			try {
+				ss = sessionFactory.openSession(true);
+				result = ss.update("state_update",question_idx);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}finally {
+				ss.close();
+			}
+			return result;
+		}
 		
+	////////////////////////////윤경끝//////////////////////////	
 
-	public List<P_VO> getpackage_info(String idx) {
-		SqlSession ss = null;
-		List<P_VO> package_list = null;
-		try {
-			ss = sessionFactory.openSession();
-			package_list = ss.selectList("package_information", idx);
-		} catch (Exception e) {
-			System.out.println(e);
+		public List<P_VO> getpackage_info(String idx) {
+			SqlSession ss = null;
+			List<P_VO> package_list = null;
+			try {
+				ss = sessionFactory.openSession();
+				package_list = ss.selectList("package_information", idx);
+			} catch (Exception e) {
+				System.out.println(e);
 
-		} finally {
-			ss.close();
-		}
-		return package_list;
+			} finally {
+				ss.close();
+			}
+			return package_list;
 
-	}
-
-	public void go_res(Map map) {
-		SqlSession ss = null;
-		try {
-			ss = sessionFactory.openSession();
-			ss.update("package_reservation", map);
-
-		} catch (Exception e) {
-			System.out.println(e);
-
-		} finally {
-			ss.close();
 		}
 
-	}
+		public void go_res(Map map) {
+			SqlSession ss = null;
+			try {
+				ss = sessionFactory.openSession();
+				ss.update("package_reservation", map);
 
-	public String get_res(String id) {
-		SqlSession ss = null;
-		String now_reservation = null;
-		try {
-			ss = sessionFactory.openSession();
-			now_reservation = ss.selectOne("get_reservation", id);
-		} catch (Exception e) {
-			System.out.println(e);
+			} catch (Exception e) {
+				System.out.println(e);
 
-		} finally {
-			ss.close();
+			} finally {
+				ss.close();
+			}
+
 		}
 
-		return now_reservation;
+		public String get_res(String id) {
+			SqlSession ss = null;
+			String now_reservation = null;
+			try {
+				ss = sessionFactory.openSession();
+				now_reservation = ss.selectOne("get_reservation", id);
+			} catch (Exception e) {
+				System.out.println(e);
 
-	}
-	
-	public List<Member_VO> getpackage_res(String id){
-		SqlSession ss = null;
-		List<Member_VO> package_res = null;
+			} finally {
+				ss.close();
+			}
+
+			return now_reservation;
+
+		}
 		
-		try {
-			ss = sessionFactory.openSession();
-			package_res = ss.selectList("package_res",id);
+		public List<Member_VO> getpackage_res(String id){
+			SqlSession ss = null;
+			List<Member_VO> package_res = null;
 			
-		} catch (Exception e) {
-			System.out.println(e);
+			try {
+				ss = sessionFactory.openSession();
+				package_res = ss.selectList("package_res",id);
+				
+			} catch (Exception e) {
+				System.out.println(e);
 
-		} finally {
-			ss.close();
+			} finally {
+				ss.close();
+			}
+			return package_res;
 		}
-		return package_res;
-	}
+		
+		public int go_package_res(PR_VO pr_vo){
+			SqlSession ss = null;
+			int result = 0;
+			System.out.println(pr_vo.getReservation_package()+" go_package_res dao");
+			System.out.println(pr_vo.getReservation_num()+" go_package_res dao");
+			try {
+				ss = sessionFactory.openSession();
+				System.out.println("try안");
+				result = ss.insert("p_r_insert", pr_vo); 
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally{
+				ss.close();
+			}
+			return result;
+		
+		}
+		
+		public List<PR_VO> getpackage_res_info(String id){
+			SqlSession ss = null;
+			List<PR_VO> package_res_info = null;
+			
+			try {
+				ss = sessionFactory.openSession();
+				package_res_info = ss.selectList("package_res_info",id);
+				System.out.println("getpackage_res_info DAO"+package_res_info.size());
+	
+			} catch (Exception e) {
+				System.out.println(e);
+
+			} finally {
+				ss.close();
+			}
+			return package_res_info;
+		}
 
 	//////////////////////////////////////////////////////////////////////////////////////
 

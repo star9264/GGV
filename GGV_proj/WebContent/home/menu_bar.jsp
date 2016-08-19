@@ -60,7 +60,7 @@
 	text-decoration: none;
 	display: block;
 	text-align: left;
-/* 	padding-top: 0px; */
+/* 	padding-top: 0px; */ 
 }
 #dropdown-content a:HOVER{
 	color: #666666;
@@ -87,7 +87,7 @@ table tr{
 		var chk = confirm("접속을 종료하시겠습니까?");
 		if(chk==true){
 			location.href="logout.do";
-			alert("접속이 종료되었습니다.");
+			alert("접속이 종료되었습니다."); 
 		}else{
 			return;
 		}
@@ -132,6 +132,14 @@ table tr{
 										<dd>
 											<a href="movie_list03.do">상영예정작</a>
 										</dd>
+										<c:if test="${info.grade=='관리자'}">
+											<dd>
+											<a href="new_movie.do">새 영화 입력</a>
+											</dd>
+											<dd>
+											<a href="alert_movie">영화 정보 수정,삭제</a>
+											</dd>
+										</c:if>
 									</dl>
 
 								</td>
@@ -141,18 +149,23 @@ table tr{
 										<dd>
 											<a href="package_main.do">GGV 패키지</a>
 										</dd>
+										<dd>
+											<a href="package_res_info.do?member_id=${info.member_id}">GGV 패키지 예약 확인</a>
+										</dd>
 									</dl>
 									<dl>
-                              			<dt><a>나의 메가박스</a></dt>
-                             			 <dd>
-                              				<c:if test="${!empty info}">
-                                 				<a href="q_list.do?type=ask&id=${info.member_id }">나의 문의내역</a>
-                              				</c:if>
-                              				<c:if test="${empty info}">
-                                 				<a href="login_alert.do">나의 문의내역</a>
-                              				</c:if>
-                             			 </dd>
-                           			</dl>
+
+										<dt><a>나의 메가박스</a></dt>
+										<dd>
+										<c:if test="${!empty info}">
+											<a href="q_list.do?type=ask&id=${info.member_id }">나의 문의내역</a>
+										</c:if>
+										<c:if test="${empty info}">
+											<a href="login_alert.do">나의 문의내역</a>
+										</c:if>
+										</dd>
+									</dl>
+
 
 								</td>
 								<td>
@@ -199,6 +212,14 @@ table tr{
 										<dt><a>회사소개</a></dt>
 										
 									</dl>
+									<c:if test="${info.grade=='관리자' }">
+										<dl>
+											<dt><a>관리자 모드</a></dt>
+											<dd>
+												<a href="admin_qlist.do?type=ask">문의내역 답변달기</a>
+											</dd>
+										</dl>
+									</c:if>
 								</td>
 								<c:if test="${!empty info.member_id}">
 								<td>
