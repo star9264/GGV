@@ -143,9 +143,16 @@ table tr{
 										</dd>
 									</dl>
 									<dl>
-										<dt><a>나의 메가박스</a></dt>
-										
-									</dl>
+                              			<dt><a>나의 메가박스</a></dt>
+                             			 <dd>
+                              				<c:if test="${!empty info}">
+                                 				<a href="q_list.do?type=ask&id=${info.member_id }">나의 문의내역</a>
+                              				</c:if>
+                              				<c:if test="${empty info}">
+                                 				<a href="login_alert.do">나의 문의내역</a>
+                              				</c:if>
+                             			 </dd>
+                           			</dl>
 
 								</td>
 								<td>

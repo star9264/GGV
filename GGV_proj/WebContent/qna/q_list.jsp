@@ -62,7 +62,7 @@
 					<c:forEach items="${q_list }" var="k" varStatus="s">
 						<tr>
 							<td>${q_list.size()-s.count +1 }</td>
-							<td><a href="q_view.do?question_idx=${k.question_idx}">}${k.subject}</a></td>
+							<td><a href="q_view.do?question_idx=${k.question_idx}">${k.subject}</a></td>
 							<td>${k.state }</td>
 							<td>${k.regdate.substring(0,10) }</td>
 						</tr>

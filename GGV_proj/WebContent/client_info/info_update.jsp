@@ -42,6 +42,10 @@
 			var chk = confirm("정말 수정하시겠습니까?");
 			if(chk==true){
 				$("#id").attr('disabled', false);
+				$("#birthday1").attr('disabled', false);
+				$("#birthday2").attr('disabled', false);
+				$("#birthday3").attr('disabled', false);
+				$("#name").attr('disabled', false);
 				f.action="info_update.do";
 				f.submit();
 			}else{
@@ -98,13 +102,13 @@
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*이름</td>
-					<td><input type="text" style="height: 18px;" value="${info.name}" disabled="disabled"/></td>
+					<td><input type="text" style="height: 18px;" value="${info.name}" id="name" name="name" disabled="disabled"/></td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*생년월일</td>
-					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="2" value="${info.birthday.substring(0,4)}" disabled="disabled"/>&nbsp;년
-					<input type="text" style="height: 18px;" size="1"  value="${info.birthday.substring(4,6)}" disabled="disabled"/>&nbsp;월&nbsp;
-					<input type="text" style="height: 18px;" size="1"  value="${info.birthday.substring(6,8)}" disabled="disabled"/>&nbsp;일</td>
+					<td style="font-size: 12px"><input type="text" style="height: 18px;" size="2" value="${info.birthday.substring(0,4)}" name="birthday1" id="birthday1" disabled="disabled"/>&nbsp;년
+					<input type="text" style="height: 18px;" size="1"  value="${info.birthday.substring(4,6)}" id="birthday2" name="birthday2" disabled="disabled"/>&nbsp;월&nbsp;
+					<input type="text" style="height: 18px;" size="1"  value="${info.birthday.substring(6,8)}" id="birthday3" name="birthday3" disabled="disabled"/>&nbsp;일</td>
 				</tr>
 				<tr>
 					<td style="font-weight: bolder; background-color: #f5f5f5; font-size: 14px;">*전화번호</td>

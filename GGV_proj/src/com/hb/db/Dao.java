@@ -735,7 +735,7 @@ public class Dao {
          Movie_VO movie_VO = new Movie_VO();
          try {
         ss= sessionFactory.openSession(true);
-        movie_VO = ss.selectOne("movie_detail",movie_idx);
+        movie_VO = ss.selectOne("movie_detail", movie_idx);
      } catch (Exception e) {
          System.out.println(e);
      }
@@ -743,3 +743,36 @@ public class Dao {
       }
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
