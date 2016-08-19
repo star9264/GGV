@@ -17,7 +17,7 @@
 		padding-left: 200px;
 		border-spacing : 0px;
 		font-size: 15px;
-		margin: 0px;
+		margin: 0px; 
 	}
 	#tb table th{
 		padding: 5px 10px;
