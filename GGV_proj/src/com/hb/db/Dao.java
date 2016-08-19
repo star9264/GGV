@@ -20,6 +20,33 @@ public class Dao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	// 관리자 영화입력
+	public void getMovie_insert(Movie_VO movie_VO){
+		SqlSession ss = null;
+		try {
+			ss = sessionFactory.openSession(true);
+			ss.insert("movie_insert", movie_VO);
+			ss.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			ss.close();
+		}
+	}
+	
+	// 관리자 영화수정
+	public void getMovie_update(Movie_VO movie_VO){
+		SqlSession ss = null;
+		try {
+			ss = sessionFactory.openSession(true);
+			ss.update("movie_update", movie_VO);
+			ss.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			ss.close();
+		}
+	}
 
 	///////////////////////////// board(별아 건드리지마)///////////////////////////////////////////////
 	// q_list

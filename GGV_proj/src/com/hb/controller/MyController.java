@@ -44,7 +44,73 @@ public class MyController {
 		this.page = page;
 	}
 
-
+	@RequestMapping("/new_movie.do")
+	public ModelAndView getMovie_insert(){
+		ModelAndView mv = new ModelAndView("movielist_1/movie_insert");
+		return mv;
+	}
+	
+	// 관리자 영화입력
+	@RequestMapping("/movie_insert_ok.do")
+	public ModelAndView getMovie_insert_ok(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mv = new ModelAndView("movielist_1/movie_list01");
+		Movie_VO movie_VO = new Movie_VO();
+		movie_VO.setTitle(request.getParameter("title"));
+		movie_VO.setStory(request.getParameter("story"));
+		movie_VO.setGenre(request.getParameter("genre"));
+		movie_VO.setDirector(request.getParameter("director"));
+		movie_VO.setCast(request.getParameter("cast"));
+		movie_VO.setRunning_time(request.getParameter("running_time"));
+		movie_VO.setPoster(request.getParameter("poster"));
+		movie_VO.setStart_time(request.getParameter("start_time"));
+		movie_VO.setAge_img(request.getParameter("age_img"));
+		dao.getMovie_insert(movie_VO);
+		List<Movie_VO> list = dao.getMovie_list01();
+		mv.addObject("list", list);
+		return mv;
+	}
+	
+	// 관리자 영화수정 리스트
+	@RequestMapping("/movie_update.do")
+	public ModelAndView getMovie_update(){
+		ModelAndView mv = new ModelAndView("movielist_1/movie_update");
+		List<Movie_VO> list = dao.movieList();
+		mv.addObject("list", list);
+		return mv;
+	}
+	
+	// 관리자 영화수정 폼
+	@RequestMapping("/movie_update_go.do")
+	public ModelAndView getMovie_update_go(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView("movielist_1/movie_update_go");
+		String movie_idx = request.getParameter("movie_idx");
+		Movie_VO movie_VO = dao.getMovie_detail(movie_idx);
+		mv.addObject("movie_VO", movie_VO);
+		return mv;
+	}
+	
+	// 관리자 영화수정
+	@RequestMapping("/movie_update_ok.do")
+	public ModelAndView getMovie_update_ok(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView("movielist_1/movie_update");
+		Movie_VO movie_VO = new Movie_VO();
+		movie_VO.setMovie_idx(request.getParameter("movie_idx"));
+		movie_VO.setTitle(request.getParameter("title"));
+		movie_VO.setStory(request.getParameter("story"));
+		movie_VO.setRate(request.getParameter("rate"));
+		movie_VO.setGenre(request.getParameter("genre"));
+		movie_VO.setDirector(request.getParameter("director"));
+		movie_VO.setCast(request.getParameter("cast"));
+		movie_VO.setRunning_time(request.getParameter("running_time"));
+		movie_VO.setPoster(request.getParameter("poster"));
+		movie_VO.setStart_time(request.getParameter("start_time"));
+		movie_VO.setAge_img(request.getParameter("age_img"));
+		dao.getMovie_update(movie_VO);
+		
+		List<Movie_VO> list = dao.movieList();
+		mv.addObject("list", list);
+		return mv;
+	}
 	
 	// write
 	@RequestMapping("/write.do")
@@ -755,7 +821,7 @@ public class MyController {
            String movie_idx = request.getParameter("movie_idx");
            
            Movie_VO movie_VO = dao.getMovie_detail(movie_idx);
-           
+           System.out.println(movie_VO.getRunning_time());
            mv.addObject("movie_VO", movie_VO);
            
            return mv;
