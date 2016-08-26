@@ -215,8 +215,21 @@ public class Dao {
 			return result;
 		}
 		
-	////////////////////////////윤경끝//////////////////////////	
-
+		public int getReview(C_VO cvo){
+			SqlSession ss = null;
+			int result = 0;
+			try {
+				ss = sessionFactory.openSession(true);
+				result = ss.insert("review_insert",cvo);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}finally{
+				ss.close();
+			}
+			return result;
+		}
+		////////////////////////////윤경끝//////////////////////////	
+		
 		public List<P_VO> getpackage_info(String idx) {
 			SqlSession ss = null;
 			List<P_VO> package_list = null;

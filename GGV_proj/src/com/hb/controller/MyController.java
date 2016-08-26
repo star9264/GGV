@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hb.db.A_VO;
+import com.hb.db.C_VO;
 import com.hb.db.Dao;
 import com.hb.db.FQ_VO;
 import com.hb.db.Member_VO;
@@ -780,6 +781,20 @@ public class MyController {
 		ModelAndView mv = new ModelAndView("qna/admin_list");
 		mv.addObject("admin_list", admin_list);
 
+		return mv;
+	}
+	@RequestMapping("/comment_rev.do")
+	public ModelAndView getCommentRev(HttpServletRequest request){
+		C_VO cvo = new C_VO();
+		cvo.setMovie_idx(request.getParameter("movie_idx"));
+		System.out.println(request.getParameter("movie_idx"));
+		cvo.setMember_id(request.getParameter("id"));
+		cvo.setContent(request.getParameter("comment"));
+		cvo.setRate(request.getParameter("stars"));
+		dao.getReview(cvo);
+		ModelAndView mv = new ModelAndView("movielist_1/movie_01");
+		mv.addObject("cvo",cvo);
+		
 		return mv;
 	}
 	

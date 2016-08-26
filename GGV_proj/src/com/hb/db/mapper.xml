@@ -132,6 +132,9 @@
 	<update id="state_update" parameterType="String">
 		update ggv_board set state='답변' where question_idx = #{question_idx}
 	</update>
+	<insert id="review_insert" parameterType="com.hb.db.C_VO">
+		insert ggv_comment values(comment_idx_seq.nextval, #{member_id},#{content},#{rate},sysdate)
+	</insert>
 	<!--package mapper -->
 	<select id="package_information" parameterType="String"
 		resultType="com.hb.db.P_VO">
