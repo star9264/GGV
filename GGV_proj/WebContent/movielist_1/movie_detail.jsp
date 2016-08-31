@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="UTF-8"%>
+	<%request.setCharacterEncoding("utf-8");
+		String movie_idx = request.getParameter("movie_idx");
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>øµ»≠ªÛºº¡§∫∏</title>
+<title>ÏòÅÌôîÏÉÅÏÑ∏Ï†ïÎ≥¥</title>
 <style type="text/css">
 
 a{
@@ -128,32 +131,32 @@ function comment_go(f) {
 <body>
 <form method="post">
      	<div align="center">
-			<span><input type="button" value="π⁄Ω∫ø¿««Ω∫" id="top_btn"onclick="list01(this.form)" /></span> 
-				<span><input type="button" value="√÷Ω≈∞≥∫¿¿€" id="top_btn" onclick="list02(this.form)" /></span> 
-				<span><input type="button" value="ªÛøµøπ¡§¿€" id="top_btn" onclick="list03(this.form)" /></span>
+			<span><input type="button" value="Î∞ïÏä§Ïò§ÌîºÏä§" id="top_btn"onclick="list01(this.form)" /></span> 
+				<span><input type="button" value="ÏµúÏã†Í∞úÎ¥âÏûë" id="top_btn" onclick="list02(this.form)" /></span> 
+				<span><input type="button" value="ÏÉÅÏòÅÏòàÏ†ïÏûë" id="top_btn" onclick="list03(this.form)" /></span>
 		</div>
 	<table class="movie_Detail" align="center" width="1000px">
 
-		<!--±‚∫ª¡§∫∏-->
+		<!--Í∏∞Î≥∏Ï†ïÎ≥¥-->
 		<tbody>
 			<tr>
 				<td rowspan="1" width="250px" height="350px"><img alt="" src="${movie_VO.poster}">
 				</td>
 				<td width="750px">
 					<h2>
-						<i class=""></i>${movie_VO.title}
+						<i class=""></i>${movie_VO.title}<%= movie_idx%>
 					</h2>
 					<hr color="purple"> <span style="float: right"> <input
-						type="button" id="btn1" value="øπ∏≈«œ±‚" onclick="reserve_go(this.form)"
+						type="button" id="btn1" value="ÏòàÎß§ÌïòÍ∏∞" onclick="reserve_go(this.form)"
 						style="background-color: purple; color: white; width: 100px; height: 40px;">
 				</span>
 					<h3>
-						∆Ú¡° : ${movie_VO.rate}
+						ÌèâÏ†ê : ${movie_VO.rate}
 					</h3>
-					<p>¿Â∏£ : ${movie_VO.genre}</p>
-					<p>∞®µ∂ : ${movie_VO.director}</p>
-					<p>ªÛøµΩ√∞£ : ${movie_VO.running_time}</p>
-					<p>∞≥∫¿¿œ : ${movie_VO.start_time.substring(0,10)}</p>
+					<p>Ïû•Î•¥ : ${movie_VO.genre}</p>
+					<p>Í∞êÎèÖ : ${movie_VO.director}</p>
+					<p>ÏÉÅÏòÅÏãúÍ∞Ñ : ${movie_VO.running_time}</p>
+					<p>Í∞úÎ¥âÏùº : ${movie_VO.start_time.substring(0,10)}</p>
 				</td>
 			</tr>
 			<tr>
@@ -168,7 +171,7 @@ function comment_go(f) {
 			<tr>
 				<td colspan="2">
 					<h4>
-						«—¡Ÿ∆Ú
+						ÌïúÏ§ÑÌèâ
 						</h4>
 				</td>
 				
@@ -176,17 +179,17 @@ function comment_go(f) {
 			<tr style="border: 1px solid #e1e8f0;">
 				<td width="150px" align="center">
 						 <!-- <select name="combo" style="width: 80px; height: 30px;" >
-                           <OPTION value="0">0¡°</OPTION>
-                           <OPTION value="1">1¡°</OPTION>
-                           <OPTION value="2">2¡°</OPTION>
-                           <OPTION value="3">3¡°</OPTION>
-                           <OPTION value="4">4¡°</OPTION>
-                           <OPTION value="5">5¡°</OPTION>
-                           <OPTION value="6">6¡°</OPTION>
-                           <OPTION value="7">7¡°</OPTION>
-                           <OPTION value="8">8¡°</OPTION>
-                           <OPTION value="9">9¡°</OPTION>
-                           <OPTION value="10">10¡°</OPTION>
+                           <OPTION value="0">0Ï†ê</OPTION>
+                           <OPTION value="1">1Ï†ê</OPTION>
+                           <OPTION value="2">2Ï†ê</OPTION>
+                           <OPTION value="3">3Ï†ê</OPTION>
+                           <OPTION value="4">4Ï†ê</OPTION>
+                           <OPTION value="5">5Ï†ê</OPTION>
+                           <OPTION value="6">6Ï†ê</OPTION>
+                           <OPTION value="7">7Ï†ê</OPTION>
+                           <OPTION value="8">8Ï†ê</OPTION>
+                           <OPTION value="9">9Ï†ê</OPTION>
+                           <OPTION value="10">10Ï†ê</OPTION>
                          </select>  -->
 
 						<fieldset class="rating"> 
@@ -200,18 +203,18 @@ function comment_go(f) {
 					        <label class="stars" for="1_stars">1 star</label>
 					        <input type="radio" name="stars" id="0_stars" value="2" >
 					        <label class="stars" for="0_stars">0 star</label>
-					        <span  class="label"> ∫∞¡° : </span>
-					       <!--  <input type="button" name="send" value="µÓ∑œ" onclick="send_go()"> -->
+					        <span  class="label"> Î≥ÑÏ†ê : </span>
+					       <!--  <input type="button" name="send" value="Îì±Î°ù" onclick="send_go()"> -->
 					    </fieldset>
 
 
 					</td>
 				<td colspan="2" width="850px">
-					<textarea title="¥Ò±€æ≤±‚" id="btn2" name="comment" rows="5" style="width: 80%; resize: none; display: inline-block;"  ></textarea> 
+					<textarea title="ÎåìÍ∏ÄÏì∞Í∏∞" id="btn2" name="comment" rows="5" style="width: 80%; resize: none; display: inline-block;"  ></textarea> 
 					<span style="float: right"> 
-						<input type="button"name="comment" value="µÓ∑œ"	
-						style="background-color: #e1e8f0; color: #9fa8a3; font-size: 18px; font-weight: bold; width: 93px; height: 80px;" onclick="comment_go()" />
-						<input type="hidden" name="movie_idx"  value="${movie_idx }"/>
+						<input type="button"name="comment" value="Îì±Î°ù"	
+						style="background-color: #e1e8f0; color: #9fa8a3; font-size: 18px; font-weight: bold; width: 93px; height: 80px;" onclick="comment_go(this.form)" />
+						<input type="hidden" name="movie_idx"  value="<%=movie_idx%>"/>
 					</span>
 				</td>
 				

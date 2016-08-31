@@ -228,6 +228,18 @@ public class Dao {
 			}
 			return result;
 		}
+		public int modifyCnt(String movie_idx){
+			SqlSession ss = null;
+			int result = 0;
+			try {
+				ss = sessionFactory.openSession(true);
+				result = ss.update("cnt_modify",movie_idx);
+			} catch (Exception e) {
+				// TODO: handle exception
+				ss.close();
+			}
+			return result;
+		}
 		////////////////////////////윤경끝//////////////////////////	
 		
 		public List<P_VO> getpackage_info(String idx) {

@@ -783,26 +783,29 @@ public class MyController {
 
 		return mv;
 	}
+	//////////별점 한줄평/////////////
 	@RequestMapping("/comment_rev.do")
 	public ModelAndView getCommentRev(HttpServletRequest request){
 		C_VO cvo = new C_VO();
-		cvo.setMovie_idx(request.getParameter("movie_idx"));
-		System.out.println(request.getParameter("movie_idx"));
+		String movie_idx = request.getParameter("movie_idx");
+		cvo.setMovie_idx(movie_idx);
 		cvo.setMember_id(request.getParameter("id"));
+		System.out.println(request.getParameter("id")+request.getParameter("comment")+request.getParameter("stars"));
 		cvo.setContent(request.getParameter("comment"));
 		cvo.setRate(request.getParameter("stars"));
 		dao.getReview(cvo);
-		ModelAndView mv = new ModelAndView("movielist_1/movie_01");
+		/////////////cnt 업데이트
+		dao.modifyCnt(movie_idx);
+		ModelAndView mv = new ModelAndView("redirect://movie_list01.do?movie_idx="+cvo.getMovie_idx());
 		mv.addObject("cvo",cvo);
 		
 		return mv;
 	}
 	
 	
+	
 
 //////////////////////////////////윤경끝/////////////////////////////////////////////
-
-		
 		@RequestMapping("/movie_list01.do")
         public ModelAndView getMovie_list01(){
            ModelAndView mv = new ModelAndView("movielist_1/movie_list01");
@@ -820,7 +823,6 @@ public class MyController {
            ModelAndView mv = new ModelAndView("movielist_1/movie_list02");
            List<Movie_VO> list = dao.getMovie_list02();
            mv.addObject("list",list);
-           
            return mv;
         }
         @RequestMapping("/movie_list03.do")

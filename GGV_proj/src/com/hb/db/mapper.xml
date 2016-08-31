@@ -133,8 +133,11 @@
 		update ggv_board set state='답변' where question_idx = #{question_idx}
 	</update>
 	<insert id="review_insert" parameterType="com.hb.db.C_VO">
-		insert ggv_comment values(comment_idx_seq.nextval, #{member_id},#{content},#{rate},sysdate)
+		insert into ggv_comment values(comment_idx_seq.nextval,#{movie_idx}, #{member_id},sysdate,#{content},#{rate})
 	</insert>
+	<update id="cnt_modify">
+		update ggv_movie set review_cnt = (select count (*) from ggv_comment where movie_idx = #{movie_idx}) where movie_idx = #{movie_idx}
+	</update>
 	<!--package mapper -->
 	<select id="package_information" parameterType="String"
 		resultType="com.hb.db.P_VO">
