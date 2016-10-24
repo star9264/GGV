@@ -135,9 +135,12 @@
 	<insert id="review_insert" parameterType="com.hb.db.C_VO">
 		insert into ggv_comment values(comment_idx_seq.nextval,#{movie_idx}, #{member_id},sysdate,#{content},#{rate})
 	</insert>
-	<update id="cnt_modify">
+	<update id="cnt_modify" parameterType="String">
 		update ggv_movie set review_cnt = (select count (*) from ggv_comment where movie_idx = #{movie_idx}) where movie_idx = #{movie_idx}
 	</update>
+	<select id="view_comment" parameterType="String" resultType="com.hb.db.C_VO">
+		select * from ggv_comment where movie_idx = #{movie_idx} order by comment_idx desc 
+	</select>
 	<!--package mapper -->
 	<select id="package_information" parameterType="String"
 		resultType="com.hb.db.P_VO">

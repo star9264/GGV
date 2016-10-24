@@ -240,6 +240,18 @@ public class Dao {
 			}
 			return result;
 		}
+		public List<C_VO> getComment(String movie_idx){
+			SqlSession ss = null;
+			List<C_VO> comment_list = null;
+			try {
+				ss = sessionFactory.openSession();
+				comment_list = ss.selectList("view_comment", movie_idx);
+			} catch (Exception e) {
+				// TODO: handle exception
+				ss.close();
+			}
+			return comment_list;
+		}
 		////////////////////////////윤경끝//////////////////////////	
 		
 		public List<P_VO> getpackage_info(String idx) {

@@ -124,7 +124,6 @@ public class MyController {
 	// login 화면으로
 	@RequestMapping("/login.do")
 	public ModelAndView getLogin(HttpServletRequest request, HttpServletResponse response){
-		System.out.println("좀 돼라");
 		ModelAndView mv = new ModelAndView("client_info/login");
 		return mv;
 	}
@@ -836,10 +835,11 @@ public class MyController {
         public ModelAndView getMovie_detail(HttpServletRequest request, HttpServletResponse response){
            ModelAndView mv = new ModelAndView("movielist_1/movie_detail");
            String movie_idx = request.getParameter("movie_idx");
-           
            Movie_VO movie_VO = dao.getMovie_detail(movie_idx);
+           List<C_VO> comment_list = dao.getComment(movie_idx);
            System.out.println(movie_VO.getRunning_time());
            mv.addObject("movie_VO", movie_VO);
+           mv.addObject("comment_list",comment_list);
            
            return mv;
         }

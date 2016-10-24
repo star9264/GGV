@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%request.setCharacterEncoding("utf-8");
 		String movie_idx = request.getParameter("movie_idx");
 	%>
@@ -95,6 +96,15 @@ a{
     background-image: url('img/star.png');
     counter-increment: checkbox;
 } 
+ #c_id{
+	width: 20%;
+}
+#c_date{
+	width: 20%;
+}
+#c_rate{
+	width: 60%;
+} 
   
 </style>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -166,13 +176,11 @@ function comment_go(f) {
 			</tr>
 		</tbody>
 	</table>
-	<table class="command" align="center" width="1000px" border="1px">
+	<table class="command" align="center" width="1000px" >
 		<tbody>
 			<tr>
 				<td colspan="2">
-					<h4>
-						한줄평
-						</h4>
+					<h3>&nbsp;&nbsp;&nbsp;★한줄평</h3>
 				</td>
 				
 			</tr>
@@ -217,13 +225,37 @@ function comment_go(f) {
 						<input type="hidden" name="movie_idx"  value="<%=movie_idx%>"/>
 					</span>
 				</td>
-				
-			</tr>
+				<td>
+			</td>
 			<tr>
 				<td colspan="2"><hr color="#e1e8f0"></td>
 			</tr>
 		</tbody>
 	</table>
+		<table  align="center" width="1000px" border="1px solid #e1e8f0" >
+				<c:if test="${empty comment_list }">
+				<tr style="height: 5px">
+					<td colspan="3" align="center" style="height: 100px;"> <h4>등록된 한줄평이 없습니다.</h4></td>
+				</tr>
+				</c:if>
+				<c:forEach items="${comment_list }" var="c">
+				<tr>
+					<td id="c_id">${c.member_id }</td>
+					<td id="c_date">${c.regdate.substring(0,10)}</td>
+					<td id="c_rate">${c.rate}</td>
+				</tr>
+				<%-- <tr>
+					<td>${c.member_id }</td>
+					<td>${c.regdate.substring(0,10)}</td>
+					<td>${c.rate}</td>
+				</tr> --%>
+				<tr>
+				<td>${c.content }</td>
+				</tr>
+				</c:forEach>
+				
+			
+		</table>
 	</form>
 </body>
 </html>
